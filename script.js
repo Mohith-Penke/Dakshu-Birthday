@@ -1,790 +1,623 @@
 /* =========================================================
-   DAKSHU BIRTHDAY WEBSITE
-   COMPLETE INTERACTIVE SCRIPT
+   DAKSHU BIRTHDAY — MAIN SCRIPT
 ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
 
-  /* =======================================================
-     SCREEN ELEMENTS
-  ======================================================= */
-
-  const introScreen = document.getElementById("intro-screen");
-  const birthdayScreen = document.getElementById("birthday-screen");
-  const questionScreen = document.getElementById("question-screen");
-  const yesScreen = document.getElementById("yes-screen");
-  const mainSite = document.getElementById("main-site");
-
-  const openSurprise = document.getElementById("open-surprise");
-  const birthdayContinue = document.getElementById("birthday-continue");
-  const yesButton = document.getElementById("yes-button");
-  const noButton = document.getElementById("no-button");
-  const continueToSite = document.getElementById("continue-to-site");
-
-
-  /* =======================================================
-     SCREEN SWITCHING
-  ======================================================= */
-
-  function showScreen(screen) {
-    const screens = [
-      introScreen,
-      birthdayScreen,
-      questionScreen,
-      yesScreen
-    ];
-
-    screens.forEach((item) => {
-      if (item) {
-        item.classList.remove("active");
-      }
-    });
-
-    if (screen) {
-      screen.classList.add("active");
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
-    }
-  }
-
-
-  /* =======================================================
-     INTRO → BIRTHDAY
-  ======================================================= */
-
-  if (openSurprise) {
-    openSurprise.addEventListener("click", () => {
-
-      showScreen(birthdayScreen);
-
-      setTimeout(() => {
-        createBirthdayParty();
-      }, 150);
-
-    });
-  }
-
-
-  /* =======================================================
-     BIRTHDAY → FOREVER QUESTION
-  ======================================================= */
-
-  if (birthdayContinue) {
-    birthdayContinue.addEventListener("click", () => {
-      showScreen(questionScreen);
-    });
-  }
-
-
-  /* =======================================================
-     NO BUTTON ESCAPE
-  ======================================================= */
-
-  if (noButton) {
-
-    function moveNoButton() {
-
-      const padding = 25;
-
-      const maxX =
-        Math.max(
-          padding,
-          window.innerWidth - noButton.offsetWidth - padding
-        );
-
-      const maxY =
-        Math.max(
-          padding,
-          window.innerHeight - noButton.offsetHeight - padding
-        );
-
-      const x =
-        Math.floor(
-          Math.random() * (maxX - padding + 1)
-        ) + padding;
-
-      const y =
-        Math.floor(
-          Math.random() * (maxY - padding + 1)
-        ) + padding;
-
-      noButton.style.position = "fixed";
-      noButton.style.left = `${x}px`;
-      noButton.style.top = `${y}px`;
-      noButton.style.zIndex = "9999";
-
-      noButton.style.transition = "all 0.15s ease";
-
-    }
-
-
-    noButton.addEventListener("mouseenter", moveNoButton);
-
-    noButton.addEventListener("touchstart", (event) => {
-      event.preventDefault();
-      moveNoButton();
-    }, { passive: false });
-
-    noButton.addEventListener("pointerenter", moveNoButton);
-
-    noButton.addEventListener("click", (event) => {
-      event.preventDefault();
-      moveNoButton();
-    });
-
-  }
-
-
-  /* =======================================================
-     YES BUTTON
-  ======================================================= */
-
-  if (yesButton) {
-
-    yesButton.addEventListener("click", () => {
-
-      createLoveExplosion();
-
-      setTimeout(() => {
-        showScreen(yesScreen);
-      }, 650);
-
-    });
-
-  }
-
-
-  /* =======================================================
-     YES SCREEN → MAIN WEBSITE
-  ======================================================= */
-
-  if (continueToSite) {
-
-    continueToSite.addEventListener("click", () => {
-
-      if (mainSite) {
-
-        mainSite.classList.remove("hidden");
-
-        mainSite.style.display = "block";
-
-        document.body.style.overflowX = "hidden";
-
-        setTimeout(() => {
-          mainSite.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-          });
-        }, 100);
-
-      }
-
-      createLoveExplosion();
-
-      setTimeout(() => {
-        revealElements();
-      }, 300);
-
-    });
-
-  }
-
-
-  /* =======================================================
-     BIRTHDAY PARTY EFFECTS
-  ======================================================= */
-
-  function createBirthdayParty() {
-
-    createConfetti(100);
-    createBalloons(22);
-    createSparkles(35);
-    createFireworks(12);
-
-  }
-
-
-  /* =======================================================
-     CONFETTI
-  ======================================================= */
-
-  function createConfetti(amount = 80) {
-
-    for (let i = 0; i < amount; i++) {
-
-      const piece = document.createElement("div");
-
-      piece.className = "confetti";
-
-      piece.textContent = Math.random() > 0.5 ? "♥" : "✦";
-
-      piece.style.left =
-        Math.random() * 100 + "vw";
-
-      piece.style.fontSize =
-        Math.random() * 10 + 7 + "px";
-
-      piece.style.animationDuration =
-        Math.random() * 3 + 3 + "s";
-
-      piece.style.animationDelay =
-        Math.random() * 2 + "s";
-
-      document.body.appendChild(piece);
-
-      setTimeout(() => {
-        piece.remove();
-      }, 8000);
-
-    }
-
-  }
-
-
-  /* =======================================================
-     BALLOONS
-  ======================================================= */
-
-  function createBalloons(amount = 20) {
-
-    const emojis = [
-      "🎈",
-      "💗",
-      "💕",
-      "💖",
-      "❤️",
-      "🎀"
-    ];
-
-    for (let i = 0; i < amount; i++) {
-
-      const balloon = document.createElement("div");
-
-      balloon.className = "balloon";
-
-      balloon.textContent =
-        emojis[Math.floor(Math.random() * emojis.length)];
-
-      balloon.style.left =
-        Math.random() * 100 + "vw";
-
-      balloon.style.fontSize =
-        Math.random() * 25 + 28 + "px";
-
-      balloon.style.animationDuration =
-        Math.random() * 5 + 6 + "s";
-
-      balloon.style.animationDelay =
-        Math.random() * 3 + "s";
-
-      document.body.appendChild(balloon);
-
-      setTimeout(() => {
-        balloon.remove();
-      }, 12000);
-
-    }
-
-  }
-
-
-  /* =======================================================
-     SPARKLES
-  ======================================================= */
-
-  function createSparkles(amount = 30) {
-
-    const symbols = [
-      "✨",
-      "💫",
-      "⭐",
-      "✦",
-      "♡"
-    ];
-
-    for (let i = 0; i < amount; i++) {
-
-      const sparkle = document.createElement("div");
-
-      sparkle.className = "sparkle";
-
-      sparkle.textContent =
-        symbols[Math.floor(Math.random() * symbols.length)];
-
-      sparkle.style.left =
-        Math.random() * 100 + "vw";
-
-      sparkle.style.top =
-        Math.random() * 100 + "vh";
-
-      sparkle.style.animationDelay =
-        Math.random() * 1.5 + "s";
-
-      document.body.appendChild(sparkle);
-
-      setTimeout(() => {
-        sparkle.remove();
-      }, 2500);
-
-    }
-
-  }
-
-
-  /* =======================================================
-     FIREWORKS
-  ======================================================= */
-
-  function createFireworks(amount = 10) {
-
-    for (let i = 0; i < amount; i++) {
-
-      setTimeout(() => {
-
-        const firework = document.createElement("div");
-
-        firework.className = "firework";
-
-        firework.textContent =
-          Math.random() > 0.5
-            ? "🎆"
-            : "✨";
-
-        firework.style.left =
-          Math.random() * 90 + 5 + "vw";
-
-        firework.style.top =
-          Math.random() * 55 + 5 + "vh";
-
-        document.body.appendChild(firework);
-
-        setTimeout(() => {
-          firework.remove();
-        }, 1500);
-
-      }, i * 180);
-
-    }
-
-  }
-
-
-  /* =======================================================
-     LOVE EXPLOSION
-  ======================================================= */
-
-  function createLoveExplosion() {
-
-    const hearts = [
-      "❤️",
-      "💗",
-      "💖",
-      "💕",
-      "💓",
-      "💞",
-      "💘"
-    ];
-
-    for (let i = 0; i < 35; i++) {
-
-      const heart = document.createElement("div");
-
-      heart.textContent =
-        hearts[Math.floor(Math.random() * hearts.length)];
-
-      heart.style.position = "fixed";
-      heart.style.left = "50%";
-      heart.style.top = "50%";
-      heart.style.zIndex = "10000";
-      heart.style.pointerEvents = "none";
-      heart.style.fontSize =
-        Math.random() * 20 + 15 + "px";
-
-      const angle =
-        Math.random() * Math.PI * 2;
-
-      const distance =
-        Math.random() * 280 + 80;
-
-      const x =
-        Math.cos(angle) * distance;
-
-      const y =
-        Math.sin(angle) * distance;
-
-      heart.animate(
-        [
-          {
-            transform: "translate(-50%, -50%) scale(0)",
-            opacity: 1
-          },
-          {
-            transform:
-              `translate(calc(-50% + ${x}px), calc(-50% + ${y}px)) scale(1.3)`,
-            opacity: 0
-          }
-        ],
-        {
-          duration: 1000 + Math.random() * 600,
-          easing: "cubic-bezier(.2,.8,.3,1)"
-        }
-      );
-
-      document.body.appendChild(heart);
-
-      setTimeout(() => {
-        heart.remove();
-      }, 1800);
-
-    }
-
-  }
-
-
-  /* =======================================================
-     LETTER
-  ======================================================= */
-
-  const openLetter = document.getElementById("open-letter");
-  const letterContent = document.getElementById("letter-content");
-
-  if (openLetter && letterContent) {
-
-    openLetter.addEventListener("click", () => {
-
-      const isHidden =
-        letterContent.classList.contains("hidden");
-
-      if (isHidden) {
-
-        letterContent.classList.remove("hidden");
-
-        openLetter.classList.add("letter-opened");
-
-        openLetter.querySelector("span").textContent =
-          "For you, Bubu... ❤️";
-
-        setTimeout(() => {
-
-          letterContent.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-          });
-
-        }, 150);
-
-        createSparkles(20);
-
-      }
-
-    });
-
-  }
-
-
-  /* =======================================================
-     GIFT POPUP
-  ======================================================= */
-
-  const giftPopup =
-    document.getElementById("gift-popup");
-
-  const giftMessage =
-    document.getElementById("gift-message");
-
-  const closeGift =
-    document.getElementById("close-gift");
-
-  const giftBoxes =
-    document.querySelectorAll(".gift-box");
-
-
-  const giftMessages = [
-    "You are my favourite person in this entire world. ❤️",
-
-    "If I could choose again, I would still choose you. Every single time. 💗",
-
-    "Your childish side is one of the things I secretly love the most about you. 🥹❤️",
-
-    "My favourite place is simply wherever you are. 🌙❤️",
-
-    "One day we will look back at all these memories and smile together. ♾️❤️",
-
-    "No matter how many fights we have, I still want to find my way back to you. 🫶",
-
-    "You made ordinary days feel like memories worth keeping forever. ✨",
-
-    "Happy Birthday, my Dakshu. You are loved more than you know. 🎂❤️"
-  ];
-
-
-  giftBoxes.forEach((box, index) => {
-
-    box.addEventListener("click", () => {
-
-      if (!giftPopup || !giftMessage) {
-        return;
-      }
-
-      giftMessage.textContent =
-        giftMessages[index % giftMessages.length];
-
-      giftPopup.classList.remove("hidden");
-
-      giftPopup.style.display = "flex";
-
-      createSparkles(15);
-
-    });
-
-  });
-
-
-  function closeGiftPopup() {
-
-    if (!giftPopup) {
-      return;
-    }
-
-    giftPopup.classList.add("hidden");
-
-    giftPopup.style.display = "none";
-
-  }
-
-
-  if (closeGift) {
-    closeGift.addEventListener(
-      "click",
-      closeGiftPopup
+    /* =====================================================
+       ELEMENTS
+    ====================================================== */
+
+    const introScreen = document.getElementById("intro-screen");
+    const birthdayScreen = document.getElementById("birthday-screen");
+    const questionScreen = document.getElementById("question-screen");
+    const yesScreen = document.getElementById("yes-screen");
+    const letterSection = document.getElementById("letter-section");
+
+    const openSurprise = document.getElementById("open-surprise");
+    const birthdayContinue = document.getElementById("birthday-continue");
+    const yesButton = document.getElementById("yes-button");
+    const noButton = document.getElementById("no-button");
+    const continueToLetter = document.getElementById("continue-to-letter");
+
+    const noMessage = document.getElementById("no-message");
+
+    const floatingHearts = document.getElementById("floating-hearts");
+    const sparkles = document.getElementById("sparkles");
+
+    const letterElements = document.querySelectorAll(
+        ".letter-opening, .letter-paragraph, .letter-special, .letter-emphasis, .letter-final, .birthday-ending, .signature"
     );
-  }
 
 
-  if (giftPopup) {
+    /* =====================================================
+       SCREEN SWITCHING
+    ====================================================== */
 
-    giftPopup.addEventListener("click", (event) => {
+    function showScreen(screen) {
 
-      if (event.target === giftPopup) {
-        closeGiftPopup();
-      }
+        const screens = [
+            introScreen,
+            birthdayScreen,
+            questionScreen,
+            yesScreen
+        ];
 
-    });
+        screens.forEach(item => {
+            if (item) {
+                item.classList.remove("active");
+            }
+        });
 
-  }
+        if (screen) {
+            screen.classList.add("active");
+        }
 
-
-  /* =======================================================
-     ESC KEY FOR POPUP
-  ======================================================= */
-
-  document.addEventListener("keydown", (event) => {
-
-    if (event.key === "Escape") {
-      closeGiftPopup();
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
     }
 
-  });
 
+    /* =====================================================
+       INTRO → BIRTHDAY
+    ====================================================== */
 
-  /* =======================================================
-     SCROLL REVEAL
-  ======================================================= */
+    if (openSurprise) {
 
-  function revealElements() {
+        openSurprise.addEventListener("click", () => {
 
-    const elements =
-      document.querySelectorAll(".reveal");
+            createSparkleBurst();
 
-    if (!elements.length) {
-      return;
+            setTimeout(() => {
+                showScreen(birthdayScreen);
+                startBirthdayEffects();
+            }, 350);
+
+        });
+
     }
 
-    const observer =
-      new IntersectionObserver(
-        (entries) => {
 
-          entries.forEach((entry) => {
+    /* =====================================================
+       BIRTHDAY → QUESTION
+    ====================================================== */
 
-            if (entry.isIntersecting) {
+    if (birthdayContinue) {
 
-              entry.target.classList.add("visible");
+        birthdayContinue.addEventListener("click", () => {
 
-              observer.unobserve(entry.target);
+            createSparkleBurst();
+
+            setTimeout(() => {
+                showScreen(questionScreen);
+            }, 300);
+
+        });
+
+    }
+
+
+    /* =====================================================
+       YES BUTTON
+    ====================================================== */
+
+    if (yesButton) {
+
+        yesButton.addEventListener("click", () => {
+
+            createHeartBurst();
+
+            setTimeout(() => {
+                showScreen(yesScreen);
+            }, 450);
+
+        });
+
+    }
+
+
+    /* =====================================================
+       YES SCREEN → LETTER
+    ====================================================== */
+
+    if (continueToLetter) {
+
+        continueToLetter.addEventListener("click", () => {
+
+            document.querySelectorAll(".screen").forEach(screen => {
+                screen.classList.remove("active");
+            });
+
+            letterSection.classList.add("visible");
+
+            setTimeout(() => {
+
+                letterSection.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+
+            }, 250);
+
+            startFloatingHearts();
+
+        });
+
+    }
+
+
+    /* =====================================================
+       NO BUTTON — ESCAPE
+    ====================================================== */
+
+    function escapeNoButton() {
+
+        if (!noButton) return;
+
+        const padding = 25;
+
+        const maxX =
+            Math.max(
+                padding,
+                window.innerWidth - noButton.offsetWidth - padding
+            );
+
+        const maxY =
+            Math.max(
+                padding,
+                window.innerHeight - noButton.offsetHeight - padding
+            );
+
+        const randomX =
+            Math.floor(
+                Math.random() * (maxX - padding) + padding
+            );
+
+        const randomY =
+            Math.floor(
+                Math.random() * (maxY - padding) + padding
+            );
+
+        noButton.style.position = "fixed";
+        noButton.style.left = `${randomX}px`;
+        noButton.style.top = `${randomY}px`;
+        noButton.style.zIndex = "100";
+
+        if (noMessage) {
+            noMessage.classList.add("show");
+
+            setTimeout(() => {
+                noMessage.classList.remove("show");
+            }, 900);
+        }
+    }
+
+
+    if (noButton) {
+
+        noButton.addEventListener("mouseenter", escapeNoButton);
+
+        noButton.addEventListener("touchstart", (event) => {
+            event.preventDefault();
+            escapeNoButton();
+        });
+
+        noButton.addEventListener("pointerdown", (event) => {
+
+            if (event.pointerType === "touch") {
+                event.preventDefault();
+                escapeNoButton();
+            }
+
+        });
+
+        noButton.addEventListener("click", (event) => {
+            event.preventDefault();
+            escapeNoButton();
+        });
+
+    }
+
+
+    /* =====================================================
+       SCROLL-BASED LETTER REVEAL
+    ====================================================== */
+
+    let revealTicking = false;
+
+    function revealLetterOnScroll() {
+
+        if (!letterSection.classList.contains("visible")) {
+            return;
+        }
+
+        const windowHeight = window.innerHeight;
+
+        letterElements.forEach((element, index) => {
+
+            const rect = element.getBoundingClientRect();
+
+            const revealPoint =
+                windowHeight * 0.88;
+
+            if (rect.top < revealPoint) {
+
+                if (!element.classList.contains("revealed")) {
+
+                    setTimeout(() => {
+                        element.classList.add("revealed");
+                    }, Math.min(index * 35, 250));
+
+                }
 
             }
 
-          });
+        });
 
-        },
-        {
-          threshold: 0.12
+        revealTicking = false;
+    }
+
+
+    window.addEventListener("scroll", () => {
+
+        if (!letterSection.classList.contains("visible")) {
+            return;
         }
-      );
 
-    elements.forEach((element) => {
-      observer.observe(element);
+        if (!revealTicking) {
+
+            window.requestAnimationFrame(() => {
+                revealLetterOnScroll();
+            });
+
+            revealTicking = true;
+        }
+
+    }, {
+        passive: true
     });
 
-  }
 
+    /* =====================================================
+       FIRST LETTER REVEAL
+    ====================================================== */
 
-  revealElements();
+    function initializeLetter() {
 
+        letterElements.forEach(element => {
+            element.classList.remove("revealed");
+        });
 
-  /* =======================================================
-     RANDOM FLOATING HEARTS
-  ======================================================= */
+        setTimeout(() => {
+            revealLetterOnScroll();
+        }, 500);
 
-  function createFloatingHeart() {
-
-    if (!mainSite) {
-      return;
     }
 
-    if (mainSite.classList.contains("hidden")) {
-      return;
+
+    if (continueToLetter) {
+
+        continueToLetter.addEventListener("click", () => {
+            setTimeout(initializeLetter, 700);
+        });
+
     }
 
-    const heart = document.createElement("div");
 
-    heart.textContent =
-      Math.random() > 0.5
-        ? "♡"
-        : "♥";
+    /* =====================================================
+       FLOATING HEARTS
+    ====================================================== */
 
-    heart.style.position = "fixed";
-    heart.style.left =
-      Math.random() * 100 + "vw";
+    let heartInterval = null;
 
-    heart.style.bottom = "-30px";
+    function createFloatingHeart() {
 
-    heart.style.fontSize =
-      Math.random() * 18 + 12 + "px";
+        if (!floatingHearts) return;
 
-    heart.style.color = "#ff8fab";
+        const heart = document.createElement("span");
 
-    heart.style.opacity = "0.45";
+        heart.className = "floating-heart";
 
-    heart.style.pointerEvents = "none";
+        const hearts = [
+            "♡",
+            "♥",
+            "♡",
+            "❤",
+            "✦"
+        ];
 
-    heart.style.zIndex = "1";
+        heart.textContent =
+            hearts[Math.floor(Math.random() * hearts.length)];
 
-    const duration =
-      Math.random() * 5 + 7;
+        heart.style.left =
+            `${Math.random() * 100}%`;
 
-    heart.animate(
-      [
-        {
-          transform: "translateY(0) scale(.7)",
-          opacity: 0
-        },
-        {
-          transform: "translateY(-30vh) scale(1)",
-          opacity: 0.45
-        },
-        {
-          transform: "translateY(-110vh) scale(.5)",
-          opacity: 0
+        heart.style.fontSize =
+            `${10 + Math.random() * 12}px`;
+
+        heart.style.animationDuration =
+            `${7 + Math.random() * 6}s`;
+
+        heart.style.opacity =
+            `${0.25 + Math.random() * 0.45}`;
+
+        floatingHearts.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 14000);
+
+    }
+
+
+    function startFloatingHearts() {
+
+        if (heartInterval) {
+            clearInterval(heartInterval);
         }
-      ],
-      {
-        duration: duration * 1000,
-        easing: "linear"
-      }
-    );
 
-    document.body.appendChild(heart);
+        heartInterval = setInterval(() => {
 
-    setTimeout(() => {
-      heart.remove();
-    }, duration * 1000);
+            if (
+                letterSection.classList.contains("visible")
+            ) {
+                createFloatingHeart();
+            }
 
-  }
+        }, 1500);
 
-
-  setInterval(createFloatingHeart, 2200);
-
-
-  /* =======================================================
-     CLICK ANYWHERE → SMALL SPARKLE
-  ======================================================= */
-
-  document.addEventListener("click", (event) => {
-
-    if (
-      event.target.closest("button") ||
-      event.target.closest("a")
-    ) {
-      return;
     }
 
-    const sparkle = document.createElement("div");
 
-    sparkle.textContent = "✨";
+    /* =====================================================
+       BIRTHDAY EFFECTS
+    ====================================================== */
 
-    sparkle.style.position = "fixed";
-    sparkle.style.left = event.clientX + "px";
-    sparkle.style.top = event.clientY + "px";
-    sparkle.style.pointerEvents = "none";
-    sparkle.style.zIndex = "9999";
-    sparkle.style.fontSize = "16px";
+    function startBirthdayEffects() {
 
-    sparkle.animate(
-      [
-        {
-          transform: "translate(-50%, -50%) scale(.3)",
-          opacity: 1
-        },
-        {
-          transform:
-            "translate(-50%, -80px) scale(1.4)",
-          opacity: 0
+        createSparkleBurst();
+
+        setTimeout(() => {
+            createSparkleBurst();
+        }, 700);
+
+        setTimeout(() => {
+            createHeartBurst();
+        }, 1300);
+
+    }
+
+
+    /* =====================================================
+       HEART BURST
+    ====================================================== */
+
+    function createHeartBurst() {
+
+        if (!floatingHearts) return;
+
+        for (let i = 0; i < 18; i++) {
+
+            const heart = document.createElement("span");
+
+            heart.className = "floating-heart";
+
+            heart.textContent =
+                Math.random() > 0.5 ? "♡" : "♥";
+
+            heart.style.left = "50%";
+            heart.style.bottom = "45%";
+
+            const angle =
+                Math.random() * Math.PI * 2;
+
+            const distance =
+                80 + Math.random() * 180;
+
+            const x =
+                Math.cos(angle) * distance;
+
+            const y =
+                Math.sin(angle) * distance;
+
+            heart.style.setProperty(
+                "--burst-x",
+                `${x}px`
+            );
+
+            heart.style.setProperty(
+                "--burst-y",
+                `${y}px`
+            );
+
+            heart.style.animation =
+                `heartBurst ${1.5 + Math.random()}s ease-out forwards`;
+
+            floatingHearts.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 3000);
+
         }
-      ],
-      {
-        duration: 700,
-        easing: "ease-out"
-      }
-    );
 
-    document.body.appendChild(sparkle);
-
-    setTimeout(() => {
-      sparkle.remove();
-    }, 800);
-
-  });
+    }
 
 
-  /* =======================================================
-     INITIAL PAGE STATE
-  ======================================================= */
+    /* =====================================================
+       CLICK SPARKLES
+    ====================================================== */
 
-  if (mainSite) {
-    mainSite.classList.add("hidden");
-  }
+    function createSparkle(x, y) {
 
-  if (giftPopup) {
-    giftPopup.classList.add("hidden");
-    giftPopup.style.display = "none";
-  }
+        if (!sparkles) return;
+
+        const sparkle = document.createElement("span");
+
+        sparkle.className = "sparkle";
+
+        sparkle.textContent =
+            Math.random() > 0.5 ? "✦" : "✧";
+
+        sparkle.style.left = `${x}px`;
+        sparkle.style.top = `${y}px`;
+
+        sparkle.style.setProperty(
+            "--x",
+            `${(Math.random() - 0.5) * 70}px`
+        );
+
+        sparkle.style.setProperty(
+            "--y",
+            `${(Math.random() - 0.5) * 70}px`
+        );
+
+        sparkles.appendChild(sparkle);
+
+        setTimeout(() => {
+            sparkle.remove();
+        }, 900);
+
+    }
 
 
-  /* =======================================================
-     CONSOLE MESSAGE
-  ======================================================= */
+    function createSparkleBurst() {
 
-  console.log(
-    "%cFor Dakshu ❤️",
-    "font-size:24px;font-weight:bold;"
-  );
+        const centerX =
+            window.innerWidth / 2;
 
-  console.log(
-    "%cMade with love by Mohith ✨",
-    "font-size:14px;"
-  );
+        const centerY =
+            window.innerHeight / 2;
+
+        for (let i = 0; i < 15; i++) {
+
+            setTimeout(() => {
+
+                createSparkle(
+                    centerX + (Math.random() - 0.5) * 260,
+                    centerY + (Math.random() - 0.5) * 180
+                );
+
+            }, i * 35);
+
+        }
+
+    }
+
+
+    /* =====================================================
+       CLICK ANYWHERE → SMALL SPARKLE
+    ====================================================== */
+
+    document.addEventListener("click", (event) => {
+
+        if (
+            event.target.closest("button")
+        ) {
+            return;
+        }
+
+        createSparkle(
+            event.clientX,
+            event.clientY
+        );
+
+    });
+
+
+    /* =====================================================
+       KEYBOARD SUPPORT
+    ====================================================== */
+
+    document.addEventListener("keydown", (event) => {
+
+        if (
+            event.key === "Enter" &&
+            document.activeElement === openSurprise
+        ) {
+            openSurprise.click();
+        }
+
+    });
+
+
+    /* =====================================================
+       RESET NO BUTTON WHEN QUESTION OPENS
+    ====================================================== */
+
+    const questionObserver =
+        new MutationObserver(() => {
+
+            if (
+                questionScreen.classList.contains("active") &&
+                noButton
+            ) {
+
+                noButton.style.position = "relative";
+                noButton.style.left = "";
+                noButton.style.top = "";
+                noButton.style.zIndex = "";
+
+            }
+
+        });
+
+
+    if (questionScreen) {
+
+        questionObserver.observe(
+            questionScreen,
+            {
+                attributes: true,
+                attributeFilter: ["class"]
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       DYNAMIC HEART BURST STYLE
+    ====================================================== */
+
+    const dynamicStyle =
+        document.createElement("style");
+
+    dynamicStyle.textContent = `
+
+        @keyframes heartBurst {
+
+            0% {
+                transform:
+                    translate(0, 0)
+                    scale(0.4);
+                opacity: 0;
+            }
+
+            15% {
+                opacity: 1;
+            }
+
+            100% {
+                transform:
+                    translate(var(--burst-x), var(--burst-y))
+                    scale(1.2);
+                opacity: 0;
+            }
+
+        }
+
+    `;
+
+    document.head.appendChild(dynamicStyle);
+
+
+    /* =====================================================
+       INITIAL STATE
+    ====================================================== */
+
+    showScreen(introScreen);
 
 });
