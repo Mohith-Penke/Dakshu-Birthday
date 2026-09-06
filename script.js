@@ -13,10 +13,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const openSurprise = document.getElementById("open-surprise");
     const yesButton = document.getElementById("yes-button");
     const noButton = document.getElementById("no-button");
-    const continueAfterYes = document.getElementById("continue-after-yes");
 
-    const partyContainer = document.getElementById("party-container");
-    const yesPartyContainer = document.getElementById("yes-party-container");
+    // IMPORTANT:
+    // Current index.html uses "continue-to-site"
+    const continueAfterYes =
+        document.getElementById("continue-to-site");
+
+    const partyContainer =
+        document.getElementById("party-container");
+
+    const yesPartyContainer =
+        document.getElementById("yes-party-container");
 
 
     /* =========================================
@@ -48,8 +55,11 @@ document.addEventListener("DOMContentLoaded", () => {
             createPartyEffects(partyContainer);
 
             setTimeout(() => {
+
                 showScreen(questionScreen);
+
                 positionNoButton();
+
             }, 6500);
 
         });
@@ -74,18 +84,27 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
+    /* =========================================
+       CONFETTI
+    ========================================== */
+
     function createConfetti(container) {
 
-        const amount = window.innerWidth < 600 ? 80 : 140;
+        const amount =
+            window.innerWidth < 600 ? 80 : 140;
 
         for (let i = 0; i < amount; i++) {
 
-            const piece = document.createElement("div");
+            const piece =
+                document.createElement("div");
 
             piece.className = "party-piece";
 
-            piece.style.left = Math.random() * 100 + "%";
-            piece.style.top = (-20 - Math.random() * 30) + "%";
+            piece.style.left =
+                Math.random() * 100 + "%";
+
+            piece.style.top =
+                (-20 - Math.random() * 30) + "%";
 
             piece.style.animationDelay =
                 Math.random() * 2.5 + "s";
@@ -101,15 +120,22 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
+    /* =========================================
+       BALLOONS
+    ========================================== */
+
     function createBalloons(container) {
 
-        const amount = window.innerWidth < 600 ? 10 : 18;
+        const amount =
+            window.innerWidth < 600 ? 10 : 18;
 
         for (let i = 0; i < amount; i++) {
 
-            const balloon = document.createElement("div");
+            const balloon =
+                document.createElement("div");
 
-            balloon.className = "party-balloon";
+            balloon.className =
+                "party-balloon";
 
             balloon.style.left =
                 Math.random() * 100 + "%";
@@ -128,15 +154,22 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
+    /* =========================================
+       SPARKLES
+    ========================================== */
+
     function createSparkles(container) {
 
-        const amount = window.innerWidth < 600 ? 35 : 60;
+        const amount =
+            window.innerWidth < 600 ? 35 : 60;
 
         for (let i = 0; i < amount; i++) {
 
-            const spark = document.createElement("div");
+            const spark =
+                document.createElement("div");
 
-            spark.className = "party-spark";
+            spark.className =
+                "party-spark";
 
             spark.style.left =
                 Math.random() * 100 + "%";
@@ -151,6 +184,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+
+    /* =========================================
+       FIREWORKS
+    ========================================== */
 
     function createFireworks(container) {
 
@@ -172,7 +209,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     const spark =
                         document.createElement("div");
 
-                    spark.className = "party-spark";
+                    spark.className =
+                        "party-spark";
 
                     spark.style.left =
                         centerX + "%";
@@ -237,14 +275,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const x =
             padding +
-            Math.random() * (maxX - padding);
+            Math.random() * Math.max(0, maxX - padding);
 
         const y =
             padding +
-            Math.random() * (maxY - padding);
+            Math.random() * Math.max(0, maxY - padding);
 
-        noButton.style.left = x + "px";
-        noButton.style.top = y + "px";
+        noButton.style.left =
+            x + "px";
+
+        noButton.style.top =
+            y + "px";
     }
 
 
@@ -255,76 +296,105 @@ document.addEventListener("DOMContentLoaded", () => {
         positionNoButton();
 
         noButton.style.transform =
-            `rotate(${(Math.random() * 20) - 10}deg) scale(${0.9 + Math.random() * 0.2})`;
+            `rotate(${(Math.random() * 20) - 10}deg)
+             scale(${0.9 + Math.random() * 0.2})`;
     }
 
 
     if (noButton) {
 
-        noButton.addEventListener("mouseenter", escapeNoButton);
+        noButton.addEventListener(
+            "mouseenter",
+            escapeNoButton
+        );
 
-        noButton.addEventListener("mouseover", escapeNoButton);
+        noButton.addEventListener(
+            "mouseover",
+            escapeNoButton
+        );
 
-        noButton.addEventListener("touchstart", (event) => {
+        noButton.addEventListener(
+            "touchstart",
+            (event) => {
 
-            event.preventDefault();
+                event.preventDefault();
 
-            escapeNoButton();
+                escapeNoButton();
 
-        }, { passive: false });
+            },
+            { passive: false }
+        );
 
-        noButton.addEventListener("click", (event) => {
+        noButton.addEventListener(
+            "click",
+            (event) => {
 
-            event.preventDefault();
+                event.preventDefault();
 
-            escapeNoButton();
+                escapeNoButton();
 
-        });
+            }
+        );
 
     }
 
 
-    document.addEventListener("mousemove", (event) => {
+    /* =========================================
+       MOUSE DETECTION FOR NO BUTTON
+    ========================================== */
 
-        if (
-            !questionScreen ||
-            !questionScreen.classList.contains("active") ||
-            !noButton
-        ) {
-            return;
+    document.addEventListener(
+        "mousemove",
+        (event) => {
+
+            if (
+                !questionScreen ||
+                !questionScreen.classList.contains("active") ||
+                !noButton
+            ) {
+                return;
+            }
+
+            const rect =
+                noButton.getBoundingClientRect();
+
+            const centerX =
+                rect.left + rect.width / 2;
+
+            const centerY =
+                rect.top + rect.height / 2;
+
+            const distance =
+                Math.hypot(
+                    event.clientX - centerX,
+                    event.clientY - centerY
+                );
+
+            if (distance < 140) {
+                escapeNoButton();
+            }
+
         }
+    );
 
-        const rect = noButton.getBoundingClientRect();
 
-        const centerX =
-            rect.left + rect.width / 2;
+    /* =========================================
+       WINDOW RESIZE
+    ========================================== */
 
-        const centerY =
-            rect.top + rect.height / 2;
+    window.addEventListener(
+        "resize",
+        () => {
 
-        const distance =
-            Math.hypot(
-                event.clientX - centerX,
-                event.clientY - centerY
-            );
+            if (
+                questionScreen &&
+                questionScreen.classList.contains("active")
+            ) {
+                positionNoButton();
+            }
 
-        if (distance < 140) {
-            escapeNoButton();
         }
-
-    });
-
-
-    window.addEventListener("resize", () => {
-
-        if (
-            questionScreen &&
-            questionScreen.classList.contains("active")
-        ) {
-            positionNoButton();
-        }
-
-    });
+    );
 
 
     /* =========================================
@@ -333,41 +403,59 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (yesButton) {
 
-        yesButton.addEventListener("click", () => {
+        yesButton.addEventListener(
+            "click",
+            () => {
 
-            showScreen(yesScreen);
+                showScreen(yesScreen);
 
-            createPartyEffects(yesPartyContainer);
+                createPartyEffects(
+                    yesPartyContainer
+                );
 
-        });
+            }
+        );
 
     }
 
 
     /* =========================================
        YES → MAIN WEBSITE
+       FIXED: continue-to-site
     ========================================== */
 
     if (continueAfterYes) {
 
-        continueAfterYes.addEventListener("click", () => {
+        continueAfterYes.addEventListener(
+            "click",
+            () => {
 
-            showScreen(null);
+                // Hide all intro/question screens
+                showScreen(null);
 
-            if (mainWebsite) {
+                // Show complete main website
+                if (mainWebsite) {
 
-                mainWebsite.classList.remove("hidden");
+                    mainWebsite.classList.remove(
+                        "hidden"
+                    );
 
-                window.scrollTo({
-                    top: 0,
-                    behavior: "smooth"
-                });
+                    // Make sure website is visible
+                    mainWebsite.style.display =
+                        "block";
+
+                    window.scrollTo({
+                        top: 0,
+                        behavior: "smooth"
+                    });
+
+                }
+
+                // Start website animations
+                startMainWebsiteEffects();
 
             }
-
-            startMainWebsiteEffects();
-
-        });
+        );
 
     }
 
@@ -384,23 +472,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (openLetter && letterContent) {
 
-        openLetter.addEventListener("click", () => {
+        openLetter.addEventListener(
+            "click",
+            () => {
 
-            letterContent.classList.remove("hidden");
+                letterContent.classList.remove(
+                    "hidden"
+                );
 
-            openLetter.textContent =
-                "My Letter ❤️";
+                openLetter.textContent =
+                    "My Letter ❤️";
 
-            setTimeout(() => {
+                setTimeout(() => {
 
-                letterContent.scrollIntoView({
-                    behavior: "smooth",
-                    block: "center"
-                });
+                    letterContent.scrollIntoView({
+                        behavior: "smooth",
+                        block: "center"
+                    });
 
-            }, 150);
+                }, 150);
 
-        });
+            }
+        );
 
     }
 
@@ -417,38 +510,54 @@ document.addEventListener("DOMContentLoaded", () => {
 
     giftBoxes.forEach((box) => {
 
-        box.addEventListener("click", () => {
+        box.addEventListener(
+            "click",
+            () => {
 
-            const message =
-                box.dataset.message ||
-                "A little surprise just for you. ❤️";
+                const message =
+                    box.dataset.message ||
+                    "A little surprise just for you. ❤️";
 
-            if (giftMessage) {
+                if (giftMessage) {
 
-                giftMessage.textContent = message;
+                    giftMessage.textContent =
+                        message;
 
-                giftMessage.classList.remove("hidden");
-
-                giftBoxes.forEach((item) => {
-                    item.style.pointerEvents = "none";
-                });
-
-                setTimeout(() => {
+                    giftMessage.classList.remove(
+                        "hidden"
+                    );
 
                     giftBoxes.forEach((item) => {
-                        item.style.pointerEvents = "auto";
+
+                        item.style.pointerEvents =
+                            "none";
+
                     });
 
-                }, 500);
+                    setTimeout(() => {
+
+                        giftBoxes.forEach((item) => {
+
+                            item.style.pointerEvents =
+                                "auto";
+
+                        });
+
+                    }, 500);
+
+                }
+
+                createSmallCelebration(box);
 
             }
-
-            createSmallCelebration(box);
-
-        });
+        );
 
     });
 
+
+    /* =========================================
+       SMALL GIFT CELEBRATION
+    ========================================== */
 
     function createSmallCelebration(target) {
 
@@ -458,10 +567,17 @@ document.addEventListener("DOMContentLoaded", () => {
         const container =
             document.createElement("div");
 
-        container.style.position = "fixed";
-        container.style.inset = "0";
-        container.style.pointerEvents = "none";
-        container.style.zIndex = "9999";
+        container.style.position =
+            "fixed";
+
+        container.style.inset =
+            "0";
+
+        container.style.pointerEvents =
+            "none";
+
+        container.style.zIndex =
+            "9999";
 
         document.body.appendChild(container);
 
@@ -471,9 +587,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 document.createElement("div");
 
             heart.textContent =
-                Math.random() > 0.5 ? "❤️" : "✨";
+                Math.random() > 0.5
+                    ? "❤️"
+                    : "✨";
 
-            heart.style.position = "fixed";
+            heart.style.position =
+                "fixed";
 
             heart.style.left =
                 rect.left +
@@ -486,7 +605,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 "px";
 
             heart.style.fontSize =
-                (12 + Math.random() * 18) + "px";
+                (12 + Math.random() * 18) +
+                "px";
 
             heart.style.transition =
                 "all 1s ease";
@@ -502,14 +622,17 @@ document.addEventListener("DOMContentLoaded", () => {
                     )
                     rotate(${Math.random() * 360}deg)`;
 
-                heart.style.opacity = "0";
+                heart.style.opacity =
+                    "0";
 
             });
 
         }
 
         setTimeout(() => {
+
             container.remove();
+
         }, 1200);
 
     }
@@ -519,21 +642,24 @@ document.addEventListener("DOMContentLoaded", () => {
        CLICK HEART EFFECT
     ========================================== */
 
-    document.addEventListener("click", (event) => {
+    document.addEventListener(
+        "click",
+        (event) => {
 
-        if (
-            event.target.closest("button") ||
-            event.target.closest("a")
-        ) {
-            return;
+            if (
+                event.target.closest("button") ||
+                event.target.closest("a")
+            ) {
+                return;
+            }
+
+            createClickHeart(
+                event.clientX,
+                event.clientY
+            );
+
         }
-
-        createClickHeart(
-            event.clientX,
-            event.clientY
-        );
-
-    });
+    );
 
 
     function createClickHeart(x, y) {
@@ -542,19 +668,31 @@ document.addEventListener("DOMContentLoaded", () => {
             document.createElement("div");
 
         heart.textContent =
-            Math.random() > 0.5 ? "♡" : "♥";
+            Math.random() > 0.5
+                ? "♡"
+                : "♥";
 
-        heart.style.position = "fixed";
-        heart.style.left = x + "px";
-        heart.style.top = y + "px";
+        heart.style.position =
+            "fixed";
 
-        heart.style.zIndex = "9999";
-        heart.style.pointerEvents = "none";
+        heart.style.left =
+            x + "px";
+
+        heart.style.top =
+            y + "px";
+
+        heart.style.zIndex =
+            "9999";
+
+        heart.style.pointerEvents =
+            "none";
 
         heart.style.fontSize =
-            (15 + Math.random() * 15) + "px";
+            (15 + Math.random() * 15) +
+            "px";
 
-        heart.style.color = "#ff86ae";
+        heart.style.color =
+            "#ff86ae";
 
         heart.style.transition =
             "all 1s ease";
@@ -570,19 +708,22 @@ document.addEventListener("DOMContentLoaded", () => {
                 )
                 scale(1.4)`;
 
-            heart.style.opacity = "0";
+            heart.style.opacity =
+                "0";
 
         });
 
         setTimeout(() => {
+
             heart.remove();
+
         }, 1000);
 
     }
 
 
     /* =========================================
-       SCROLL REVEAL
+       MAIN WEBSITE SCROLL REVEAL
     ========================================== */
 
     function startMainWebsiteEffects() {
@@ -594,7 +735,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         revealItems.forEach((item) => {
 
-            item.style.opacity = "0";
+            item.style.opacity =
+                "0";
+
             item.style.transform =
                 "translateY(35px)";
 
@@ -612,9 +755,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
                         entries.forEach((entry) => {
 
-                            if (entry.isIntersecting) {
+                            if (
+                                entry.isIntersecting
+                            ) {
 
-                                entry.target.style.opacity = "1";
+                                entry.target.style.opacity =
+                                    "1";
 
                                 entry.target.style.transform =
                                     "translateY(0)";
@@ -635,14 +781,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
             revealItems.forEach((item) => {
+
                 observer.observe(item);
+
             });
 
         } else {
 
             revealItems.forEach((item) => {
 
-                item.style.opacity = "1";
+                item.style.opacity =
+                    "1";
 
                 item.style.transform =
                     "translateY(0)";
@@ -658,34 +807,65 @@ document.addEventListener("DOMContentLoaded", () => {
        KEYBOARD ACCESS
     ========================================== */
 
-    document.addEventListener("keydown", (event) => {
+    document.addEventListener(
+        "keydown",
+        (event) => {
 
-        if (
-            event.key === "Enter" &&
-            questionScreen &&
-            questionScreen.classList.contains("active")
-        ) {
+            if (
+                event.key === "Enter" &&
+                questionScreen &&
+                questionScreen.classList.contains("active")
+            ) {
 
-            if (yesButton) {
-                yesButton.click();
+                if (yesButton) {
+                    yesButton.click();
+                }
+
             }
 
         }
-
-    });
+    );
 
 
     /* =========================================
-       PREVENT ACCIDENTAL IMAGE DRAG
+       PREVENT IMAGE DRAG
     ========================================== */
 
-    document.querySelectorAll("img").forEach((img) => {
+    document.querySelectorAll("img").forEach(
+        (img) => {
 
-        img.addEventListener("dragstart", (event) => {
-            event.preventDefault();
-        });
+            img.addEventListener(
+                "dragstart",
+                (event) => {
 
-    });
+                    event.preventDefault();
+
+                }
+            );
+
+        }
+    );
+
+
+    /* =========================================
+       INITIAL STATE
+    ========================================== */
+
+    if (mainWebsite) {
+
+        // Main website should stay hidden
+        // until Continue is clicked.
+        if (
+            !mainWebsite.classList.contains("hidden")
+        ) {
+
+            mainWebsite.classList.add(
+                "hidden"
+            );
+
+        }
+
+    }
 
 
     /* =========================================
