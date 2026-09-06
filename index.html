@@ -1,201 +1,494 @@
-<!-- LETTER SECTION -->
-<section id="letter-section" class="letter-section reveal">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ff4f81">
+  <title>For My Dakshu ❤️</title>
+  <link rel="stylesheet" href="style.css">
+</head>
 
-  <div class="letter-intro">
-    <p class="small-label">Something I have been wanting to tell you...</p>
+<body>
 
-    <h2>A Letter For My Bubu 💌</h2>
+  <!-- =========================================================
+       INTRO SCREEN
+  ========================================================== -->
+  <section id="intro-screen" class="screen active">
+    <div class="intro-content">
+      <div class="floating-heart">❤️</div>
 
-    <p class="letter-subtitle">
-      Not just a birthday wish... but a little piece of my heart.
-    </p>
-  </div>
+      <p class="small-label">A little surprise for you...</p>
 
-  <button id="open-letter" class="envelope-button">
+      <h1>
+        Hey Dakshu...
+      </h1>
 
-    <div class="envelope">
-      <div class="envelope-back"></div>
-      <div class="envelope-front"></div>
-      <div class="envelope-flap"></div>
+      <p class="intro-text">
+        I made something special for you.
+        <br>
+        Take a little moment. ❤️
+      </p>
 
-      <div class="envelope-heart">❤️</div>
+      <button id="open-surprise" class="primary-button">
+        Open Your Surprise ✨
+      </button>
     </div>
-
-    <span>Open this, Bubu... 💌</span>
-
-  </button>
+  </section>
 
 
-  <div id="letter-content" class="letter-content hidden">
+  <!-- =========================================================
+       BIRTHDAY REVEAL
+  ========================================================== -->
+  <section id="birthday-screen" class="screen">
+    <div id="party-effects"></div>
 
-    <div class="paper">
+    <div class="birthday-content">
+      <p class="small-label">Today is your day...</p>
 
-      <p class="letter-date">For the girl who means so much to me ❤️</p>
+      <h1 class="birthday-title">
+        HAPPY BIRTHDAY
+      </h1>
 
-      <p>Dear Bubu, ❤️</p>
+      <h2 class="birthday-name">
+        Dakshayini ❤️
+      </h2>
 
-
-      <p>
-        I don't really know how to fit everything I feel for you into a
-        few words. There are so many memories, so many little moments,
-        so many things that only you and I understand.
+      <p class="birthday-nickname">
+        My Dakshu ✨
       </p>
 
+      <div class="birthday-divider">✦</div>
 
-      <p>
-        But today, on your birthday, I just want to tell you something
-        from the deepest part of my heart.
+      <p class="birthday-text">
+        The world got a little more beautiful
+        on the day you were born. ❤️
       </p>
 
+      <button id="birthday-continue" class="primary-button">
+        There's something I want to ask you... 💕
+      </button>
+    </div>
+  </section>
 
-      <p>
-        You are not just someone who became a part of my life.
-        You became a part of my everyday thoughts, my happiest memories,
-        my silly conversations, my biggest smiles and even my most
-        emotional moments.
+
+  <!-- =========================================================
+       FOREVER QUESTION
+  ========================================================== -->
+  <section id="question-screen" class="screen">
+    <div class="question-content">
+
+      <div class="question-heart">❤️</div>
+
+      <p class="small-label">
+        One important question...
       </p>
 
+      <h1>
+        Will you be with me forever?
+      </h1>
 
-      <div class="letter-highlight">
-        <span>24 ❤️</span>
+      <p class="question-subtitle">
+        Think carefully, Bubu... 😌
+      </p>
+
+      <div class="question-buttons">
+        <button id="yes-button" class="yes-button">
+          YES ❤️
+        </button>
+
+        <button id="no-button" class="no-button">
+          NO 😏
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =========================================================
+       YES SCREEN
+  ========================================================== -->
+  <section id="yes-screen" class="screen">
+    <div class="yes-content">
+
+      <div class="big-heart">🥹❤️</div>
+
+      <p class="small-label">
+        I knew it...
+      </p>
+
+      <h1>
+        You chose YES. 🥹❤️
+      </h1>
+
+      <p>
+        Then let's make every tomorrow
+        a little more beautiful together.
+      </p>
+
+      <p class="signature">
+        — Mohith ❤️
+      </p>
+
+      <button id="continue-to-site" class="primary-button">
+        Enter Our Little World ✨
+      </button>
+
+    </div>
+  </section>
+
+
+  <!-- =========================================================
+       MAIN WEBSITE
+  ========================================================== -->
+  <main id="main-site" class="main-site hidden">
+
+
+    <!-- =======================================================
+         HERO
+    ======================================================== -->
+    <section class="hero-section reveal">
+
+      <div class="hero-glow"></div>
+
+      <p class="small-label">
+        Welcome to your little world...
+      </p>
+
+      <h1>
+        Happy Birthday,
+        <span>Dakshu ❤️</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        A tiny corner of the internet,
+        made only for you.
+      </p>
+
+      <div class="scroll-indicator">
+        <span>Scroll slowly ↓</span>
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         BIRTHDAY MESSAGE
+    ======================================================== -->
+    <section class="message-section reveal">
+
+      <div class="section-heading">
+        <p class="small-label">Before anything else...</p>
+
+        <h2>
+          Happy Birthday, My Bubu ❤️
+        </h2>
+      </div>
+
+      <div class="message-card">
 
         <p>
-          I still remember September 24, 2023.
-          The day you proposed to me.
+          Today isn't just another date on the calendar.
+          It's the day someone incredibly special came into
+          this world.
         </p>
 
         <p>
-          And somehow, since then, every 24th has become a little more
-          special to me because it became <strong>ours.</strong>
+          And somehow, I got lucky enough to have you
+          become such a huge part of mine.
         </p>
 
         <p>
-          Every month we wish each other on the 24th, and I hope we keep
-          doing that for many, many more years.
+          So today, I don't just want to wish you
+          a happy birthday.
         </p>
 
-        <p>
-          And on September 24, 2026, it will be 3 years since that
-          beautiful beginning. ❤️
+        <p class="highlight-text">
+          I want to celebrate <strong>you.</strong> ❤️
         </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         CAKE
+    ======================================================== -->
+    <section class="cake-section reveal">
+
+      <div class="section-heading">
+        <p class="small-label">Make a wish...</p>
+
+        <h2>
+          Your Birthday Cake 🎂
+        </h2>
+      </div>
+
+      <div class="cake-area">
+
+        <div class="cake">
+
+          <div class="candle candle-one">
+            <div class="flame">🔥</div>
+          </div>
+
+          <div class="candle candle-two">
+            <div class="flame">🔥</div>
+          </div>
+
+          <div class="candle candle-three">
+            <div class="flame">🔥</div>
+          </div>
+
+          <div class="cake-top">
+            ❤️
+          </div>
+
+          <div class="cake-middle"></div>
+
+          <div class="cake-bottom"></div>
+
+        </div>
+
+        <p class="cake-message">
+          Make your wish, Bubu... ✨
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         OUR MEMORIES
+         NO PHOTOS FOR NOW
+    ======================================================== -->
+    <section class="memories-section reveal">
+
+      <div class="section-heading">
+
+        <p class="small-label">
+          The moments I never want to forget...
+        </p>
+
+        <h2>
+          Our Little Memories 🌙
+        </h2>
+
+        <p>
+          Some memories don't need photographs.
+          They just need two people who remember them.
+        </p>
+
       </div>
 
 
-      <p>
-        Our relationship was never perfect.
-        We have fought a lot.
-        Sometimes the fights became really big.
-        Sometimes we both got angry, hurt and scared that maybe this
-        time we would actually lose each other.
-      </p>
+      <!-- MEMORY 1 -->
+      <article class="memory-card">
 
+        <span class="memory-number">
+          01
+        </span>
 
-      <p>
-        But somehow, after everything, we always find our way back to
-        each other.
-      </p>
+        <div class="memory-icon">
+          🛕
+        </div>
 
+        <p class="memory-label">
+          The Beginning
+        </p>
 
-      <p>
-        And honestly, I think that is one of the most beautiful things
-        about us.
-      </p>
-
-
-      <p class="quote">
-        “Our story isn't special because it is perfect.
-        It is special because it is real.” ❤️
-      </p>
-
-
-      <p>
-        I love your childish side, Bubu.
-        I love the way you become completely comfortable around me,
-        the way you behave like a little kid sometimes, and all those
-        tiny things you probably don't even realise I notice.
-      </p>
-
-
-      <p>
-        I don't want you to ever feel like you have to change that side
-        of yourself with me.
-        I love the version of you that feels safe enough to be childish,
-        silly, annoying, cute and completely yourself.
-      </p>
-
-
-      <div class="letter-memory">
-
-        <h3>Our little memories... 🌙</h3>
+        <h3>
+          Our First Temple Date ❤️
+        </h3>
 
         <p>
-          I still remember our first temple date.
-          It may have looked like a simple day, but somehow it became
-          the beginning of so many memories.
+          A simple day that became one of our
+          special memories.
         </p>
 
         <p>
-          Then came September 8, 2024.
-          Your birthday.
-          Going back to that same temple, taking pictures again,
-          even recreating one of our old photos...
-          it felt like looking at our own little “then and now.”
+          Maybe at the time we didn't realise
+          how many memories would come after it.
+        </p>
+
+      </article>
+
+
+      <!-- MEMORY 2 -->
+      <article class="memory-card">
+
+        <span class="memory-number">
+          02
+        </span>
+
+        <div class="memory-icon">
+          🎂
+        </div>
+
+        <p class="memory-label">
+          September 8, 2024
+        </p>
+
+        <h3>
+          Your Birthday — Then & Now ❤️
+        </h3>
+
+        <p>
+          We went back to that same temple again
+          on your birthday.
         </p>
 
         <p>
-          Later that day, being at your home for your birthday,
-          celebrating with you and spending those moments together...
-          those memories will always have a special place in my heart.
+          We took pictures again, and even recreated
+          one of our old moments.
+        </p>
+
+        <p class="quote">
+          Same place. Different time.
+          Still us. ❤️
+        </p>
+
+      </article>
+
+
+      <!-- MEMORY 3 -->
+      <article class="memory-card">
+
+        <span class="memory-number">
+          03
+        </span>
+
+        <div class="memory-icon">
+          🏠
+        </div>
+
+        <p class="memory-label">
+          September 8, 2024
+        </p>
+
+        <h3>
+          Your Birthday At Home 🎉
+        </h3>
+
+        <p>
+          Later that day, I came to your home
+          for your birthday party.
         </p>
 
         <p>
-          And that birthday night too...
-          all those little moments, the pictures, the smiles,
-          the time we spent together...
-          I still remember them with a smile.
+          Spending that time with you,
+          celebrating your birthday and simply
+          being around you became another memory
+          I will always keep close to my heart.
         </p>
 
-      </div>
+      </article>
 
 
-      <div class="letter-memory">
+      <!-- MEMORY 4 -->
+      <article class="memory-card">
 
-        <h3>That movie date 🎬❤️</h3>
+        <span class="memory-number">
+          04
+        </span>
 
-        <p>
-          And then there was our Kalki movie date.
+        <div class="memory-icon">
+          🌙
+        </div>
+
+        <p class="memory-label">
+          September 8, 2024 — Night
         </p>
 
-        <p>
-          Honestly, it was never really about the movie for me.
-        </p>
+        <h3>
+          That Birthday Night ❤️
+        </h3>
 
         <p>
-          What made that day special was simply having you beside me.
-          Sitting together, talking, laughing, sharing those little
-          moments and just spending time with you.
-        </p>
-
-        <p>
-          Sometimes it doesn't matter where we go.
-          If you're beside me, even an ordinary day can become one of
-          my favourite memories.
-        </p>
-
-      </div>
-
-
-      <div class="letter-memory special-memory">
-
-        <h3>December 18, 2024 🎂❤️</h3>
-
-        <p>
-          My birthday.
+          The dinner, the smiles, the little moments,
+          and all the time we spent together.
         </p>
 
         <p>
-          You invited me to your home and made me cut a cake.
-          But what I didn't expect was what came after that.
+          Some nights become special not because
+          something huge happened, but because
+          of who you spent them with.
+        </p>
+
+      </article>
+
+
+      <!-- MEMORY 5 -->
+      <article class="memory-card">
+
+        <span class="memory-number">
+          05
+        </span>
+
+        <div class="memory-icon">
+          🎬
+        </div>
+
+        <p class="memory-label">
+          Our Movie Date
+        </p>
+
+        <h3>
+          Kalki ❤️
+        </h3>
+
+        <p>
+          Honestly, it was never really about
+          the movie for me.
+        </p>
+
+        <p>
+          What made that day special was simply
+          having you beside me.
+        </p>
+
+        <p>
+          Sitting together, talking, laughing,
+          and sharing those little moments.
+        </p>
+
+        <p class="quote">
+          If you're beside me, even an ordinary
+          day can become my favourite memory.
+        </p>
+
+      </article>
+
+
+      <!-- MEMORY 6 -->
+      <article class="memory-card special-card">
+
+        <span class="memory-number">
+          06
+        </span>
+
+        <div class="memory-icon">
+          🎂❤️
+        </div>
+
+        <p class="memory-label">
+          December 18, 2024
+        </p>
+
+        <h3>
+          My Birthday With You ❤️
+        </h3>
+
+        <p>
+          You invited me to your home and made
+          me cut a cake.
+        </p>
+
+        <p>
+          But what I didn't expect was what came
+          after that.
         </p>
 
         <p>
@@ -203,240 +496,1176 @@
         </p>
 
         <p>
-          I genuinely didn't expect it, and that is what made it feel
-          even more special.
+          Sitting there with you and your family,
+          having dinner, talking, laughing and
+          simply spending that time together...
+        </p>
+
+        <p class="highlight-text">
+          You made my birthday feel completely different.
+        </p>
+
+      </article>
+
+
+      <!-- MEMORY 7 -->
+      <article class="memory-card secret-card">
+
+        <span class="memory-number">
+          07
+        </span>
+
+        <div class="memory-icon">
+          🔐
+        </div>
+
+        <p class="memory-label">
+          January 24, 2024 — 7:30 PM
+        </p>
+
+        <h3>
+          Our Secret Chapter ❤️
+        </h3>
+
+        <p>
+          A memory that belongs only to us.
         </p>
 
         <p>
-          Sitting there with you and your family, having dinner,
-          talking, laughing and simply spending that time together...
-          you made my birthday feel completely different.
+          No photos.
+          No videos.
+          No witnesses.
         </p>
 
         <p>
-          It wasn't just a cake.
-          It wasn't just a dinner.
-          It was the feeling that you wanted to make my day special.
+          Nothing that the outside world can see.
         </p>
 
         <p>
-          And I will always remember that.
-        </p>
-
-      </div>
-
-
-      <div class="letter-secret">
-
-        <h3>One memory nobody else knows... 🔐❤️</h3>
-
-        <p>
-          And then there is
-          <strong>January 24, 2024 — 7:30 PM.</strong>
-        </p>
-
-        <p>
-          Our secret chapter.
-        </p>
-
-        <p>
-          There are no photos.
-          There are no videos.
-          There were no witnesses.
-          There is no gallery that can show anyone what that moment
-          meant to us.
-        </p>
-
-        <p>
-          But maybe that is what makes it even more precious.
-        </p>
-
-        <p>
-          Because some memories are meant to be seen by everyone...
-          and some memories belong only to two people.
+          But somehow, it still has one of the
+          biggest places in my heart.
         </p>
 
         <p class="quote">
-          “Some memories live in galleries.
-          Some memories live forever in your heart.” ❤️
+          Some memories live in galleries.
+          Some memories live forever in your heart.
+        </p>
+
+      </article>
+
+
+      <!-- MEMORY 8 -->
+      <article class="memory-card">
+
+        <span class="memory-number">
+          08
+        </span>
+
+        <div class="memory-icon">
+          🎈
+        </div>
+
+        <p class="memory-label">
+          September 8, 2025
+        </p>
+
+        <h3>
+          Another Birthday, Another Memory ❤️
+        </h3>
+
+        <p>
+          Another year of your life.
+          Another year of us.
+          Another collection of little moments
+          that became ours.
         </p>
 
         <p>
-          And this one will always have a very special place in mine.
+          And somehow, every year I know you,
+          I find more reasons to love you.
+        </p>
+
+      </article>
+
+    </section>
+
+
+    <!-- =======================================================
+         TIMELINE
+    ======================================================== -->
+    <section class="timeline-section reveal">
+
+      <div class="section-heading">
+
+        <p class="small-label">
+          Our journey...
+        </p>
+
+        <h2>
+          Our Little Story ✨
+        </h2>
+
+      </div>
+
+      <div class="timeline">
+
+        <div class="timeline-item">
+
+          <div class="timeline-dot">
+            ❤️
+          </div>
+
+          <div class="timeline-content">
+
+            <span>
+              The Beginning
+            </span>
+
+            <h3>
+              Our First Temple Date
+            </h3>
+
+            <p>
+              A simple day that quietly became
+              the beginning of many memories.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="timeline-item">
+
+          <div class="timeline-dot">
+            🎂
+          </div>
+
+          <div class="timeline-content">
+
+            <span>
+              September 8, 2024
+            </span>
+
+            <h3>
+              Your Birthday
+            </h3>
+
+            <p>
+              Same temple, new memories,
+              your birthday at home,
+              and a beautiful day together.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="timeline-item">
+
+          <div class="timeline-dot">
+            🎬
+          </div>
+
+          <div class="timeline-content">
+
+            <span>
+              A Special Day
+            </span>
+
+            <h3>
+              Kalki Movie Date
+            </h3>
+
+            <p>
+              A day made special simply because
+              you were beside me.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="timeline-item">
+
+          <div class="timeline-dot">
+            🎂
+          </div>
+
+          <div class="timeline-content">
+
+            <span>
+              December 18, 2024
+            </span>
+
+            <h3>
+              My Birthday
+            </h3>
+
+            <p>
+              Cake, dinner with your family,
+              and a memory I never expected.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="timeline-item secret-timeline">
+
+          <div class="timeline-dot">
+            🔐
+          </div>
+
+          <div class="timeline-content">
+
+            <span>
+              January 24, 2024 — 7:30 PM
+            </span>
+
+            <h3>
+              Our Secret Chapter
+            </h3>
+
+            <p>
+              A memory known only to the two of us.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="timeline-item">
+
+          <div class="timeline-dot">
+            ♾️
+          </div>
+
+          <div class="timeline-content">
+
+            <span>
+              Every 24th
+            </span>
+
+            <h3>
+              Still Choosing Us ❤️
+            </h3>
+
+            <p>
+              Every month, we wish each other
+              on the 24th.
+            </p>
+
+            <p>
+              And on September 24, 2026,
+              it will be 3 years since
+              September 24, 2023.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         REASONS
+    ======================================================== -->
+    <section class="reasons-section reveal">
+
+      <div class="section-heading">
+
+        <p class="small-label">
+          If you ever wonder...
+        </p>
+
+        <h2>
+          Why You Are So Special To Me ❤️
+        </h2>
+
+      </div>
+
+
+      <div class="reasons-grid">
+
+        <article class="reason-card">
+
+          <div class="reason-icon">
+            🥹
+          </div>
+
+          <h3>
+            Your Childish Side
+          </h3>
+
+          <p>
+            I love the way you become completely
+            comfortable around me and sometimes
+            behave like a little kid.
+          </p>
+
+        </article>
+
+
+        <article class="reason-card">
+
+          <div class="reason-icon">
+            😂
+          </div>
+
+          <h3>
+            Our Stupid Conversations
+          </h3>
+
+          <p>
+            The random talks, silly jokes,
+            unnecessary arguments and everything
+            in between.
+          </p>
+
+        </article>
+
+
+        <article class="reason-card">
+
+          <div class="reason-icon">
+            🌙
+          </div>
+
+          <h3>
+            Our Secret Memories
+          </h3>
+
+          <p>
+            There are things only you and I understand.
+            And honestly, I wouldn't trade those
+            memories for anything.
+          </p>
+
+        </article>
+
+
+        <article class="reason-card">
+
+          <div class="reason-icon">
+            ❤️
+          </div>
+
+          <h3>
+            You Feel Like Home
+          </h3>
+
+          <p>
+            Sometimes I don't need anything special.
+            Having you beside me is already enough.
+          </p>
+
+        </article>
+
+
+        <article class="reason-card">
+
+          <div class="reason-icon">
+            🤝
+          </div>
+
+          <h3>
+            We Always Come Back
+          </h3>
+
+          <p>
+            We have fought a lot.
+            Some fights became really big.
+            But somehow, we always find our way
+            back to each other.
+          </p>
+
+        </article>
+
+
+        <article class="reason-card">
+
+          <div class="reason-icon">
+            ♾️
+          </div>
+
+          <h3>
+            Because You're You
+          </h3>
+
+          <p>
+            I don't love some perfect version of you.
+            I love you as you are.
+          </p>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         LETTER
+    ======================================================== -->
+    <section id="letter-section" class="letter-section reveal">
+
+      <div class="letter-intro">
+
+        <p class="small-label">
+          Something I have been wanting to tell you...
+        </p>
+
+        <h2>
+          A Letter For My Bubu 💌
+        </h2>
+
+        <p class="letter-subtitle">
+          Not just a birthday wish...
+          but a little piece of my heart.
         </p>
 
       </div>
 
 
-      <div class="letter-secret">
+      <button id="open-letter" class="envelope-button">
 
-        <h3>Our little secrets 🤫</h3>
+        <div class="envelope">
 
-        <p>
-          We have so many memories that nobody else knows about.
-          Little things, little conversations, little moments that
-          belong only to us.
+          <div class="envelope-back"></div>
+          <div class="envelope-front"></div>
+          <div class="envelope-flap"></div>
+
+          <div class="envelope-heart">
+            ❤️
+          </div>
+
+        </div>
+
+        <span>
+          Open this, Bubu... 💌
+        </span>
+
+      </button>
+
+
+      <div id="letter-content" class="letter-content hidden">
+
+        <div class="paper">
+
+          <p class="letter-date">
+            For the girl who means so much to me ❤️
+          </p>
+
+          <p>
+            Dear Bubu, ❤️
+          </p>
+
+          <p>
+            I don't really know how to fit everything I feel
+            for you into a few words. There are so many memories,
+            so many little moments, so many things that only you
+            and I understand.
+          </p>
+
+          <p>
+            But today, on your birthday, I just want to tell you
+            something from the deepest part of my heart.
+          </p>
+
+          <p>
+            You are not just someone who became a part of my life.
+            You became a part of my everyday thoughts, my happiest
+            memories, my silly conversations, my biggest smiles
+            and even my most emotional moments.
+          </p>
+
+
+          <div class="letter-highlight">
+
+            <span>
+              24 ❤️
+            </span>
+
+            <p>
+              I still remember September 24, 2023.
+              The day you proposed to me.
+            </p>
+
+            <p>
+              And somehow, since then, every 24th has become
+              a little more special to me because it became
+              <strong>ours.</strong>
+            </p>
+
+            <p>
+              Every month we wish each other on the 24th,
+              and I hope we keep doing that for many,
+              many more years.
+            </p>
+
+            <p>
+              And on September 24, 2026, it will be 3 years
+              since that beautiful beginning. ❤️
+            </p>
+
+          </div>
+
+
+          <p>
+            Our relationship was never perfect.
+            We have fought a lot.
+            Sometimes the fights became really big.
+            Sometimes we both got angry, hurt and scared
+            that maybe this time we would actually lose
+            each other.
+          </p>
+
+          <p>
+            But somehow, after everything,
+            we always find our way back to each other.
+          </p>
+
+
+          <p class="quote">
+            “Our story isn't special because it is perfect.
+            It is special because it is real.” ❤️
+          </p>
+
+
+          <p>
+            I love your childish side, Bubu.
+            I love the way you become completely comfortable
+            around me, the way you behave like a little kid
+            sometimes, and all those tiny things you probably
+            don't even realise I notice.
+          </p>
+
+          <p>
+            I don't want you to ever feel like you have to
+            change that side of yourself with me.
+            I love the version of you that feels safe enough
+            to be childish, silly, annoying, cute and
+            completely yourself.
+          </p>
+
+
+          <div class="letter-memory">
+
+            <h3>
+              Our little memories... 🌙
+            </h3>
+
+            <p>
+              I still remember our first temple date.
+              It may have looked like a simple day,
+              but somehow it became the beginning of
+              so many memories.
+            </p>
+
+            <p>
+              Then came September 8, 2024.
+              Your birthday.
+              Going back to that same temple,
+              taking pictures again, even recreating
+              one of our old photos...
+              it felt like looking at our own little
+              “then and now.”
+            </p>
+
+            <p>
+              Later that day, being at your home for
+              your birthday, celebrating with you and
+              spending those moments together...
+              those memories will always have a special
+              place in my heart.
+            </p>
+
+            <p>
+              And that birthday night too...
+              all those little moments, the pictures,
+              the smiles, the time we spent together...
+              I still remember them with a smile.
+            </p>
+
+          </div>
+
+
+          <div class="letter-memory">
+
+            <h3>
+              That movie date 🎬❤️
+            </h3>
+
+            <p>
+              And then there was our Kalki movie date.
+            </p>
+
+            <p>
+              Honestly, it was never really about the movie
+              for me.
+            </p>
+
+            <p>
+              What made that day special was simply having
+              you beside me.
+              Sitting together, talking, laughing,
+              sharing those little moments and just
+              spending time with you.
+            </p>
+
+            <p>
+              Sometimes it doesn't matter where we go.
+              If you're beside me, even an ordinary day
+              can become one of my favourite memories.
+            </p>
+
+          </div>
+
+
+          <div class="letter-memory special-memory">
+
+            <h3>
+              December 18, 2024 🎂❤️
+            </h3>
+
+            <p>
+              My birthday.
+            </p>
+
+            <p>
+              You invited me to your home and made me
+              cut a cake.
+              But what I didn't expect was what came
+              after that.
+            </p>
+
+            <p>
+              You gave me a dinner party with your family.
+            </p>
+
+            <p>
+              I genuinely didn't expect it,
+              and that is what made it feel even more special.
+            </p>
+
+            <p>
+              Sitting there with you and your family,
+              having dinner, talking, laughing and simply
+              spending that time together...
+              you made my birthday feel completely different.
+            </p>
+
+            <p>
+              It wasn't just a cake.
+              It wasn't just a dinner.
+              It was the feeling that you wanted to make
+              my day special.
+            </p>
+
+            <p>
+              And I will always remember that.
+            </p>
+
+          </div>
+
+
+          <div class="letter-secret">
+
+            <h3>
+              One memory nobody else knows... 🔐❤️
+            </h3>
+
+            <p>
+              And then there is
+              <strong>January 24, 2024 — 7:30 PM.</strong>
+            </p>
+
+            <p>
+              Our secret chapter.
+            </p>
+
+            <p>
+              There are no photos.
+              There are no videos.
+              There were no witnesses.
+              There is no gallery that can show anyone
+              what that moment meant to us.
+            </p>
+
+            <p>
+              But maybe that is what makes it even more precious.
+            </p>
+
+            <p>
+              Because some memories are meant to be seen by everyone...
+              and some memories belong only to two people.
+            </p>
+
+            <p class="quote">
+              “Some memories live in galleries.
+              Some memories live forever in your heart.” ❤️
+            </p>
+
+            <p>
+              And this one will always have a very special
+              place in mine.
+            </p>
+
+          </div>
+
+
+          <div class="letter-secret">
+
+            <h3>
+              Our little secrets 🤫
+            </h3>
+
+            <p>
+              We have so many memories that nobody else
+              knows about.
+              Little things, little conversations,
+              little moments that belong only to us.
+            </p>
+
+            <p>
+              Sometimes while we are just chatting,
+              one of those memories suddenly comes back.
+            </p>
+
+            <p>
+              And somehow, without even saying much,
+              we both know exactly what the other person
+              is thinking.
+            </p>
+
+            <p>
+              We smile.
+              We blush.
+              We remember.
+            </p>
+
+            <p>
+              Because those memories are ours.
+              Nobody else needs to understand them.
+            </p>
+
+          </div>
+
+
+          <div class="letter-heart-section">
+
+            <p>
+              There is one thing I don't think I will
+              ever get tired of.
+            </p>
+
+            <p>
+              When you're beside me, sometimes I just
+              want to look at you.
+            </p>
+
+            <p>
+              That's it.
+            </p>
+
+            <p>
+              Even if we have already spent hours together,
+              I can still look at you and feel like I want
+              a little more time with you.
+            </p>
+
+            <p>
+              I don't always need something exciting
+              to happen.
+              Sometimes your presence itself is enough.
+            </p>
+
+          </div>
+
+
+          <p>
+            Bubu, I love you more than I know how to
+            explain properly.
+          </p>
+
+          <p>
+            I love our good days.
+            I love our stupid conversations.
+            I love your childish moments.
+            I love our secret memories.
+            I love the way we make up after our fights.
+            I love the little things that only we understand.
+          </p>
+
+          <p>
+            And yes...
+            even though our fights can be crazy sometimes,
+            I still don't want a life where you aren't there.
+          </p>
+
+
+          <p class="big-emotion">
+            I don't want to lose you, Bubu. ❤️
+          </p>
+
+
+          <p>
+            I want more birthdays with you.
+            More 24ths.
+            More random conversations.
+            More silly fights and even sillier reconciliations.
+            More secret memories.
+            More days where absolutely nothing special happens,
+            but somehow become special just because you're beside me.
+          </p>
+
+          <p>
+            I want to keep watching you grow,
+            keep annoying you,
+            keep making memories with you,
+            keep laughing with you,
+            and keep choosing you.
+          </p>
+
+          <p>
+            I don't know exactly what the future will look like.
+            But if I get to choose, I want you to be a part of it.
+          </p>
+
+
+          <div class="final-love">
+
+            <p>
+              So on your birthday,
+              I just want you to remember this:
+            </p>
+
+            <p class="big-emotion">
+              You are deeply loved.
+            </p>
+
+            <p class="big-emotion">
+              You are incredibly special to me.
+            </p>
+
+            <p class="big-emotion">
+              And you will always have a very special
+              place in my heart. ❤️
+            </p>
+
+          </div>
+
+
+          <p>
+            Please stay with me, Bubu. ❤️
+          </p>
+
+          <p>
+            No matter how many times we fight,
+            no matter how many times we get angry,
+            I hope we always find our way back to each other.
+          </p>
+
+          <p>
+            I love you so much, Bubu.
+          </p>
+
+          <p>
+            I love you forever.
+          </p>
+
+          <p>
+            Happy Birthday, my Dakshu. 🎂❤️
+          </p>
+
+          <p class="signature">
+            — Mohith ❤️
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         SURPRISE BOXES
+    ======================================================== -->
+    <section class="surprises-section reveal">
+
+      <div class="section-heading">
+
+        <p class="small-label">
+          Because one surprise isn't enough...
         </p>
 
-        <p>
-          Sometimes while we are just chatting, one of those memories
-          suddenly comes back.
-        </p>
+        <h2>
+          Pick A Little Surprise 🎁
+        </h2>
 
         <p>
-          And somehow, without even saying much, we both know exactly
-          what the other person is thinking.
-        </p>
-
-        <p>
-          We smile.
-          We blush.
-          We remember.
-        </p>
-
-        <p>
-          Because those memories are ours.
-          Nobody else needs to understand them.
+          Choose one. Or be greedy and open them all. 😌
         </p>
 
       </div>
 
 
-      <div class="letter-heart-section">
+      <div class="gift-grid">
+
+        <button class="gift-box" data-message="You are my favourite notification. ❤️">
+
+          <span class="gift-emoji">
+            🎁
+          </span>
+
+          <span>
+            Open Me
+          </span>
+
+        </button>
+
+
+        <button class="gift-box" data-message="If I could choose one person to annoy forever... I'd still choose you. 😂❤️">
+
+          <span class="gift-emoji">
+            🎀
+          </span>
+
+          <span>
+            Try Me
+          </span>
+
+        </button>
+
+
+        <button class="gift-box" data-message="No matter how many fights we have, I still want you beside me. ❤️">
+
+          <span class="gift-emoji">
+            💝
+          </span>
+
+          <span>
+            One More
+          </span>
+
+        </button>
+
+
+        <button class="gift-box" data-message="Plot twist: you're stuck with me. Forever. 😌♾️❤️">
+
+          <span class="gift-emoji">
+            💌
+          </span>
+
+          <span>
+            Last One
+          </span>
+
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         NIGHT SKY
+    ======================================================== -->
+    <section class="night-section reveal">
+
+      <div class="stars">
+
+        <span class="star">✦</span>
+        <span class="star">✧</span>
+        <span class="star">⋆</span>
+        <span class="star">✦</span>
+        <span class="star">✧</span>
+        <span class="star">⋆</span>
+        <span class="star">✦</span>
+        <span class="star">⋆</span>
+
+      </div>
+
+      <div class="night-content">
+
+        <p class="small-label">
+          Look up...
+        </p>
+
+        <h2>
+          If The Stars Could Speak
+        </h2>
 
         <p>
-          There is one thing I don't think I will ever get tired of.
+          I think they would tell you that
+          somewhere in this huge universe,
+          there is one person who is incredibly
+          grateful that you exist.
+        </p>
+
+        <p class="night-highlight">
+          Me. ❤️
         </p>
 
         <p>
-          When you're beside me, sometimes I just want to look at you.
-        </p>
-
-        <p>
-          That's it.
-        </p>
-
-        <p>
-          Even if we have already spent hours together,
-          I can still look at you and feel like I want a little more
-          time with you.
-        </p>
-
-        <p>
-          I don't always need something exciting to happen.
-          Sometimes your presence itself is enough.
+          And every time I look at the night sky,
+          I hope you remember that someone is
+          always wishing for more beautiful days
+          with you.
         </p>
 
       </div>
 
-
-      <p>
-        Bubu, I love you more than I know how to explain properly.
-      </p>
+    </section>
 
 
-      <p>
-        I love our good days.
-        I love our stupid conversations.
-        I love your childish moments.
-        I love our secret memories.
-        I love the way we make up after our fights.
-        I love the little things that only we understand.
-      </p>
+    <!-- =======================================================
+         FINAL MESSAGE
+    ======================================================== -->
+    <section class="final-section reveal">
 
+      <div class="final-content">
 
-      <p>
-        And yes...
-        even though our fights can be crazy sometimes,
-        I still don't want a life where you aren't there.
-      </p>
-
-
-      <p class="big-emotion">
-        I don't want to lose you, Bubu. ❤️
-      </p>
-
-
-      <p>
-        I want more birthdays with you.
-        More 24ths.
-        More random conversations.
-        More silly fights and even sillier reconciliations.
-        More secret memories.
-        More days where absolutely nothing special happens,
-        but somehow become special just because you're beside me.
-      </p>
-
-
-      <p>
-        I want to keep watching you grow,
-        keep annoying you,
-        keep making memories with you,
-        keep laughing with you,
-        and keep choosing you.
-      </p>
-
-
-      <p>
-        I don't know exactly what the future will look like.
-        But if I get to choose,
-        I want you to be a part of it.
-      </p>
-
-
-      <div class="final-love">
-
-        <p>
-          So on your birthday, I just want you to remember this:
-        </p>
-
-        <p class="big-emotion">
-          You are deeply loved.
-        </p>
-
-        <p class="big-emotion">
-          You are incredibly special to me.
-        </p>
-
-        <p class="big-emotion">
-          And you will always have a very special place in my heart.
+        <div class="final-heart">
           ❤️
+        </div>
+
+        <p class="small-label">
+          Before you leave...
+        </p>
+
+        <h2>
+          One Last Thing, Bubu.
+        </h2>
+
+        <div class="final-message">
+
+          <p>
+            We have had beautiful days.
+          </p>
+
+          <p>
+            We have had stupid days.
+          </p>
+
+          <p>
+            We have fought.
+          </p>
+
+          <p>
+            We have laughed.
+          </p>
+
+          <p>
+            We have made memories nobody else knows about.
+          </p>
+
+          <p>
+            And through all of it...
+          </p>
+
+          <p class="big-emotion">
+            I still choose you. ❤️
+          </p>
+
+          <p>
+            Today.
+          </p>
+
+          <p>
+            Tomorrow.
+          </p>
+
+          <p>
+            And hopefully, every 24th after this.
+          </p>
+
+        </div>
+
+
+        <div class="forever-line">
+          ♾️
+        </div>
+
+
+        <h3>
+          Happy Birthday, My Dakshu. 🎂❤️
+        </h3>
+
+        <p>
+          I love you so much, Bubu.
+        </p>
+
+        <p class="signature">
+          Forever yours,<br>
+          Mohith ❤️
         </p>
 
       </div>
 
+    </section>
+
+
+    <!-- =======================================================
+         FOOTER
+    ======================================================== -->
+    <footer class="site-footer">
 
       <p>
-        Please stay with me, Bubu. ❤️
+        Made with way too much love for Dakshu ❤️
       </p>
 
       <p>
-        No matter how many times we fight,
-        no matter how many times we get angry,
-        I hope we always find our way back to each other.
+        — Mohith
       </p>
 
+    </footer>
 
-      <p>
-        I love you so much, Bubu.
+
+  </main>
+
+
+  <!-- =========================================================
+       GIFT POPUP
+  ========================================================== -->
+  <div id="gift-popup" class="gift-popup hidden">
+
+    <div class="gift-popup-content">
+
+      <button id="close-gift" class="close-gift">
+        ×
+      </button>
+
+      <div class="popup-heart">
+        ❤️
+      </div>
+
+      <p class="small-label">
+        A little message for you...
       </p>
 
-      <p>
-        I love you forever.
-      </p>
-
-      <p>
-        Happy Birthday, my Dakshu. 🎂❤️
-      </p>
-
-
-      <p class="signature">
-        — Mohith ❤️
+      <p id="gift-message">
+        You are special to me. ❤️
       </p>
 
     </div>
 
   </div>
 
-</section>
-<!-- END LETTER SECTION -->
+
+  <!-- =========================================================
+       SCRIPT
+  ========================================================== -->
+  <script src="script.js"></script>
+
+</body>
+</html>
