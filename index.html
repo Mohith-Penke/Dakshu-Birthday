@@ -1,1247 +1,1394 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For My Dakshu ❤️</title>
 
-    <title>For Dakshu ❤️</title>
+  <link rel="stylesheet" href="style.css">
 
-    <link rel="stylesheet" href="style.css">
+  <meta name="theme-color" content="#120b1f">
 </head>
 
 <body>
 
-    <!-- =========================================
-         INTRO SCREEN
-    ========================================== -->
+  <!-- =====================================================
+       FLOATING BACKGROUND
+  ====================================================== -->
 
-    <section id="intro-screen" class="screen active">
+  <div class="background-glow glow-one"></div>
+  <div class="background-glow glow-two"></div>
 
-        <div class="intro-content">
+  <div id="hearts-container"></div>
 
-            <div class="intro-heart">♡</div>
 
-            <p class="intro-small">
-                Hey Dakshu...
-            </p>
+  <!-- =====================================================
+       INTRO SCREEN
+  ====================================================== -->
 
-            <h1>
-                I made something<br>
-                special for you.
-            </h1>
+  <section id="intro-screen" class="screen active">
 
-            <p class="intro-text">
-                Take a little moment.<br>
-                This one is just for you. ❤️
-            </p>
+    <div class="intro-content">
 
-            <button id="open-surprise" class="main-button">
-                Open Your Surprise ✨
-            </button>
+      <p class="small-label">A little something from Mohith ❤️</p>
 
-        </div>
+      <h1>
+        Hey Dakshu...
+      </h1>
+
+      <p class="intro-text">
+        I made something special for you.
+        <br>
+        Take a little moment...
+      </p>
+
+      <button id="open-surprise" class="main-button">
+        Open Your Surprise ✨
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       BIRTHDAY REVEAL
+  ====================================================== -->
+
+  <section id="birthday-screen" class="screen">
+
+    <div id="party-effects"></div>
+
+    <div class="birthday-content">
+
+      <p class="small-label">
+        Today is not just another day...
+      </p>
+
+      <h1 class="birthday-title">
+        HAPPY<br>
+        BIRTHDAY
+      </h1>
+
+      <h2>
+        Dakshayini ❤️
+      </h2>
+
+      <p class="nickname">
+        My Dakshu ✨
+      </p>
+
+      <button id="birthday-continue" class="main-button">
+        There's More ❤️
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       FOREVER QUESTION
+  ====================================================== -->
+
+  <section id="question-screen" class="screen">
+
+    <div class="question-content">
+
+      <p class="small-label">
+        One important question...
+      </p>
+
+      <h1>
+        Will you be<br>
+        with me forever?
+      </h1>
+
+      <div class="question-buttons">
+
+        <button id="yes-button" class="yes-button">
+          YES ❤️
+        </button>
+
+        <button id="no-button" class="no-button">
+          NO 😏
+        </button>
+
+      </div>
+
+      <p class="tiny-note">
+        Choose carefully... 👀
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       YES SCREEN
+  ====================================================== -->
+
+  <section id="yes-screen" class="screen">
+
+    <div class="yes-content">
+
+      <div class="big-heart">
+        ❤️
+      </div>
+
+      <p class="small-label">
+        I knew it...
+      </p>
+
+      <h1>
+        You chose YES. 🥹❤️
+      </h1>
+
+      <p>
+        Then let's make every tomorrow
+        a little more beautiful together.
+      </p>
+
+      <span>
+        — Mohith ❤️
+      </span>
+
+      <button id="continue-to-site" class="main-button">
+        Continue ✨
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       MAIN WEBSITE
+  ====================================================== -->
+
+  <main id="main-website" class="hidden">
+
+
+    <!-- =================================================
+         HERO
+    ================================================== -->
+
+    <section id="hero-section" class="hero-section">
+
+      <div class="hero-overlay"></div>
+
+      <div class="hero-content">
+
+        <p class="small-label">
+          A little corner of the internet...
+        </p>
+
+        <h1>
+          For My<br>
+          <span>Dakshu</span> ❤️
+        </h1>
+
+        <p>
+          Because some memories deserve
+          more than just a place in our gallery.
+        </p>
+
+        <a href="#birthday-message" class="scroll-button">
+          ↓ Scroll slowly ↓
+        </a>
+
+      </div>
 
     </section>
 
 
-    <!-- =========================================
-         BIRTHDAY REVEAL
-    ========================================== -->
+    <!-- =================================================
+         BIRTHDAY MESSAGE
+    ================================================== -->
 
-    <section id="birthday-screen" class="screen">
+    <section id="birthday-message" class="content-section reveal">
 
-        <div id="party-container"></div>
+      <div class="section-inner center">
 
-        <div class="birthday-content">
+        <p class="small-label">
+          September 8 ❤️
+        </p>
 
-            <p class="birthday-top">
-                Today is your day...
-            </p>
+        <h2>
+          Happy Birthday,<br>
+          My Beautiful Dakshu
+        </h2>
 
-            <h1 class="birthday-title">
-                HAPPY<br>
-                BIRTHDAY
-            </h1>
+        <p class="large-text">
+          I don't know if a website can ever explain
+          how much someone means to you...
+        </p>
 
-            <h2>
-                Dakshayini ❤️
-            </h2>
+        <p>
+          But I wanted to try.
+        </p>
 
-            <p class="birthday-subtitle">
-                My Dakshu ✨
-            </p>
+        <p>
+          So this isn't just a birthday website.
+          <br>
+          It's a small collection of
+          <strong>us.</strong>
+        </p>
 
-        </div>
-
-    </section>
-
-
-    <!-- =========================================
-         FOREVER QUESTION
-    ========================================== -->
-
-    <section id="question-screen" class="screen">
-
-        <div class="question-content">
-
-            <div class="question-heart">
-                ♥
-            </div>
-
-            <p class="question-small">
-                Before we continue...
-            </p>
-
-            <h1>
-                Will you be<br>
-                with me forever?
-            </h1>
-
-            <p class="question-note">
-                Choose carefully... 😏
-            </p>
-
-            <div class="answer-area">
-
-                <button id="yes-button" class="yes-button">
-                    YES ❤️
-                </button>
-
-                <button id="no-button" class="no-button">
-                    NO 😏
-                </button>
-
-            </div>
-
-        </div>
+      </div>
 
     </section>
 
 
-    <!-- =========================================
-         YES SCREEN
-    ========================================== -->
+    <!-- =================================================
+         MEMORY 1
+    ================================================== -->
 
-    <section id="yes-screen" class="screen">
+    <section id="memory-one" class="memory-section reveal">
 
-        <div id="yes-party-container"></div>
+      <div class="memory-image">
 
-        <div class="yes-content">
+        <img
+          src="images/first-temple-date.jpg"
+          alt="Our first temple date"
+          loading="lazy"
+        >
 
-            <div class="big-heart">
-                ❤️
-            </div>
-
-            <p class="yes-small">
-                I knew it...
-            </p>
-
-            <h1>
-                You chose YES. 🥹❤️
-            </h1>
-
-            <p class="yes-message">
-                Then let's make every tomorrow<br>
-                a little more beautiful together.
-            </p>
-
-            <p class="yes-signature">
-                — Mohith ❤️
-            </p>
-
-            <button id="continue-after-yes" class="main-button">
-                Continue ✨
-            </button>
-
+        <div class="image-placeholder">
+          Our First Temple Date ❤️
         </div>
+
+      </div>
+
+      <div class="memory-content">
+
+        <p class="memory-number">
+          MEMORY 01
+        </p>
+
+        <h2>
+          Where It All Started
+        </h2>
+
+        <p class="memory-date">
+          Our First Temple Date
+        </p>
+
+        <p>
+          A simple day.
+          A simple place.
+          Just the two of us.
+        </p>
+
+        <p>
+          But somehow...
+          that simple day became
+          one of my favourite memories.
+        </p>
+
+        <p class="highlight">
+          Some beginnings don't look special
+          until you look back at them.
+        </p>
+
+      </div>
 
     </section>
 
 
-    <!-- =========================================
-         MAIN WEBSITE
-    ========================================== -->
+    <!-- =================================================
+         MEMORY 2
+    ================================================== -->
 
-    <main id="main-website" class="hidden">
+    <section id="memory-two" class="memory-section reverse reveal">
 
+      <div class="memory-content">
 
-        <!-- =====================================
-             HERO
-        ====================================== -->
+        <p class="memory-number">
+          MEMORY 02
+        </p>
 
-        <section id="hero-section" class="main-section hero-section">
+        <h2>
+          Then vs Now
+        </h2>
 
-            <div class="hero-overlay"></div>
+        <p class="memory-date">
+          September 8, 2024 • Morning
+        </p>
 
-            <div class="hero-content">
+        <p>
+          Your birthday morning.
+        </p>
 
-                <p class="section-label">
-                    FOR MY FAVORITE PERSON
-                </p>
+        <p>
+          And somehow we ended up at
+          the same temple where we had
+          our first temple date.
+        </p>
 
-                <h1>
-                    Happy Birthday,<br>
-                    <span>Dakshu ❤️</span>
-                </h1>
+        <p>
+          We even recreated one of our
+          first photos.
+        </p>
 
-                <p>
-                    Some people become memories.<br>
-                    You became my story.
-                </p>
+        <p class="highlight">
+          Same place.<br>
+          Different day.<br>
+          Still us. ❤️
+        </p>
 
-                <div class="scroll-hint">
-                    ↓ Keep scrolling ↓
-                </div>
+      </div>
 
-            </div>
+      <div class="then-now">
 
-        </section>
+        <div class="polaroid">
 
+          <img
+            src="images/sep-8-2024-morning-1.jpg"
+            alt="Birthday morning memory"
+            loading="lazy"
+          >
 
-        <!-- =====================================
-             BIRTHDAY MESSAGE
-        ====================================== -->
+          <span>
+            Then ❤️
+          </span>
 
-        <section id="birthday-message" class="main-section">
+        </div>
 
-            <div class="section-inner">
+        <div class="polaroid">
 
-                <p class="section-label">
-                    A LITTLE MESSAGE
-                </p>
+          <img
+            src="images/sep-8-2024-morning-2.jpg"
+            alt="Birthday morning recreated memory"
+            loading="lazy"
+          >
 
-                <h2>
-                    Today isn't just your birthday...
-                </h2>
+          <span>
+            Now ✨
+          </span>
 
-                <p class="big-message">
-                    It's a reminder of how lucky I feel
-                    to have you in my life. ❤️
-                </p>
+        </div>
 
-                <p>
-                    So I wanted to make something that isn't
-                    just a birthday wish...
-                </p>
+      </div>
 
-                <p>
-                    I wanted to make a small place where
-                    our memories can live.
-                </p>
+    </section>
 
-            </div>
 
-        </section>
+    <!-- =================================================
+         MORNING PHOTO WALL
+    ================================================== -->
 
+    <section class="photo-wall-section reveal">
 
-        <!-- =====================================
-             MEMORY 1
-             FIRST TEMPLE DATE
-        ====================================== -->
+      <div class="section-heading">
 
-        <section id="memory-one" class="memory-section">
+        <p class="small-label">
+          September 8, 2024
+        </p>
 
-            <div class="memory-content">
+        <h2>
+          That Birthday Morning
+        </h2>
 
-                <p class="memory-number">
-                    MEMORY 01
-                </p>
+        <p>
+          A few little moments I never want to forget.
+        </p>
 
-                <h2>
-                    Where it all started... 🛕❤️
-                </h2>
+      </div>
 
-                <p class="memory-title">
-                    Our First Temple Date
-                </p>
+      <div class="photo-grid">
 
-                <div class="memory-photo single-photo">
+        <div class="photo-card rotate-left">
+          <img
+            src="images/sep-8-2024-morning-3.jpg"
+            alt="Birthday morning"
+            loading="lazy"
+          >
+        </div>
 
-                    <img
-                        src="images/first-temple-date.jpg"
-                        alt="Our first temple date"
-                    >
-
-                </div>
-
-                <p class="memory-caption">
-                    A simple day that became one of
-                    our special memories. ❤️
-                </p>
-
-                <p class="memory-text">
-                    Maybe it looked like an ordinary day,
-                    but for me, it became one of those
-                    moments I'll always remember.
-                </p>
-
-            </div>
-
-        </section>
-
-
-        <!-- =====================================
-             MEMORY 2
-             SEPTEMBER 8 2024 MORNING
-        ====================================== -->
-
-        <section id="memory-two" class="memory-section">
+        <div class="photo-card rotate-right">
+          <img
+            src="images/sep-8-2024-morning-4.jpg"
+            alt="Birthday morning"
+            loading="lazy"
+          >
+        </div>
 
-            <div class="memory-content wide">
-
-                <p class="memory-number">
-                    MEMORY 02
-                </p>
+        <div class="photo-card rotate-left">
+          <img
+            src="images/sep-8-2024-morning-5.jpg"
+            alt="Birthday morning"
+            loading="lazy"
+          >
+        </div>
 
-                <p class="memory-date">
-                    SEPTEMBER 8, 2024
-                </p>
+      </div>
 
-                <h2>
-                    Your Birthday Morning 🎂
-                </h2>
+    </section>
 
-                <p class="memory-caption">
-                    We went back to the same temple
-                    where our first temple date happened.
-                </p>
 
-                <div class="photo-grid">
+    <!-- =================================================
+         MEMORY 3
+    ================================================== -->
 
-                    <div class="memory-photo">
-                        <img
-                            src="images/sep-8-2024-morning-1.jpg"
-                            alt="Dakshu birthday morning memory 1"
-                        >
-                    </div>
+    <section id="memory-three" class="story-section reveal">
 
-                    <div class="memory-photo">
-                        <img
-                            src="images/sep-8-2024-morning-2.jpg"
-                            alt="Dakshu birthday morning memory 2"
-                        >
-                    </div>
+      <div class="story-card">
 
-                    <div class="memory-photo">
-                        <img
-                            src="images/sep-8-2024-morning-3.jpg"
-                            alt="Dakshu birthday morning memory 3"
-                        >
-                    </div>
+        <p class="memory-number">
+          MEMORY 03
+        </p>
 
-                    <div class="memory-photo">
-                        <img
-                            src="images/sep-8-2024-morning-4.jpg"
-                            alt="Dakshu birthday morning memory 4"
-                        >
-                    </div>
+        <p class="memory-date">
+          September 8, 2024 • Birthday Party
+        </p>
 
-                    <div class="memory-photo">
-                        <img
-                            src="images/sep-8-2024-morning-5.jpg"
-                            alt="Dakshu birthday morning memory 5"
-                        >
-                    </div>
+        <h2>
+          At Your Home 🎂
+        </h2>
+
+        <p>
+          Later that day, I came to your home
+          for your birthday party.
+        </p>
+
+        <p>
+          We celebrated.
+          We laughed.
+          We took photos.
+        </p>
+
+        <p>
+          And once again, an ordinary moment
+          became something I'll remember
+          for a very long time.
+        </p>
 
-                </div>
+        <div class="single-memory-photo">
 
-                <div class="then-now">
+          <img
+            src="images/sep-8-2024-home.jpg"
+            alt="Birthday party at home"
+            loading="lazy"
+          >
 
-                    <div>
-                        <span>THEN</span>
-                        <p>
-                            Our first temple memory.
-                        </p>
-                    </div>
+        </div>
 
-                    <div class="then-now-arrow">
-                        →
-                    </div>
+      </div>
 
-                    <div>
-                        <span>NOW</span>
-                        <p>
-                            Back at the same place
-                            on your birthday.
-                        </p>
-                    </div>
+    </section>
 
-                </div>
 
-                <p class="memory-text">
-                    And one of the photos was recreated
-                    in the same kind of pose as our first
-                    temple memory.
+    <!-- =================================================
+         MEMORY 4
+    ================================================== -->
 
-                    <br><br>
+    <section id="memory-four" class="night-memory reveal">
 
-                    Same place.
-                    Different day.
-                    More memories. ❤️
-                </p>
+      <div class="night-memory-heading">
 
-            </div>
+        <p class="memory-number">
+          MEMORY 04
+        </p>
 
-        </section>
+        <p class="memory-date">
+          September 8, 2024 • Night
+        </p>
 
+        <h2>
+          That Night ❤️
+        </h2>
 
-        <!-- =====================================
-             MEMORY 3
-             BIRTHDAY AT HOME
-        ====================================== -->
+        <p>
+          There is one photo from this night
+          that I especially love.
+        </p>
 
-        <section id="memory-three" class="memory-section">
+      </div>
 
-            <div class="memory-content">
+      <div class="featured-memory">
 
-                <p class="memory-number">
-                    MEMORY 03
-                </p>
+        <img
+          src="images/sep-8-2024-night-hands.jpg"
+          alt="Special birthday night memory"
+          loading="lazy"
+        >
 
-                <p class="memory-date">
-                    SEPTEMBER 8, 2024
-                </p>
+        <div class="featured-caption">
+          <span>My favourite moment</span>
+          <strong>❤️</strong>
+        </div>
 
-                <h2>
-                    Your Birthday Party 🏠🎂
-                </h2>
+      </div>
 
-                <p class="memory-caption">
-                    Later that day, I came to your home
-                    for your birthday celebration.
-                </p>
+      <div class="photo-grid night-grid">
 
-                <div class="memory-photo single-photo">
+        <div class="photo-card">
+          <img
+            src="images/sep-8-2024-night-1.jpg"
+            alt="Birthday night"
+            loading="lazy"
+          >
+        </div>
 
-                    <img
-                        src="images/sep-8-2024-home.jpg"
-                        alt="Dakshu birthday party at home"
-                    >
+        <div class="photo-card">
+          <img
+            src="images/sep-8-2024-night-2.jpg"
+            alt="Birthday night"
+            loading="lazy"
+          >
+        </div>
 
-                </div>
+        <div class="photo-card">
+          <img
+            src="images/sep-8-2024-night-3.jpg"
+            alt="Birthday night"
+            loading="lazy"
+          >
+        </div>
 
-                <p class="memory-text">
-                    Another part of a day that slowly became
-                    one of my favorite memories.
-                </p>
+        <div class="photo-card">
+          <img
+            src="images/sep-8-2024-night-4.jpg"
+            alt="Birthday night"
+            loading="lazy"
+          >
+        </div>
 
-            </div>
+      </div>
 
-        </section>
+    </section>
 
 
-        <!-- =====================================
-             MEMORY 4
-             BIRTHDAY NIGHT
-        ====================================== -->
+    <!-- =================================================
+         MEMORY 5 - KALKI
+    ================================================== -->
 
-        <section id="memory-four" class="memory-section night-memory">
+    <section id="memory-five" class="movie-memory reveal">
 
-            <div class="memory-content wide">
+      <div class="movie-ticket">
 
-                <p class="memory-number">
-                    MEMORY 04
-                </p>
+        <div class="ticket-top">
 
-                <p class="memory-date">
-                    SEPTEMBER 8, 2024 • NIGHT
-                </p>
+          <span>
+            OUR DATE
+          </span>
 
-                <h2>
-                    That Birthday Night 🌙❤️
-                </h2>
+          <span>
+            ❤️
+          </span>
 
-                <p class="memory-caption">
-                    Some moments don't need a long explanation.
-                </p>
+        </div>
 
-                <div class="featured-memory-photo">
+        <div class="ticket-main">
 
-                    <img
-                        src="images/sep-8-2024-night-hands.jpg"
-                        alt="Special birthday night memory"
-                    >
+          <p class="memory-number">
+            MEMORY 05
+          </p>
 
-                </div>
+          <h2>
+            KALKI
+          </h2>
 
-                <p class="special-note">
-                    This one has always been one of my favorites. ❤️
-                </p>
+          <p>
+            A movie date.
+          </p>
 
-                <div class="photo-grid">
+          <div class="ticket-line"></div>
 
-                    <div class="memory-photo">
-                        <img
-                            src="images/sep-8-2024-night-1.jpg"
-                            alt="Birthday night memory 1"
-                        >
-                    </div>
+          <p class="ticket-message">
+            But honestly...
+            <br>
+            the movie wasn't the best part.
+          </p>
 
-                    <div class="memory-photo">
-                        <img
-                            src="images/sep-8-2024-night-2.jpg"
-                            alt="Birthday night memory 2"
-                        >
-                    </div>
+          <p>
+            The time I spent with you that day
+            is what made it special.
+          </p>
 
-                    <div class="memory-photo">
-                        <img
-                            src="images/sep-8-2024-night-3.jpg"
-                            alt="Birthday night memory 3"
-                        >
-                    </div>
+          <div class="ticket-stamp">
+            SPECIAL MEMORY
+          </div>
 
-                    <div class="memory-photo">
-                        <img
-                            src="images/sep-8-2024-night-4.jpg"
-                            alt="Birthday night memory 4"
-                        >
-                    </div>
+        </div>
 
-                </div>
+      </div>
 
-                <p class="memory-text">
-                    Dinner, conversations, little moments,
-                    and memories that stayed with me long
-                    after that night ended.
-                </p>
+    </section>
 
-            </div>
 
-        </section>
+    <!-- =================================================
+         MEMORY 6
+    ================================================== -->
 
+    <section id="memory-six" class="birthday-story reveal">
 
-        <!-- =====================================
-             MEMORY 5
-             KALKI MOVIE DATE
-        ====================================== -->
+      <div class="birthday-story-card">
 
-        <section id="memory-five" class="memory-section movie-memory">
+        <p class="memory-number">
+          MEMORY 06
+        </p>
 
-            <div class="memory-content">
+        <p class="memory-date">
+          December 18, 2024
+        </p>
 
-                <p class="memory-number">
-                    MEMORY 05
-                </p>
+        <h2>
+          My Birthday 🎂
+        </h2>
 
-                <p class="memory-date">
-                    A MEMORY WITHOUT A PICTURE
-                </p>
+        <p>
+          My birthday...
+          and you invited me to your home.
+        </p>
 
-                <div class="movie-ticket">
+        <p>
+          You made me cut a cake.
+        </p>
 
-                    <div class="ticket-top">
-                        🎬
-                    </div>
+        <p>
+          But then came the surprise.
+        </p>
 
-                    <p>
-                        MOVIE DATE
-                    </p>
+        <p class="highlight">
+          You had arranged a dinner party
+          with your family.
+        </p>
 
-                    <h2>
-                        KALKI
-                    </h2>
+        <p>
+          I honestly didn't expect it.
+        </p>
 
-                    <span>
-                        JUST US • JUST A DAY
-                    </span>
+        <p>
+          And that's exactly why it became
+          one of the most special birthdays
+          for me.
+        </p>
 
-                </div>
+        <div class="story-ending">
+          Thank you for making my day feel special. ❤️
+        </div>
 
-                <p class="memory-caption">
-                    Not every favorite memory has a photograph.
-                </p>
+      </div>
 
-                <p class="memory-text">
-                    Our Kalki movie date is one of those
-                    memories.
+    </section>
 
-                    <br><br>
 
-                    There isn't a photo here because
-                    the memory itself is enough.
+    <!-- =================================================
+         MEMORY 7 - SECRET CHAPTER
+    ================================================== -->
 
-                    <br><br>
+    <section id="secret-chapter" class="secret-chapter reveal">
 
-                    The time we spent together that day
-                    is still one of my best memories. ❤️
-                </p>
+      <div class="secret-overlay"></div>
 
-            </div>
+      <div class="secret-content">
 
-        </section>
+        <p class="memory-number">
+          MEMORY 07
+        </p>
 
+        <p class="memory-date">
+          January 24, 2025 • 7:30 PM
+        </p>
 
-        <!-- =====================================
-             MEMORY 6
-             MOHITH BIRTHDAY
-        ====================================== -->
+        <div class="lock-icon">
+          🔐
+        </div>
 
-        <section id="memory-six" class="memory-section">
+        <h2>
+          A Chapter Only We Know
+        </h2>
 
-            <div class="memory-content">
+        <p>
+          There are memories that don't need
+          photos or videos.
+        </p>
 
-                <p class="memory-number">
-                    MEMORY 06
-                </p>
+        <p>
+          They live quietly between
+          two people.
+        </p>
 
-                <p class="memory-date">
-                    DECEMBER 18, 2024
-                </p>
+        <p class="secret-highlight">
+          January 24, 2025<br>
+          7:30 PM
+        </p>
 
-                <h2>
-                    The Birthday I Didn't Expect 🎂
-                </h2>
+        <p>
+          A secret that belongs only to us.
+        </p>
 
-                <div class="birthday-story-card">
+        <p class="tiny-note">
+          Some stories are better kept between two hearts. ❤️
+        </p>
 
-                    <div class="story-icon">
-                        🎁
-                    </div>
+      </div>
 
-                    <p>
-                        You invited me to your home
-                        for my birthday.
-                    </p>
+    </section>
 
-                    <p>
-                        I thought it would just be
-                        a simple cake-cutting moment.
-                    </p>
 
-                    <p>
-                        But then you surprised me with
-                        a dinner party with your family.
-                    </p>
+    <!-- =================================================
+         MEMORY 8
+    ================================================== -->
 
-                    <div class="story-highlight">
-                        And somehow, you made my birthday
-                        feel incredibly special. ❤️
-                    </div>
+    <section id="memory-eight" class="memory-section reveal">
 
-                </div>
+      <div class="memory-content">
 
-                <p class="memory-text">
-                    I didn't expect it.
-                    That's probably why I'll remember it
-                    for a very long time.
-                </p>
+        <p class="memory-number">
+          MEMORY 08
+        </p>
 
-            </div>
+        <p class="memory-date">
+          September 8, 2025
+        </p>
 
-        </section>
+        <h2>
+          One Year Later...
+        </h2>
 
+        <p>
+          Your birthday again.
+        </p>
 
-        <!-- =====================================
-             MEMORY 7
-             SECRET CHAPTER
-        ====================================== -->
+        <p>
+          And once again,
+          you invited me to your home
+          for a night party.
+        </p>
 
-        <section id="secret-chapter" class="memory-section secret-memory">
+        <p>
+          Another birthday.
+          More memories.
+          More photos.
+        </p>
 
-            <div class="memory-content">
+        <p class="highlight">
+          And somehow,
+          I still wasn't tired of
+          making memories with you.
+        </p>
 
-                <p class="memory-number">
-                    SECRET CHAPTER
-                </p>
+      </div>
 
-                <p class="memory-date">
-                    JANUARY 24, 2025 • 7:30 PM
-                </p>
+      <div class="memory-image">
 
-                <div class="locked-heart">
-                    🔐
-                </div>
+        <img
+          src="images/sep-8-2025-night-1.jpg"
+          alt="September 2025 birthday night"
+          loading="lazy"
+        >
 
-                <h2>
-                    A Chapter Only We Know
-                </h2>
+        <div class="photo-time">
+          6:28 PM
+        </div>
 
-                <p class="secret-intro">
-                    There are some memories that
-                    don't need photographs.
-                </p>
+      </div>
 
-                <div class="secret-card">
+    </section>
 
-                    <span>
-                        24 • 01 • 2025
-                    </span>
 
-                    <h3>
-                        7:30 PM
-                    </h3>
+    <!-- =================================================
+         2025 PHOTO
+    ================================================== -->
 
-                    <p>
-                        Our secret chapter.
-                    </p>
+    <section class="photo-wall-section reveal">
 
-                    <div class="secret-line">
-                        ✦ ✦ ✦
-                    </div>
+      <div class="section-heading">
 
-                    <p>
-                        A moment known only to us.
-                    </p>
+        <p class="small-label">
+          Birthday Night
+        </p>
 
-                </div>
+        <h2>
+          September 8, 2025 ❤️
+        </h2>
 
-                <p class="memory-text">
-                    No photo.
-                    No video.
-                    No proof needed.
+      </div>
 
-                    <br><br>
+      <div class="photo-grid">
 
-                    Just one date,
-                    one time,
-                    and two people who know exactly
-                    what happened.
-                </p>
+        <div class="photo-card rotate-left">
 
-                <p class="secret-signature">
-                    Some chapters are meant to stay ours. ❤️
-                </p>
+          <img
+            src="images/sep-8-2025-night-1.jpg"
+            alt="Birthday night 2025"
+            loading="lazy"
+          >
 
-            </div>
+        </div>
 
-        </section>
+        <div class="photo-card rotate-right">
 
+          <img
+            src="images/sep-8-2025-night-2.jpg"
+            alt="Birthday night 2025"
+            loading="lazy"
+          >
 
-        <!-- =====================================
-             MEMORY 8
-             SEPTEMBER 8 2025
-        ====================================== -->
+        </div>
 
-        <section id="memory-eight" class="memory-section">
+      </div>
 
-            <div class="memory-content wide">
+    </section>
 
-                <p class="memory-number">
-                    MEMORY 08
-                </p>
 
-                <p class="memory-date">
-                    SEPTEMBER 8, 2025
-                </p>
+    <!-- =================================================
+         TIMELINE
+    ================================================== -->
 
-                <h2>
-                    Another Birthday Night 🌙🎂
-                </h2>
+    <section id="timeline-section" class="timeline-section reveal">
 
-                <p class="memory-caption">
-                    One year later...
-                </p>
+      <div class="section-heading">
 
-                <div class="photo-grid two-column">
+        <p class="small-label">
+          Our Story
+        </p>
 
-                    <div class="memory-photo">
-                        <img
-                            src="images/sep-8-2025-night-1.jpg"
-                            alt="Dakshu birthday 2025 memory 1"
-                        >
-                    </div>
+        <h2>
+          Little Moments.<br>
+          Big Memories.
+        </h2>
 
-                    <div class="memory-photo">
-                        <img
-                            src="images/sep-8-2025-night-2.jpg"
-                            alt="Dakshu birthday 2025 memory 2"
-                        >
-                    </div>
+      </div>
 
-                </div>
+      <div class="timeline">
 
-                <div class="time-stamp">
-                    6:28 PM
-                </div>
+        <div class="timeline-item">
 
-                <p class="memory-text">
-                    Another birthday.
-                    Another night.
-                    Another set of memories.
+          <div class="timeline-dot"></div>
 
-                    <br><br>
+          <div class="timeline-card">
 
-                    And somehow,
-                    we're still creating new chapters.
-                </p>
+            <span>
+              Chapter 01
+            </span>
 
-            </div>
+            <h3>
+              First Temple Date
+            </h3>
 
-        </section>
+            <p>
+              Where one of our favourite stories began.
+            </p>
 
+          </div>
 
-        <!-- =====================================
-             OUR TIMELINE
-        ====================================== -->
+        </div>
 
-        <section id="timeline-section" class="main-section">
 
-            <div class="section-inner wide">
+        <div class="timeline-item">
 
-                <p class="section-label">
-                    OUR LITTLE STORY
-                </p>
+          <div class="timeline-dot"></div>
 
-                <h2>
-                    From one memory to another... ❤️
-                </h2>
+          <div class="timeline-card">
 
-                <div class="timeline">
+            <span>
+              September 8, 2024
+            </span>
 
-                    <div class="timeline-item">
+            <h3>
+              Your Birthday
+            </h3>
 
-                        <div class="timeline-dot">
-                            ❤️
-                        </div>
+            <p>
+              Temple morning, birthday party,
+              and that beautiful night.
+            </p>
 
-                        <div class="timeline-card">
+          </div>
 
-                            <span>
-                                FIRST
-                            </span>
+        </div>
 
-                            <h3>
-                                Our First Temple Date
-                            </h3>
 
-                            <p>
-                                The beginning of some
-                                beautiful memories.
-                            </p>
+        <div class="timeline-item">
 
-                        </div>
+          <div class="timeline-dot"></div>
 
-                    </div>
+          <div class="timeline-card">
 
+            <span>
+              Memory 05
+            </span>
 
-                    <div class="timeline-item">
+            <h3>
+              Kalki Date
+            </h3>
 
-                        <div class="timeline-dot">
-                            🎂
-                        </div>
+            <p>
+              A day where spending time together
+              mattered more than anything else.
+            </p>
 
-                        <div class="timeline-card">
+          </div>
 
-                            <span>
-                                08 • 09 • 2024
-                            </span>
+        </div>
 
-                            <h3>
-                                Your Birthday
-                            </h3>
 
-                            <p>
-                                A day filled with temples,
-                                photos, celebrations and smiles.
-                            </p>
+        <div class="timeline-item">
 
-                        </div>
+          <div class="timeline-dot"></div>
 
-                    </div>
+          <div class="timeline-card">
 
+            <span>
+              December 18, 2024
+            </span>
 
-                    <div class="timeline-item">
+            <h3>
+              My Birthday
+            </h3>
 
-                        <div class="timeline-dot">
-                            🎬
-                        </div>
+            <p>
+              You made my birthday unexpectedly special.
+            </p>
 
-                        <div class="timeline-card">
+          </div>
 
-                            <span>
-                                MOVIE DATE
-                            </span>
+        </div>
 
-                            <h3>
-                                Kalki
-                            </h3>
 
-                            <p>
-                                One of those days where
-                                the time together mattered most.
-                            </p>
+        <div class="timeline-item">
 
-                        </div>
+          <div class="timeline-dot"></div>
 
-                    </div>
+          <div class="timeline-card">
 
+            <span>
+              January 24, 2025
+            </span>
 
-                    <div class="timeline-item">
+            <h3>
+              Our Secret Chapter
+            </h3>
 
-                        <div class="timeline-dot">
-                            🎁
-                        </div>
+            <p>
+              A memory known only to us.
+            </p>
 
-                        <div class="timeline-card">
+          </div>
 
-                            <span>
-                                18 • 12 • 2024
-                            </span>
+        </div>
 
-                            <h3>
-                                My Birthday
-                            </h3>
 
-                            <p>
-                                The surprise I never expected.
-                            </p>
+        <div class="timeline-item">
 
-                        </div>
+          <div class="timeline-dot"></div>
 
-                    </div>
+          <div class="timeline-card">
 
+            <span>
+              September 8, 2025
+            </span>
 
-                    <div class="timeline-item">
+            <h3>
+              Another Birthday
+            </h3>
 
-                        <div class="timeline-dot">
-                            🔐
-                        </div>
+            <p>
+              Another night.
+              Another collection of memories.
+            </p>
 
-                        <div class="timeline-card">
+          </div>
 
-                            <span>
-                                24 • 01 • 2025
-                            </span>
+        </div>
 
-                            <h3>
-                                Our Secret Chapter
-                            </h3>
+      </div>
 
-                            <p>
-                                A chapter that belongs
-                                only to us.
-                            </p>
+    </section>
 
-                        </div>
 
-                    </div>
+    <!-- =================================================
+         REASONS
+    ================================================== -->
 
+    <section id="reasons-section" class="reasons-section reveal">
 
-                    <div class="timeline-item">
+      <div class="section-heading">
 
-                        <div class="timeline-dot">
-                            🌙
-                        </div>
+        <p class="small-label">
+          Just a few...
+        </p>
 
-                        <div class="timeline-card">
+        <h2>
+          Reasons You're Special
+        </h2>
 
-                            <span>
-                                08 • 09 • 2025
-                            </span>
+        <p>
+          And yes, I could keep writing forever.
+        </p>
 
-                            <h3>
-                                Another Birthday
-                            </h3>
+      </div>
 
-                            <p>
-                                Another night.
-                                Another memory.
-                            </p>
+      <div class="reasons-grid">
 
-                        </div>
+        <div class="reason-card">
+          <span>01</span>
+          <h3>Your Smile</h3>
+          <p>
+            Somehow it makes everything
+            feel a little lighter.
+          </p>
+        </div>
 
-                    </div>
+        <div class="reason-card">
+          <span>02</span>
+          <h3>Your Presence</h3>
+          <p>
+            Even ordinary days become
+            special when you're around.
+          </p>
+        </div>
 
-                </div>
+        <div class="reason-card">
+          <span>03</span>
+          <h3>Your Heart</h3>
+          <p>
+            The way you care about people
+            is something I truly admire.
+          </p>
+        </div>
 
-            </div>
+        <div class="reason-card">
+          <span>04</span>
+          <h3>Our Memories</h3>
+          <p>
+            Because every memory with you
+            feels worth keeping.
+          </p>
+        </div>
 
-        </section>
+        <div class="reason-card">
+          <span>05</span>
+          <h3>The Little Things</h3>
+          <p>
+            It's always the tiny moments
+            that stay with me.
+          </p>
+        </div>
 
+        <div class="reason-card">
+          <span>06</span>
+          <h3>Just You</h3>
+          <p>
+            I don't really need another reason.
+          </p>
+        </div>
 
-        <!-- =====================================
-             REASONS
-        ====================================== -->
+      </div>
 
-        <section id="reasons-section" class="main-section">
+    </section>
 
-            <div class="section-inner">
 
-                <p class="section-label">
-                    WHY YOU
-                </p>
+    <!-- =================================================
+         LETTER
+    ================================================== -->
 
-                <h2>
-                    A few reasons you're special... ❤️
-                </h2>
+    <section id="letter-section" class="letter-section reveal">
 
-                <div class="reasons-grid">
+      <div class="letter-intro">
 
-                    <div class="reason-card">
-                        <span>01</span>
-                        <h3>Your Smile</h3>
-                        <p>
-                            Somehow it makes ordinary
-                            moments feel different.
-                        </p>
-                    </div>
+        <p class="small-label">
+          Something I wanted to say...
+        </p>
 
-                    <div class="reason-card">
-                        <span>02</span>
-                        <h3>Your Presence</h3>
-                        <p>
-                            Even simple time with you
-                            becomes a memory.
-                        </p>
-                    </div>
+        <h2>
+          A Letter For You 💌
+        </h2>
 
-                    <div class="reason-card">
-                        <span>03</span>
-                        <h3>The Little Things</h3>
-                        <p>
-                            It's often the smallest moments
-                            that stay with me.
-                        </p>
-                    </div>
+      </div>
 
-                    <div class="reason-card">
-                        <span>04</span>
-                        <h3>You Being You</h3>
-                        <p>
-                            I don't need a complicated reason.
-                            You're just you.
-                        </p>
-                    </div>
+      <button id="open-letter" class="envelope-button">
 
-                </div>
+        <div class="envelope">
 
-            </div>
+          <div class="envelope-back"></div>
 
-        </section>
+          <div class="envelope-front"></div>
 
+          <div class="envelope-flap"></div>
 
-        <!-- =====================================
-             LETTER
-        ====================================== -->
+          <div class="envelope-heart">
+            ❤️
+          </div>
 
-        <section id="letter-section" class="main-section letter-section">
+        </div>
 
-            <div class="section-inner">
+        <span>
+          Open this...
+        </span>
 
-                <p class="section-label">
-                    A LETTER FOR YOU
-                </p>
+      </button>
 
-                <div class="envelope">
 
-                    <div class="envelope-top">
-                        💌
-                    </div>
+      <div id="letter-content" class="letter-content hidden">
 
-                    <h2>
-                        Open this when you're ready...
-                    </h2>
+        <div class="paper">
 
-                    <button
-                        id="open-letter"
-                        class="main-button"
-                        type="button"
-                    >
-                        Open My Letter ❤️
-                    </button>
+          <p>
+            Dear Dakshu,
+          </p>
 
-                </div>
+          <p>
+            Happy Birthday to one of the most
+            special people in my life. ❤️
+          </p>
 
-                <div
-                    id="letter-content"
-                    class="letter-content hidden"
-                >
+          <p>
+            When I look at all these memories,
+            I realise that the best part wasn't
+            where we went or what we did.
+          </p>
 
-                    <p>
-                        Dear Dakshu,
-                    </p>
+          <p>
+            It was simply having you there.
+          </p>
 
-                    <p>
-                        I don't know if a website can
-                        properly explain everything
-                        I feel, but I wanted to try.
-                    </p>
+          <p>
+            From our first temple date,
+            to your birthdays,
+            to my birthday,
+            to the memories nobody else knows about...
+          </p>
 
-                    <p>
-                        Looking back at all these memories,
-                        I realize that the best part wasn't
-                        where we went or what we did.
-                    </p>
+          <p>
+            every little chapter means something
+            to me.
+          </p>
 
-                    <p>
-                        It was simply being with you.
-                    </p>
+          <p>
+            I hope we keep creating many more.
+          </p>
 
-                    <p>
-                        From our first temple memory to
-                        all those birthdays, movie dates,
-                        unexpected surprises and even
-                        the chapters only we know...
-                    </p>
+          <p>
+            Happy Birthday, Dakshu.
+          </p>
 
-                    <p>
-                        every little moment became part
-                        of our story.
-                    </p>
+          <p>
+            Stay the same beautiful person
+            you are.
+          </p>
 
-                    <p>
-                        Happy Birthday, Dakshu. ❤️
-                    </p>
+          <p class="signature">
+            — Mohith ❤️
+          </p>
 
-                    <p>
-                        I hope this new year of your life
-                        brings you everything you deserve.
-                    </p>
+        </div>
 
-                    <p class="letter-signature">
-                        Always,<br>
-                        Mohith ❤️
-                    </p>
+      </div>
 
-                </div>
+    </section>
 
-            </div>
 
-        </section>
+    <!-- =================================================
+         SURPRISE BOXES
+    ================================================== -->
 
+    <section id="surprise-section" class="surprise-section reveal">
 
-        <!-- =====================================
-             MYSTERY BOXES
-        ====================================== -->
+      <div class="section-heading">
 
-        <section id="surprise-section" class="main-section">
+        <p class="small-label">
+          One more thing...
+        </p>
 
-            <div class="section-inner">
+        <h2>
+          Pick A Mystery Box 🎁
+        </h2>
 
-                <p class="section-label">
-                    JUST FOR FUN
-                </p>
+        <p>
+          You don't know what's inside.
+        </p>
 
-                <h2>
-                    Pick a surprise 🎁
-                </h2>
+      </div>
 
-                <p>
-                    You don't know what you'll get.
-                </p>
+      <div class="gift-grid">
 
-                <div class="gift-grid">
+        <button
+          class="gift-box"
+          data-message="You are my favourite notification. ❤️"
+        >
+          <span>🎁</span>
+          <small>01</small>
+        </button>
 
-                    <button class="gift-box" data-message="You are one of my favorite people in this world. ❤️">
-                        🎁
-                        <span>Open Me</span>
-                    </button>
+        <button
+          class="gift-box"
+          data-message="If memories were stars, we'd have our own galaxy. ✨"
+        >
+          <span>🎁</span>
+          <small>02</small>
+        </button>
 
-                    <button class="gift-box" data-message="If I could replay one thing, I'd replay our best memories. ✨">
-                        🎁
-                        <span>Open Me</span>
-                    </button>
+        <button
+          class="gift-box"
+          data-message="One day we'll look back at all this and smile. ❤️"
+        >
+          <span>🎁</span>
+          <small>03</small>
+        </button>
 
-                    <button class="gift-box" data-message="Plot twist: I still choose you. 😌❤️">
-                        🎁
-                        <span>Open Me</span>
-                    </button>
+        <button
+          class="gift-box"
+          data-message="Plot twist: I'm still choosing you tomorrow. 😌❤️"
+        >
+          <span>🎁</span>
+          <small>04</small>
+        </button>
 
-                </div>
+      </div>
 
-                <div id="gift-message" class="gift-message hidden"></div>
+      <div id="gift-message" class="gift-message"></div>
 
-            </div>
+    </section>
 
-        </section>
 
+    <!-- =================================================
+         NIGHT SKY
+    ================================================== -->
 
-        <!-- =====================================
-             NIGHT SKY
-        ====================================== -->
+    <section id="night-sky-section" class="night-sky-section reveal">
 
-        <section id="night-sky-section" class="night-sky-section">
+      <div class="stars">
 
-            <div class="stars"></div>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
 
-            <div class="night-sky-content">
+      </div>
 
-                <p class="section-label">
-                    ONE QUIET MOMENT
-                </p>
+      <div class="moon">
+        🌙
+      </div>
 
-                <h2>
-                    If you ever look at the sky...
-                </h2>
+      <div class="night-message">
 
-                <p>
-                    remember that somewhere in all
-                    these memories, there's a version
-                    of us smiling together.
-                </p>
+        <p class="small-label">
+          If the whole world went quiet...
+        </p>
 
-                <div class="moon">
-                    🌙
-                </div>
+        <h2>
+          I'd still choose you.
+        </h2>
 
-                <p class="night-message">
-                    Some memories shine quietly. ✨
-                </p>
+        <p>
+          Under every sky.
+          <br>
+          In every lifetime.
+          <br>
+          In every version of our story.
+        </p>
 
-            </div>
+        <span>
+          ❤️
+        </span>
 
-        </section>
+      </div>
 
+    </section>
 
-        <!-- =====================================
-             FINAL SURPRISE
-        ====================================== -->
 
-        <section id="final-section" class="main-section final-section">
+    <!-- =================================================
+         FINAL
+    ================================================== -->
 
-            <div class="section-inner">
+    <section id="final-section" class="final-section">
 
-                <p class="section-label">
-                    ONE LAST SURPRISE
-                </p>
+      <div class="final-content">
 
-                <div class="final-heart">
-                    ❤️
-                </div>
+        <div class="final-heart">
+          ❤️
+        </div>
 
-                <h2>
-                    This isn't the end.
-                </h2>
+        <p class="small-label">
+          And finally...
+        </p>
 
-                <p class="final-message">
-                    Because our story still has
-                    so many empty pages.
-                </p>
+        <h2>
+          Happy Birthday,<br>
+          Dakshu.
+        </h2>
 
-                <p>
-                    More birthdays.<br>
-                    More dates.<br>
-                    More random moments.<br>
-                    More memories.
-                </p>
+        <p class="final-text">
+          Thank you for being part of
+          so many beautiful memories.
+        </p>
 
-                <div class="future-message">
-                    And hopefully...
-                    many, many more tomorrows. ❤️
-                </div>
+        <p>
+          This website ends here...
+          <br>
+          but our story doesn't.
+        </p>
 
-                <p class="final-signature">
-                    Happy Birthday, Dakshu. ❤️
-                </p>
+        <div class="final-divider"></div>
 
-                <p class="made-by">
-                    Made with love by Mohith
-                </p>
+        <p class="forever-text">
+          More memories.<br>
+          More birthdays.<br>
+          More stupid laughs.<br>
+          More beautiful days.
+        </p>
 
-            </div>
+        <h3>
+          Forever starts with another tomorrow. ❤️
+        </h3>
 
-        </section>
+        <p class="signature">
+          — Mohith
+        </p>
 
+      </div>
 
-    </main>
+    </section>
 
 
-    <!-- =========================================
-         JAVASCRIPT
-    ========================================== -->
+  </main>
 
-    <script src="script.js"></script>
+
+  <!-- =====================================================
+       GIFT POPUP
+  ====================================================== -->
+
+  <div id="gift-popup" class="popup hidden">
+
+    <div class="popup-box">
+
+      <button id="close-popup" class="close-popup">
+        ×
+      </button>
+
+      <div class="popup-icon">
+        🎁
+      </div>
+
+      <p id="popup-message"></p>
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       SCRIPT
+  ====================================================== -->
+
+  <script src="script.js"></script>
 
 </body>
 </html>
