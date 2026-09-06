@@ -13,21 +13,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const openSurprise = document.getElementById("open-surprise");
     const birthdayContinue = document.getElementById("birthday-continue");
-
     const yesButton = document.getElementById("yes-button");
     const noButton = document.getElementById("no-button");
-
     const continueToLetter = document.getElementById("continue-to-letter");
 
     const noMessage = document.getElementById("no-message");
-
     const floatingHearts = document.getElementById("floating-hearts");
     const sparkles = document.getElementById("sparkles");
-
-
-    /* =====================================================
-       HELPERS
-    ===================================================== */
 
     const screens = [
         introScreen,
@@ -36,44 +28,42 @@ document.addEventListener("DOMContentLoaded", () => {
         yesScreen
     ];
 
+    /* =====================================================
+       SCREEN NAVIGATION
+       100% INSTANT
+    ===================================================== */
+
     function showScreen(target) {
 
-        screens.forEach(screen => {
-
-            if (!screen) return;
-
-            screen.classList.remove("active");
-
-        });
+        for (const screen of screens) {
+            if (screen) screen.classList.remove("active");
+        }
 
         if (!target) return;
 
         target.classList.add("active");
 
-        window.scrollTo({
-            top: 0,
-            left: 0,
-            behavior: "instant"
-        });
+        window.scrollTo(0, 0);
     }
 
 
     /* =====================================================
        INTRO → BIRTHDAY
-       INSTANT RESPONSE
     ===================================================== */
 
     if (openSurprise) {
 
-        openSurprise.addEventListener("click", () => {
+        openSurprise.addEventListener("click", function (event) {
 
-            sparkleBurst();
+            event.preventDefault();
+            event.stopPropagation();
 
             showScreen(birthdayScreen);
 
             birthdayEntrance();
+            createBirthdayParticles();
 
-        });
+        }, { passive: false });
 
     }
 
@@ -84,197 +74,151 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (birthdayContinue) {
 
-        birthdayContinue.addEventListener("click", () => {
+        birthdayContinue.addEventListener("click", function (event) {
 
-            sparkleBurst();
+            event.preventDefault();
+            event.stopPropagation();
 
             showScreen(questionScreen);
 
             questionEntrance();
 
-        });
+        }, { passive: false });
 
     }
 
 
     /* =====================================================
-       YES BUTTON
+       YES → YES SCREEN
     ===================================================== */
 
     if (yesButton) {
 
-        yesButton.addEventListener("click", event => {
+        yesButton.addEventListener("click", function (event) {
 
             event.preventDefault();
-
-            buttonPulse(yesButton);
-
-            heartBurst();
+            event.stopPropagation();
 
             showScreen(yesScreen);
 
             yesEntrance();
+            heartBurst();
 
-        });
+        }, { passive: false });
 
     }
 
 
     /* =====================================================
        NO BUTTON
+       NEVER ALLOWS CLICK
     ===================================================== */
 
-    let noMoveCount = 0;
+    let noMoveTimer = null;
 
     function moveNoButton() {
 
         if (!noButton) return;
 
-        noMoveCount++;
-
         const rect = noButton.getBoundingClientRect();
 
-        const buttonWidth = rect.width;
-        const buttonHeight = rect.height;
+        const width = rect.width;
+        const height = rect.height;
 
-        const padding = 18;
+        const padding = 20;
 
-        const maxX =
-            window.innerWidth -
-            buttonWidth -
-            padding;
+        const maxX = Math.max(
+            padding,
+            window.innerWidth - width - padding
+        );
 
-        const maxY =
-            window.innerHeight -
-            buttonHeight -
-            padding;
+        const maxY = Math.max(
+            padding,
+            window.innerHeight - height - padding
+        );
 
-        const safeTop = 10;
-
-        let x =
+        const x =
             padding +
             Math.random() *
             Math.max(1, maxX - padding);
 
-        let y =
-            safeTop +
+        const y =
+            padding +
             Math.random() *
-            Math.max(1, maxY - safeTop);
-
-        /*
-           Keep the button away from the very edges.
-        */
-
-        x = Math.max(
-            padding,
-            Math.min(x, maxX)
-        );
-
-        y = Math.max(
-            safeTop,
-            Math.min(y, maxY)
-        );
+            Math.max(1, maxY - padding);
 
         noButton.style.position = "fixed";
         noButton.style.left = `${x}px`;
         noButton.style.top = `${y}px`;
-
-        noButton.style.zIndex = "9999";
-
-        /*
-           Tiny visual shake.
-        */
+        noButton.style.zIndex = "99999";
 
         noButton.animate(
             [
-                {
-                    transform:
-                        "translate3d(0,0,0) scale(0.96)"
-                },
-                {
-                    transform:
-                        "translate3d(0,0,0) scale(1.04)"
-                },
-                {
-                    transform:
-                        "translate3d(0,0,0) scale(1)"
-                }
+                { transform: "scale(.92)" },
+                { transform: "scale(1.05)" },
+                { transform: "scale(1)" }
             ],
             {
-                duration: 180,
-                easing: "cubic-bezier(.2,.8,.2,1)"
+                duration: 120,
+                easing: "ease-out"
             }
         );
 
-        showNoMessage();
-
-        createSparkle(
-            x + buttonWidth / 2,
-            y + buttonHeight / 2
-        );
-    }
-
-
-    function showNoMessage() {
-
-        if (!noMessage) return;
-
-        noMessage.classList.remove("show");
-
-        requestAnimationFrame(() => {
+        if (noMessage) {
 
             noMessage.classList.add("show");
 
-        });
+            clearTimeout(noMoveTimer);
 
-        clearTimeout(
-            showNoMessage.timer
-        );
-
-        showNoMessage.timer =
-            setTimeout(() => {
-
+            noMoveTimer = setTimeout(() => {
                 noMessage.classList.remove("show");
+            }, 700);
 
-            }, 850);
-
+        }
     }
 
 
     if (noButton) {
-
-        /*
-           Desktop
-        */
 
         noButton.addEventListener(
             "mouseenter",
             moveNoButton
         );
 
-        /*
-           Touch / mobile
-        */
+        noButton.addEventListener(
+            "pointerenter",
+            moveNoButton
+        );
 
         noButton.addEventListener(
             "pointerdown",
-            event => {
+            function (event) {
 
                 event.preventDefault();
+                event.stopPropagation();
 
                 moveNoButton();
 
-            }
+            },
+            { passive: false }
         );
 
-        /*
-           Keyboard accessibility:
-           prevent accidental activation.
-        */
+        noButton.addEventListener(
+            "click",
+            function (event) {
+
+                event.preventDefault();
+                event.stopPropagation();
+
+                moveNoButton();
+
+            },
+            { passive: false }
+        );
 
         noButton.addEventListener(
             "keydown",
-            event => {
+            function (event) {
 
                 if (
                     event.key === "Enter" ||
@@ -282,21 +226,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 ) {
 
                     event.preventDefault();
+                    event.stopPropagation();
 
                     moveNoButton();
 
                 }
-
-            }
-        );
-
-        noButton.addEventListener(
-            "click",
-            event => {
-
-                event.preventDefault();
-
-                moveNoButton();
 
             }
         );
@@ -312,13 +246,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         continueToLetter.addEventListener(
             "click",
-            event => {
+            function (event) {
 
                 event.preventDefault();
-
-                buttonPulse(
-                    continueToLetter
-                );
+                event.stopPropagation();
 
                 screens.forEach(screen => {
 
@@ -332,65 +263,45 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 letterSection.classList.add("visible");
 
-                window.scrollTo({
-                    top: 0,
-                    left: 0,
-                    behavior: "instant"
-                });
-
-                /*
-                   Start immediately.
-                */
+                window.scrollTo(0, 0);
 
                 resetLetter();
 
                 requestAnimationFrame(() => {
-
-                    requestAnimationFrame(() => {
-
-                        revealLetter();
-
-                    });
-
+                    revealLetter();
                 });
 
                 startFloatingHearts();
 
-            }
+            },
+            { passive: false }
         );
 
     }
 
 
     /* =====================================================
-       LETTER ELEMENTS
+       LETTER REVEAL
     ===================================================== */
 
-    const letterElements =
-        document.querySelectorAll(
-            `
-            .letter-opening,
-            .letter-paragraph,
-            .letter-special,
-            .letter-emphasis,
-            .letter-final,
-            .birthday-ending,
-            .signature
-            `
-        );
+    const letterElements = document.querySelectorAll(
+        `
+        .letter-opening,
+        .letter-paragraph,
+        .letter-special,
+        .letter-emphasis,
+        .letter-final,
+        .birthday-ending,
+        .signature
+        `
+    );
 
 
     function resetLetter() {
 
-        letterElements.forEach(
-            element => {
-
-                element.classList.remove(
-                    "revealed"
-                );
-
-            }
-        );
+        letterElements.forEach(element => {
+            element.classList.remove("revealed");
+        });
 
     }
 
@@ -399,43 +310,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (!letterSection) return;
 
-        if (
-            !letterSection.classList.contains(
-                "visible"
-            )
-        ) {
+        if (!letterSection.classList.contains("visible")) {
             return;
         }
 
-        const trigger =
-            window.innerHeight * 0.86;
+        const trigger = window.innerHeight * 0.86;
 
-        letterElements.forEach(
-            element => {
+        letterElements.forEach(element => {
 
-                const rect =
-                    element.getBoundingClientRect();
-
-                if (
-                    rect.top <
-                    trigger
-                ) {
-
-                    element.classList.add(
-                        "revealed"
-                    );
-
-                }
-
+            if (
+                element.getBoundingClientRect().top <
+                trigger
+            ) {
+                element.classList.add("revealed");
             }
-        );
+
+        });
 
     }
 
-
-    /* =====================================================
-       FAST SCROLL HANDLER
-    ===================================================== */
 
     let scrollTicking = false;
 
@@ -456,32 +349,25 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
         },
-        {
-            passive: true
-        }
+        { passive: true }
     );
 
 
     /* =====================================================
        BIRTHDAY ENTRANCE
+       VISUAL ONLY — DOES NOT BLOCK CLICK
     ===================================================== */
 
     function birthdayEntrance() {
 
         const title =
-            document.querySelector(
-                ".birthday-title"
-            );
+            document.querySelector(".birthday-title");
 
         const name =
-            document.querySelector(
-                ".birthday-name"
-            );
+            document.querySelector(".birthday-name");
 
         const description =
-            document.querySelector(
-                ".birthday-description"
-            );
+            document.querySelector(".birthday-description");
 
         if (title) {
 
@@ -489,19 +375,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 [
                     {
                         opacity: 0,
-                        transform:
-                            "translateY(18px) scale(.97)"
+                        transform: "translateY(14px) scale(.98)"
                     },
                     {
                         opacity: 1,
-                        transform:
-                            "translateY(0) scale(1)"
+                        transform: "translateY(0) scale(1)"
                     }
                 ],
                 {
-                    duration: 650,
-                    easing:
-                        "cubic-bezier(.16,1,.3,1)"
+                    duration: 420,
+                    easing: "cubic-bezier(.16,1,.3,1)"
                 }
             );
 
@@ -513,20 +396,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 [
                     {
                         opacity: 0,
-                        transform:
-                            "translateY(12px)"
+                        transform: "translateY(10px)"
                     },
                     {
                         opacity: 1,
-                        transform:
-                            "translateY(0)"
+                        transform: "translateY(0)"
                     }
                 ],
                 {
-                    duration: 550,
-                    delay: 100,
-                    easing:
-                        "cubic-bezier(.16,1,.3,1)"
+                    duration: 360,
+                    easing: "cubic-bezier(.16,1,.3,1)"
                 }
             );
 
@@ -536,22 +415,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
             description.animate(
                 [
-                    {
-                        opacity: 0
-                    },
-                    {
-                        opacity: 1
-                    }
+                    { opacity: 0 },
+                    { opacity: 1 }
                 ],
                 {
-                    duration: 500,
-                    delay: 180
+                    duration: 300,
+                    easing: "ease-out"
                 }
             );
 
         }
-
-        createBirthdayParticles();
 
     }
 
@@ -563,9 +436,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function questionEntrance() {
 
         const card =
-            document.querySelector(
-                ".question-card"
-            );
+            document.querySelector(".question-card");
 
         if (!card) return;
 
@@ -573,19 +444,16 @@ document.addEventListener("DOMContentLoaded", () => {
             [
                 {
                     opacity: 0,
-                    transform:
-                        "translateY(20px) scale(.97)"
+                    transform: "translateY(14px) scale(.98)"
                 },
                 {
                     opacity: 1,
-                    transform:
-                        "translateY(0) scale(1)"
+                    transform: "translateY(0) scale(1)"
                 }
             ],
             {
-                duration: 420,
-                easing:
-                    "cubic-bezier(.16,1,.3,1)"
+                duration: 300,
+                easing: "cubic-bezier(.16,1,.3,1)"
             }
         );
 
@@ -599,14 +467,10 @@ document.addEventListener("DOMContentLoaded", () => {
     function yesEntrance() {
 
         const orbit =
-            document.querySelector(
-                ".yes-orbit"
-            );
+            document.querySelector(".yes-orbit");
 
         const content =
-            document.querySelector(
-                ".yes-content"
-            );
+            document.querySelector(".yes-content");
 
         if (orbit) {
 
@@ -614,19 +478,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 [
                     {
                         opacity: 0,
-                        transform:
-                            "scale(.65) rotate(-12deg)"
+                        transform: "scale(.8)"
                     },
                     {
                         opacity: 1,
-                        transform:
-                            "scale(1) rotate(0)"
+                        transform: "scale(1)"
                     }
                 ],
                 {
-                    duration: 600,
-                    easing:
-                        "cubic-bezier(.16,1,.3,1)"
+                    duration: 400,
+                    easing: "cubic-bezier(.16,1,.3,1)"
                 }
             );
 
@@ -638,61 +499,20 @@ document.addEventListener("DOMContentLoaded", () => {
                 [
                     {
                         opacity: 0,
-                        transform:
-                            "translateY(15px)"
+                        transform: "translateY(10px)"
                     },
                     {
                         opacity: 1,
-                        transform:
-                            "translateY(0)"
+                        transform: "translateY(0)"
                     }
                 ],
                 {
-                    duration: 520,
-                    delay: 80,
-                    easing:
-                        "cubic-bezier(.16,1,.3,1)"
+                    duration: 350,
+                    easing: "cubic-bezier(.16,1,.3,1)"
                 }
             );
 
         }
-
-    }
-
-
-    /* =====================================================
-       BUTTON MICRO INTERACTION
-    ===================================================== */
-
-    function buttonPulse(button) {
-
-        if (!button) return;
-
-        button.animate(
-            [
-                {
-                    transform:
-                        "scale(1)"
-                },
-                {
-                    transform:
-                        "scale(.94)"
-                },
-                {
-                    transform:
-                        "scale(1.035)"
-                },
-                {
-                    transform:
-                        "scale(1)"
-                }
-            ],
-            {
-                duration: 210,
-                easing:
-                    "cubic-bezier(.2,.8,.2,1)"
-            }
-        );
 
     }
 
@@ -707,41 +527,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (!floatingHearts) return;
 
-        const heart =
-            document.createElement(
-                "span"
-            );
+        const heart = document.createElement("span");
 
-        heart.className =
-            "floating-heart";
+        heart.className = "floating-heart";
 
-        const symbols = [
-            "♡",
-            "♥",
-            "♡",
-            "✦",
-            "·"
-        ];
+        const symbols = ["♡", "♥", "♡", "✦"];
 
         heart.textContent =
             symbols[
                 Math.floor(
-                    Math.random() *
-                    symbols.length
+                    Math.random() * symbols.length
                 )
             ];
 
-        const start =
-            Math.random() * 100;
-
         heart.style.left =
-            `${start}%`;
+            `${Math.random() * 100}%`;
 
         heart.style.fontSize =
-            `${10 + Math.random() * 9}px`;
+            `${10 + Math.random() * 8}px`;
 
         heart.style.opacity =
-            `${0.3 + Math.random() * 0.4}`;
+            `${0.3 + Math.random() * 0.35}`;
 
         heart.style.setProperty(
             "--drift",
@@ -749,14 +555,12 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
         const duration =
-            8 + Math.random() * 5;
+            8 + Math.random() * 4;
 
         heart.style.animationDuration =
             `${duration}s`;
 
-        floatingHearts.appendChild(
-            heart
-        );
+        floatingHearts.appendChild(heart);
 
         setTimeout(
             () => heart.remove(),
@@ -769,31 +573,16 @@ document.addEventListener("DOMContentLoaded", () => {
     function startFloatingHearts() {
 
         if (heartTimer) {
-
-            clearInterval(
-                heartTimer
-            );
-
+            clearInterval(heartTimer);
         }
 
-        /*
-           Small number of elements
-           = smooth performance.
-        */
-
-        for (let i = 0; i < 4; i++) {
-
-            setTimeout(
-                createHeart,
-                i * 500
-            );
-
-        }
+        createHeart();
+        createHeart();
 
         heartTimer =
             setInterval(
                 createHeart,
-                1700
+                1800
             );
 
     }
@@ -807,32 +596,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (!floatingHearts) return;
 
-        const count = 22;
-
-        for (
-            let i = 0;
-            i < count;
-            i++
-        ) {
+        for (let i = 0; i < 18; i++) {
 
             const heart =
-                document.createElement(
-                    "span"
-                );
+                document.createElement("span");
 
             heart.className =
                 "floating-heart";
 
             heart.textContent =
-                i % 4 === 0
-                    ? "♡"
-                    : "♥";
+                i % 4 === 0 ? "♡" : "♥";
 
-            heart.style.left =
-                "50%";
-
-            heart.style.top =
-                "50%";
+            heart.style.left = "50%";
+            heart.style.top = "50%";
 
             const angle =
                 Math.random() *
@@ -841,138 +617,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const distance =
                 70 +
-                Math.random() *
-                190;
-
-            const x =
-                Math.cos(angle) *
-                distance;
-
-            const y =
-                Math.sin(angle) *
-                distance;
+                Math.random() * 170;
 
             heart.style.setProperty(
                 "--burst-x",
-                `${x}px`
+                `${Math.cos(angle) * distance}px`
             );
 
             heart.style.setProperty(
                 "--burst-y",
-                `${y}px`
+                `${Math.sin(angle) * distance}px`
             );
 
             heart.style.animation =
-                "heartBurst .9s cubic-bezier(.16,1,.3,1) forwards";
+                "heartBurst .8s cubic-bezier(.16,1,.3,1) forwards";
 
             heart.style.fontSize =
-                `${10 + Math.random() * 13}px`;
+                `${10 + Math.random() * 12}px`;
 
-            floatingHearts.appendChild(
-                heart
-            );
+            floatingHearts.appendChild(heart);
 
             setTimeout(
                 () => heart.remove(),
-                1000
-            );
-
-        }
-
-    }
-
-
-    /* =====================================================
-       SPARKLES
-    ===================================================== */
-
-    function createSparkle(x, y) {
-
-        if (!sparkles) return;
-
-        const sparkle =
-            document.createElement(
-                "span"
-            );
-
-        sparkle.className =
-            "sparkle";
-
-        sparkle.textContent =
-            Math.random() > 0.5
-                ? "✦"
-                : "✧";
-
-        sparkle.style.left =
-            `${x}px`;
-
-        sparkle.style.top =
-            `${y}px`;
-
-        sparkle.style.setProperty(
-            "--x",
-            `${(Math.random() - 0.5) * 80}px`
-        );
-
-        sparkle.style.setProperty(
-            "--y",
-            `${(Math.random() - 0.5) * 80}px`
-        );
-
-        sparkle.style.fontSize =
-            `${8 + Math.random() * 8}px`;
-
-        sparkles.appendChild(
-            sparkle
-        );
-
-        setTimeout(
-            () => sparkle.remove(),
-            800
-        );
-
-    }
-
-
-    function sparkleBurst() {
-
-        const centerX =
-            window.innerWidth / 2;
-
-        const centerY =
-            window.innerHeight / 2;
-
-        for (
-            let i = 0;
-            i < 18;
-            i++
-        ) {
-
-            setTimeout(
-                () => {
-
-                    const angle =
-                        Math.random() *
-                        Math.PI *
-                        2;
-
-                    const radius =
-                        40 +
-                        Math.random() *
-                        190;
-
-                    createSparkle(
-                        centerX +
-                        Math.cos(angle) *
-                        radius,
-
-                        centerY +
-                        Math.sin(angle) *
-                        radius
-                    );
-
-                },
-                i * 18
+                900
             );
 
         }
@@ -984,7 +651,11 @@ document.addEventListener("DOMContentLoaded", () => {
        BIRTHDAY PARTICLES
     ===================================================== */
 
+    let birthdayParticlesCreated = false;
+
     function createBirthdayParticles() {
+
+        if (birthdayParticlesCreated) return;
 
         const container =
             document.querySelector(
@@ -993,34 +664,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (!container) return;
 
-        /*
-           Don't create hundreds of particles.
-           A small number looks premium
-           and keeps the page fast.
-        */
+        birthdayParticlesCreated = true;
 
-        for (
-            let i = 0;
-            i < 24;
-            i++
-        ) {
+        for (let i = 0; i < 24; i++) {
 
             const particle =
-                document.createElement(
-                    "span"
-                );
+                document.createElement("span");
 
-            particle.style.position =
-                "absolute";
-
+            particle.style.position = "absolute";
             particle.style.width =
                 `${1 + Math.random() * 2}px`;
 
             particle.style.height =
                 particle.style.width;
 
-            particle.style.borderRadius =
-                "50%";
+            particle.style.borderRadius = "50%";
 
             particle.style.background =
                 "rgba(255,210,224,.75)";
@@ -1037,42 +695,33 @@ document.addEventListener("DOMContentLoaded", () => {
             particle.animate(
                 [
                     {
-                        opacity: 0.1,
-                        transform:
-                            "scale(.5)"
+                        opacity: .1,
+                        transform: "scale(.5)"
                     },
                     {
-                        opacity: 0.8,
-                        transform:
-                            "scale(1.4)"
+                        opacity: .8,
+                        transform: "scale(1.4)"
                     },
                     {
-                        opacity: 0.1,
-                        transform:
-                            "scale(.5)"
+                        opacity: .1,
+                        transform: "scale(.5)"
                     }
                 ],
                 {
                     duration:
                         1800 +
-                        Math.random() *
-                        2600,
+                        Math.random() * 2400,
 
                     delay:
-                        Math.random() *
-                        1500,
+                        Math.random() * 1200,
 
-                    iterations:
-                        Infinity,
+                    iterations: Infinity,
 
-                    easing:
-                        "ease-in-out"
+                    easing: "ease-in-out"
                 }
             );
 
-            container.appendChild(
-                particle
-            );
+            container.appendChild(particle);
 
         }
 
@@ -1080,41 +729,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       CLICK SPARKLES
-    ===================================================== */
-
-    document.addEventListener(
-        "click",
-        event => {
-
-            if (
-                event.target.closest(
-                    "button"
-                )
-            ) {
-                return;
-            }
-
-            createSparkle(
-                event.clientX,
-                event.clientY
-            );
-
-        }
-    );
-
-
-    /* =====================================================
-       DYNAMIC HEART BURST CSS
+       HEART BURST CSS
     ===================================================== */
 
     const style =
-        document.createElement(
-            "style"
-        );
+        document.createElement("style");
 
     style.textContent = `
-
         @keyframes heartBurst {
 
             0% {
@@ -1140,21 +761,16 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
         }
-
     `;
 
-    document.head.appendChild(
-        style
-    );
+    document.head.appendChild(style);
 
 
     /* =====================================================
        INITIAL STATE
     ===================================================== */
 
-    showScreen(
-        introScreen
-    );
+    showScreen(introScreen);
 
 });
 ```
