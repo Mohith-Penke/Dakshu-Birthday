@@ -1,5 +1,5 @@
-```javascript
 document.addEventListener("DOMContentLoaded", () => {
+    "use strict";
 
     /* =====================================================
        ELEMENTS
@@ -19,31 +19,54 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const noMessage = document.getElementById("no-message");
     const floatingHearts = document.getElementById("floating-hearts");
-    const sparkles = document.getElementById("sparkles");
 
     const screens = [
         introScreen,
         birthdayScreen,
         questionScreen,
         yesScreen
-    ];
+    ].filter(Boolean);
+
+
+    /* =====================================================
+       BASIC SETUP
+    ===================================================== */
+
+    [
+        openSurprise,
+        birthdayContinue,
+        yesButton,
+        noButton,
+        continueToLetter
+    ].forEach(button => {
+        if (button) {
+            button.setAttribute("type", "button");
+        }
+    });
+
 
     /* =====================================================
        SCREEN NAVIGATION
-       100% INSTANT
     ===================================================== */
 
     function showScreen(target) {
-
-        for (const screen of screens) {
-            if (screen) screen.classList.remove("active");
-        }
-
         if (!target) return;
+
+        screens.forEach(screen => {
+            screen.classList.remove("active");
+        });
+
+        if (letterSection) {
+            letterSection.classList.remove("visible");
+        }
 
         target.classList.add("active");
 
-        window.scrollTo(0, 0);
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: "instant"
+        });
     }
 
 
@@ -52,9 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ===================================================== */
 
     if (openSurprise) {
-
-        openSurprise.addEventListener("click", function (event) {
-
+        openSurprise.addEventListener("click", event => {
             event.preventDefault();
             event.stopPropagation();
 
@@ -62,9 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             birthdayEntrance();
             createBirthdayParticles();
-
-        }, { passive: false });
-
+        });
     }
 
 
@@ -73,18 +92,14 @@ document.addEventListener("DOMContentLoaded", () => {
     ===================================================== */
 
     if (birthdayContinue) {
-
-        birthdayContinue.addEventListener("click", function (event) {
-
+        birthdayContinue.addEventListener("click", event => {
             event.preventDefault();
             event.stopPropagation();
 
             showScreen(questionScreen);
 
             questionEntrance();
-
-        }, { passive: false });
-
+        });
     }
 
 
@@ -93,9 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ===================================================== */
 
     if (yesButton) {
-
-        yesButton.addEventListener("click", function (event) {
-
+        yesButton.addEventListener("click", event => {
             event.preventDefault();
             event.stopPropagation();
 
@@ -103,38 +116,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
             yesEntrance();
             heartBurst();
-
-        }, { passive: false });
-
+        });
     }
 
 
     /* =====================================================
        NO BUTTON
-       NEVER ALLOWS CLICK
+       IT ALWAYS ESCAPES
     ===================================================== */
 
-    let noMoveTimer = null;
+    let noMessageTimer = null;
 
     function moveNoButton() {
-
         if (!noButton) return;
 
-        const rect = noButton.getBoundingClientRect();
+        const padding = 18;
 
-        const width = rect.width;
-        const height = rect.height;
-
-        const padding = 20;
+        const buttonWidth = noButton.offsetWidth || 100;
+        const buttonHeight = noButton.offsetHeight || 48;
 
         const maxX = Math.max(
             padding,
-            window.innerWidth - width - padding
+            window.innerWidth - buttonWidth - padding
         );
 
         const maxY = Math.max(
             padding,
-            window.innerHeight - height - padding
+            window.innerHeight - buttonHeight - padding
         );
 
         const x =
@@ -154,87 +162,70 @@ document.addEventListener("DOMContentLoaded", () => {
 
         noButton.animate(
             [
-                { transform: "scale(.92)" },
-                { transform: "scale(1.05)" },
-                { transform: "scale(1)" }
+                {
+                    transform: "scale(.88) rotate(-2deg)"
+                },
+                {
+                    transform: "scale(1.06) rotate(2deg)"
+                },
+                {
+                    transform: "scale(1) rotate(0)"
+                }
             ],
             {
-                duration: 120,
-                easing: "ease-out"
+                duration: 160,
+                easing: "cubic-bezier(.16,1,.3,1)"
             }
         );
 
         if (noMessage) {
-
             noMessage.classList.add("show");
 
-            clearTimeout(noMoveTimer);
+            clearTimeout(noMessageTimer);
 
-            noMoveTimer = setTimeout(() => {
+            noMessageTimer = setTimeout(() => {
                 noMessage.classList.remove("show");
-            }, 700);
-
+            }, 800);
         }
     }
 
 
     if (noButton) {
 
-        noButton.addEventListener(
-            "mouseenter",
-            moveNoButton
-        );
+        noButton.addEventListener("mouseenter", moveNoButton);
 
-        noButton.addEventListener(
-            "pointerenter",
-            moveNoButton
-        );
+        noButton.addEventListener("pointerenter", moveNoButton);
 
         noButton.addEventListener(
             "pointerdown",
-            function (event) {
-
+            event => {
                 event.preventDefault();
                 event.stopPropagation();
-
                 moveNoButton();
-
             },
             { passive: false }
         );
 
         noButton.addEventListener(
             "click",
-            function (event) {
-
+            event => {
                 event.preventDefault();
                 event.stopPropagation();
-
                 moveNoButton();
-
             },
             { passive: false }
         );
 
-        noButton.addEventListener(
-            "keydown",
-            function (event) {
-
-                if (
-                    event.key === "Enter" ||
-                    event.key === " "
-                ) {
-
-                    event.preventDefault();
-                    event.stopPropagation();
-
-                    moveNoButton();
-
-                }
-
+        noButton.addEventListener("keydown", event => {
+            if (
+                event.key === "Enter" ||
+                event.key === " "
+            ) {
+                event.preventDefault();
+                event.stopPropagation();
+                moveNoButton();
             }
-        );
-
+        });
     }
 
 
@@ -243,109 +234,98 @@ document.addEventListener("DOMContentLoaded", () => {
     ===================================================== */
 
     if (continueToLetter) {
+        continueToLetter.addEventListener("click", event => {
+            event.preventDefault();
+            event.stopPropagation();
 
-        continueToLetter.addEventListener(
-            "click",
-            function (event) {
+            screens.forEach(screen => {
+                screen.classList.remove("active");
+            });
 
-                event.preventDefault();
-                event.stopPropagation();
+            if (!letterSection) return;
 
-                screens.forEach(screen => {
+            letterSection.classList.add("visible");
 
-                    if (screen) {
-                        screen.classList.remove("active");
-                    }
+            window.scrollTo({
+                top: 0,
+                left: 0,
+                behavior: "instant"
+            });
 
-                });
+            prepareLetter();
 
-                if (!letterSection) return;
+            requestAnimationFrame(() => {
+                revealLetter();
+            });
 
-                letterSection.classList.add("visible");
-
-                window.scrollTo(0, 0);
-
-                resetLetter();
-
-                requestAnimationFrame(() => {
-                    revealLetter();
-                });
-
-                startFloatingHearts();
-
-            },
-            { passive: false }
-        );
-
+            startFloatingHearts();
+        });
     }
 
 
     /* =====================================================
-       LETTER REVEAL
+       LETTER SCROLL REVEAL
     ===================================================== */
 
-    const letterElements = document.querySelectorAll(
-        `
-        .letter-opening,
-        .letter-paragraph,
-        .letter-special,
-        .letter-emphasis,
-        .letter-final,
-        .birthday-ending,
-        .signature
-        `
-    );
+    const letterElements = letterSection
+        ? letterSection.querySelectorAll(
+            `
+            .letter-opening,
+            .letter-paragraph,
+            .letter-special,
+            .letter-emphasis,
+            .letter-final,
+            .birthday-ending,
+            .signature,
+            p,
+            h1,
+            h2,
+            h3
+            `
+        )
+        : [];
 
 
-    function resetLetter() {
-
+    function prepareLetter() {
         letterElements.forEach(element => {
             element.classList.remove("revealed");
         });
-
     }
 
 
     function revealLetter() {
-
         if (!letterSection) return;
 
         if (!letterSection.classList.contains("visible")) {
             return;
         }
 
-        const trigger = window.innerHeight * 0.86;
+        const trigger =
+            window.innerHeight * 0.86;
 
         letterElements.forEach(element => {
 
-            if (
-                element.getBoundingClientRect().top <
-                trigger
-            ) {
+            const rect =
+                element.getBoundingClientRect();
+
+            if (rect.top < trigger) {
                 element.classList.add("revealed");
             }
-
         });
-
     }
 
 
-    let scrollTicking = false;
+    let scrollFrame = null;
 
     window.addEventListener(
         "scroll",
         () => {
 
-            if (scrollTicking) return;
+            if (scrollFrame) return;
 
-            scrollTicking = true;
-
-            requestAnimationFrame(() => {
-
+            scrollFrame = requestAnimationFrame(() => {
                 revealLetter();
-
-                scrollTicking = false;
-
+                scrollFrame = null;
             });
 
         },
@@ -355,27 +335,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /* =====================================================
        BIRTHDAY ENTRANCE
-       VISUAL ONLY — DOES NOT BLOCK CLICK
     ===================================================== */
 
     function birthdayEntrance() {
 
         const title =
-            document.querySelector(".birthday-title");
+            birthdayScreen?.querySelector(".birthday-title");
 
         const name =
-            document.querySelector(".birthday-name");
+            birthdayScreen?.querySelector(".birthday-name");
 
         const description =
-            document.querySelector(".birthday-description");
+            birthdayScreen?.querySelector(".birthday-description");
 
         if (title) {
-
             title.animate(
                 [
                     {
                         opacity: 0,
-                        transform: "translateY(14px) scale(.98)"
+                        transform: "translateY(18px) scale(.97)"
                     },
                     {
                         opacity: 1,
@@ -383,20 +361,19 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                 ],
                 {
-                    duration: 420,
-                    easing: "cubic-bezier(.16,1,.3,1)"
+                    duration: 450,
+                    easing: "cubic-bezier(.16,1,.3,1)",
+                    fill: "both"
                 }
             );
-
         }
 
         if (name) {
-
             name.animate(
                 [
                     {
                         opacity: 0,
-                        transform: "translateY(10px)"
+                        transform: "translateY(12px)"
                     },
                     {
                         opacity: 1,
@@ -404,28 +381,28 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                 ],
                 {
-                    duration: 360,
-                    easing: "cubic-bezier(.16,1,.3,1)"
+                    duration: 420,
+                    delay: 80,
+                    easing: "cubic-bezier(.16,1,.3,1)",
+                    fill: "both"
                 }
             );
-
         }
 
         if (description) {
-
             description.animate(
                 [
                     { opacity: 0 },
                     { opacity: 1 }
                 ],
                 {
-                    duration: 300,
-                    easing: "ease-out"
+                    duration: 350,
+                    delay: 150,
+                    easing: "ease-out",
+                    fill: "both"
                 }
             );
-
         }
-
     }
 
 
@@ -436,7 +413,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function questionEntrance() {
 
         const card =
-            document.querySelector(".question-card");
+            questionScreen?.querySelector(".question-card");
 
         if (!card) return;
 
@@ -444,7 +421,7 @@ document.addEventListener("DOMContentLoaded", () => {
             [
                 {
                     opacity: 0,
-                    transform: "translateY(14px) scale(.98)"
+                    transform: "translateY(18px) scale(.97)"
                 },
                 {
                     opacity: 1,
@@ -452,33 +429,32 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             ],
             {
-                duration: 300,
-                easing: "cubic-bezier(.16,1,.3,1)"
+                duration: 360,
+                easing: "cubic-bezier(.16,1,.3,1)",
+                fill: "both"
             }
         );
-
     }
 
 
     /* =====================================================
-       YES ENTRANCE
+       YES SCREEN ENTRANCE
     ===================================================== */
 
     function yesEntrance() {
 
         const orbit =
-            document.querySelector(".yes-orbit");
+            yesScreen?.querySelector(".yes-orbit");
 
         const content =
-            document.querySelector(".yes-content");
+            yesScreen?.querySelector(".yes-content");
 
         if (orbit) {
-
             orbit.animate(
                 [
                     {
                         opacity: 0,
-                        transform: "scale(.8)"
+                        transform: "scale(.72)"
                     },
                     {
                         opacity: 1,
@@ -486,20 +462,19 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                 ],
                 {
-                    duration: 400,
-                    easing: "cubic-bezier(.16,1,.3,1)"
+                    duration: 500,
+                    easing: "cubic-bezier(.16,1,.3,1)",
+                    fill: "both"
                 }
             );
-
         }
 
         if (content) {
-
             content.animate(
                 [
                     {
                         opacity: 0,
-                        transform: "translateY(10px)"
+                        transform: "translateY(14px)"
                     },
                     {
                         opacity: 1,
@@ -507,13 +482,13 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                 ],
                 {
-                    duration: 350,
-                    easing: "cubic-bezier(.16,1,.3,1)"
+                    duration: 400,
+                    delay: 80,
+                    easing: "cubic-bezier(.16,1,.3,1)",
+                    fill: "both"
                 }
             );
-
         }
-
     }
 
 
@@ -527,11 +502,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (!floatingHearts) return;
 
-        const heart = document.createElement("span");
+        const heart =
+            document.createElement("span");
 
         heart.className = "floating-heart";
 
-        const symbols = ["♡", "♥", "♡", "✦"];
+        const symbols = [
+            "♡",
+            "♥",
+            "♡",
+            "✦"
+        ];
 
         heart.textContent =
             symbols[
@@ -544,29 +525,27 @@ document.addEventListener("DOMContentLoaded", () => {
             `${Math.random() * 100}%`;
 
         heart.style.fontSize =
-            `${10 + Math.random() * 8}px`;
+            `${10 + Math.random() * 9}px`;
 
         heart.style.opacity =
-            `${0.3 + Math.random() * 0.35}`;
+            `${0.25 + Math.random() * 0.4}`;
 
         heart.style.setProperty(
             "--drift",
-            `${-45 + Math.random() * 90}`
+            `${-50 + Math.random() * 100}px`
         );
 
         const duration =
-            8 + Math.random() * 4;
+            8 + Math.random() * 5;
 
         heart.style.animationDuration =
             `${duration}s`;
 
         floatingHearts.appendChild(heart);
 
-        setTimeout(
-            () => heart.remove(),
-            (duration + 1) * 1000
-        );
-
+        setTimeout(() => {
+            heart.remove();
+        }, (duration + 1) * 1000);
     }
 
 
@@ -584,7 +563,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 createHeart,
                 1800
             );
-
     }
 
 
@@ -605,10 +583,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 "floating-heart";
 
             heart.textContent =
-                i % 4 === 0 ? "♡" : "♥";
+                i % 4 === 0
+                    ? "♡"
+                    : "♥";
 
+            heart.style.position = "fixed";
             heart.style.left = "50%";
             heart.style.top = "50%";
+            heart.style.zIndex = "1000";
+            heart.style.pointerEvents = "none";
 
             const angle =
                 Math.random() *
@@ -617,7 +600,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const distance =
                 70 +
-                Math.random() * 170;
+                Math.random() * 180;
 
             heart.style.setProperty(
                 "--burst-x",
@@ -629,21 +612,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 `${Math.sin(angle) * distance}px`
             );
 
-            heart.style.animation =
-                "heartBurst .8s cubic-bezier(.16,1,.3,1) forwards";
-
             heart.style.fontSize =
                 `${10 + Math.random() * 12}px`;
 
+            heart.style.animation =
+                "heartBurst .8s cubic-bezier(.16,1,.3,1) forwards";
+
             floatingHearts.appendChild(heart);
 
-            setTimeout(
-                () => heart.remove(),
-                900
-            );
-
+            setTimeout(() => {
+                heart.remove();
+            }, 900);
         }
-
     }
 
 
@@ -658,9 +638,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (birthdayParticlesCreated) return;
 
         const container =
-            document.querySelector(
-                ".birthday-particles"
-            );
+            document.querySelector(".birthday-particles");
 
         if (!container) return;
 
@@ -671,15 +649,13 @@ document.addEventListener("DOMContentLoaded", () => {
             const particle =
                 document.createElement("span");
 
+            const size =
+                1 + Math.random() * 2;
+
             particle.style.position = "absolute";
-            particle.style.width =
-                `${1 + Math.random() * 2}px`;
-
-            particle.style.height =
-                particle.style.width;
-
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
             particle.style.borderRadius = "50%";
-
             particle.style.background =
                 "rgba(255,210,224,.75)";
 
@@ -695,15 +671,15 @@ document.addEventListener("DOMContentLoaded", () => {
             particle.animate(
                 [
                     {
-                        opacity: .1,
+                        opacity: 0.1,
                         transform: "scale(.5)"
                     },
                     {
-                        opacity: .8,
+                        opacity: 0.8,
                         transform: "scale(1.4)"
                     },
                     {
-                        opacity: .1,
+                        opacity: 0.1,
                         transform: "scale(.5)"
                     }
                 ],
@@ -722,14 +698,12 @@ document.addEventListener("DOMContentLoaded", () => {
             );
 
             container.appendChild(particle);
-
         }
-
     }
 
 
     /* =====================================================
-       HEART BURST CSS
+       HEART BURST ANIMATION
     ===================================================== */
 
     const style =
@@ -759,7 +733,17 @@ document.addEventListener("DOMContentLoaded", () => {
                     )
                     scale(1.15);
             }
+        }
 
+        .letter-content .revealed {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .letter-content .revealed {
+                transition: none !important;
+            }
         }
     `;
 
@@ -773,4 +757,3 @@ document.addEventListener("DOMContentLoaded", () => {
     showScreen(introScreen);
 
 });
-```
