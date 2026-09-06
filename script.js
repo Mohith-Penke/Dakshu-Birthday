@@ -1,4 +1,9 @@
+```javascript
 document.addEventListener("DOMContentLoaded", () => {
+
+    /* =====================================================
+       ELEMENTS
+    ===================================================== */
 
     const introScreen = document.getElementById("intro-screen");
     const birthdayScreen = document.getElementById("birthday-screen");
@@ -8,8 +13,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const openSurprise = document.getElementById("open-surprise");
     const birthdayContinue = document.getElementById("birthday-continue");
+
     const yesButton = document.getElementById("yes-button");
     const noButton = document.getElementById("no-button");
+
     const continueToLetter = document.getElementById("continue-to-letter");
 
     const noMessage = document.getElementById("no-message");
@@ -17,81 +24,99 @@ document.addEventListener("DOMContentLoaded", () => {
     const floatingHearts = document.getElementById("floating-hearts");
     const sparkles = document.getElementById("sparkles");
 
+
     /* =====================================================
-       SCREEN CONTROL
+       HELPERS
     ===================================================== */
 
-    function showScreen(screen) {
+    const screens = [
+        introScreen,
+        birthdayScreen,
+        questionScreen,
+        yesScreen
+    ];
 
-        const screens = [
-            introScreen,
-            birthdayScreen,
-            questionScreen,
-            yesScreen
-        ];
+    function showScreen(target) {
 
-        screens.forEach(item => {
-            if (item) {
-                item.classList.remove("active");
-            }
+        screens.forEach(screen => {
+
+            if (!screen) return;
+
+            screen.classList.remove("active");
+
         });
 
-        if (screen) {
-            screen.classList.add("active");
-        }
+        if (!target) return;
 
-        window.scrollTo(0, 0);
+        target.classList.add("active");
+
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: "instant"
+        });
     }
 
 
     /* =====================================================
-       INTRO
+       INTRO → BIRTHDAY
+       INSTANT RESPONSE
     ===================================================== */
 
     if (openSurprise) {
+
         openSurprise.addEventListener("click", () => {
 
             sparkleBurst();
 
-            setTimeout(() => {
-                showScreen(birthdayScreen);
-            }, 400);
+            showScreen(birthdayScreen);
+
+            birthdayEntrance();
 
         });
+
     }
 
 
     /* =====================================================
-       BIRTHDAY
+       BIRTHDAY → QUESTION
     ===================================================== */
 
     if (birthdayContinue) {
+
         birthdayContinue.addEventListener("click", () => {
 
             sparkleBurst();
 
-            setTimeout(() => {
-                showScreen(questionScreen);
-            }, 350);
+            showScreen(questionScreen);
+
+            questionEntrance();
 
         });
+
     }
 
 
     /* =====================================================
-       YES
+       YES BUTTON
     ===================================================== */
 
     if (yesButton) {
-        yesButton.addEventListener("click", () => {
+
+        yesButton.addEventListener("click", event => {
+
+            event.preventDefault();
+
+            buttonPulse(yesButton);
 
             heartBurst();
 
-            setTimeout(() => {
-                showScreen(yesScreen);
-            }, 450);
+            showScreen(yesScreen);
+
+            yesEntrance();
 
         });
+
     }
 
 
@@ -99,133 +124,577 @@ document.addEventListener("DOMContentLoaded", () => {
        NO BUTTON
     ===================================================== */
 
+    let noMoveCount = 0;
+
     function moveNoButton() {
 
         if (!noButton) return;
 
-        const buttonWidth = noButton.offsetWidth;
-        const buttonHeight = noButton.offsetHeight;
+        noMoveCount++;
 
-        const margin = 20;
+        const rect = noButton.getBoundingClientRect();
+
+        const buttonWidth = rect.width;
+        const buttonHeight = rect.height;
+
+        const padding = 18;
 
         const maxX =
-            window.innerWidth - buttonWidth - margin;
+            window.innerWidth -
+            buttonWidth -
+            padding;
 
         const maxY =
-            window.innerHeight - buttonHeight - margin;
+            window.innerHeight -
+            buttonHeight -
+            padding;
 
-        const x =
-            margin +
-            Math.random() * Math.max(0, maxX - margin);
+        const safeTop = 10;
 
-        const y =
-            margin +
-            Math.random() * Math.max(0, maxY - margin);
+        let x =
+            padding +
+            Math.random() *
+            Math.max(1, maxX - padding);
+
+        let y =
+            safeTop +
+            Math.random() *
+            Math.max(1, maxY - safeTop);
+
+        /*
+           Keep the button away from the very edges.
+        */
+
+        x = Math.max(
+            padding,
+            Math.min(x, maxX)
+        );
+
+        y = Math.max(
+            safeTop,
+            Math.min(y, maxY)
+        );
 
         noButton.style.position = "fixed";
         noButton.style.left = `${x}px`;
         noButton.style.top = `${y}px`;
-        noButton.style.zIndex = "999";
 
-        if (noMessage) {
+        noButton.style.zIndex = "9999";
+
+        /*
+           Tiny visual shake.
+        */
+
+        noButton.animate(
+            [
+                {
+                    transform:
+                        "translate3d(0,0,0) scale(0.96)"
+                },
+                {
+                    transform:
+                        "translate3d(0,0,0) scale(1.04)"
+                },
+                {
+                    transform:
+                        "translate3d(0,0,0) scale(1)"
+                }
+            ],
+            {
+                duration: 180,
+                easing: "cubic-bezier(.2,.8,.2,1)"
+            }
+        );
+
+        showNoMessage();
+
+        createSparkle(
+            x + buttonWidth / 2,
+            y + buttonHeight / 2
+        );
+    }
+
+
+    function showNoMessage() {
+
+        if (!noMessage) return;
+
+        noMessage.classList.remove("show");
+
+        requestAnimationFrame(() => {
 
             noMessage.classList.add("show");
 
-            setTimeout(() => {
-                noMessage.classList.remove("show");
-            }, 900);
+        });
 
-        }
+        clearTimeout(
+            showNoMessage.timer
+        );
+
+        showNoMessage.timer =
+            setTimeout(() => {
+
+                noMessage.classList.remove("show");
+
+            }, 850);
+
     }
 
 
     if (noButton) {
 
-        noButton.addEventListener("mouseenter", moveNoButton);
+        /*
+           Desktop
+        */
 
-        noButton.addEventListener("pointerdown", event => {
+        noButton.addEventListener(
+            "mouseenter",
+            moveNoButton
+        );
 
-            event.preventDefault();
-            moveNoButton();
+        /*
+           Touch / mobile
+        */
 
-        });
+        noButton.addEventListener(
+            "pointerdown",
+            event => {
 
-        noButton.addEventListener("click", event => {
+                event.preventDefault();
 
-            event.preventDefault();
-            moveNoButton();
+                moveNoButton();
 
-        });
+            }
+        );
+
+        /*
+           Keyboard accessibility:
+           prevent accidental activation.
+        */
+
+        noButton.addEventListener(
+            "keydown",
+            event => {
+
+                if (
+                    event.key === "Enter" ||
+                    event.key === " "
+                ) {
+
+                    event.preventDefault();
+
+                    moveNoButton();
+
+                }
+
+            }
+        );
+
+        noButton.addEventListener(
+            "click",
+            event => {
+
+                event.preventDefault();
+
+                moveNoButton();
+
+            }
+        );
 
     }
 
 
     /* =====================================================
-       YES → LETTER
+       YES SCREEN → LETTER
     ===================================================== */
 
     if (continueToLetter) {
 
-        continueToLetter.addEventListener("click", () => {
+        continueToLetter.addEventListener(
+            "click",
+            event => {
 
-            document.querySelectorAll(".screen").forEach(screen => {
-                screen.classList.remove("active");
-            });
+                event.preventDefault();
 
-            letterSection.classList.add("visible");
+                buttonPulse(
+                    continueToLetter
+                );
 
-            window.scrollTo(0, 0);
+                screens.forEach(screen => {
 
-            setTimeout(() => {
-                revealLetter();
-            }, 700);
+                    if (screen) {
+                        screen.classList.remove("active");
+                    }
 
-            startFloatingHearts();
+                });
 
-        });
+                if (!letterSection) return;
+
+                letterSection.classList.add("visible");
+
+                window.scrollTo({
+                    top: 0,
+                    left: 0,
+                    behavior: "instant"
+                });
+
+                /*
+                   Start immediately.
+                */
+
+                resetLetter();
+
+                requestAnimationFrame(() => {
+
+                    requestAnimationFrame(() => {
+
+                        revealLetter();
+
+                    });
+
+                });
+
+                startFloatingHearts();
+
+            }
+        );
 
     }
 
 
     /* =====================================================
-       LETTER SCROLL REVEAL
+       LETTER ELEMENTS
     ===================================================== */
 
-    const letterElements = document.querySelectorAll(
-        ".letter-opening, .letter-paragraph, .letter-special, .letter-emphasis, .letter-final, .birthday-ending, .signature"
-    );
+    const letterElements =
+        document.querySelectorAll(
+            `
+            .letter-opening,
+            .letter-paragraph,
+            .letter-special,
+            .letter-emphasis,
+            .letter-final,
+            .birthday-ending,
+            .signature
+            `
+        );
 
 
-    function revealLetter() {
+    function resetLetter() {
 
-        const triggerPoint =
-            window.innerHeight * 0.88;
+        letterElements.forEach(
+            element => {
 
-        letterElements.forEach(element => {
+                element.classList.remove(
+                    "revealed"
+                );
 
-            const position =
-                element.getBoundingClientRect().top;
-
-            if (position < triggerPoint) {
-                element.classList.add("revealed");
             }
-
-        });
+        );
 
     }
 
 
-    window.addEventListener("scroll", () => {
+    function revealLetter() {
 
-        if (!letterSection.classList.contains("visible")) {
+        if (!letterSection) return;
+
+        if (
+            !letterSection.classList.contains(
+                "visible"
+            )
+        ) {
             return;
         }
 
-        revealLetter();
+        const trigger =
+            window.innerHeight * 0.86;
 
-    }, {
-        passive: true
-    });
+        letterElements.forEach(
+            element => {
+
+                const rect =
+                    element.getBoundingClientRect();
+
+                if (
+                    rect.top <
+                    trigger
+                ) {
+
+                    element.classList.add(
+                        "revealed"
+                    );
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       FAST SCROLL HANDLER
+    ===================================================== */
+
+    let scrollTicking = false;
+
+    window.addEventListener(
+        "scroll",
+        () => {
+
+            if (scrollTicking) return;
+
+            scrollTicking = true;
+
+            requestAnimationFrame(() => {
+
+                revealLetter();
+
+                scrollTicking = false;
+
+            });
+
+        },
+        {
+            passive: true
+        }
+    );
+
+
+    /* =====================================================
+       BIRTHDAY ENTRANCE
+    ===================================================== */
+
+    function birthdayEntrance() {
+
+        const title =
+            document.querySelector(
+                ".birthday-title"
+            );
+
+        const name =
+            document.querySelector(
+                ".birthday-name"
+            );
+
+        const description =
+            document.querySelector(
+                ".birthday-description"
+            );
+
+        if (title) {
+
+            title.animate(
+                [
+                    {
+                        opacity: 0,
+                        transform:
+                            "translateY(18px) scale(.97)"
+                    },
+                    {
+                        opacity: 1,
+                        transform:
+                            "translateY(0) scale(1)"
+                    }
+                ],
+                {
+                    duration: 650,
+                    easing:
+                        "cubic-bezier(.16,1,.3,1)"
+                }
+            );
+
+        }
+
+        if (name) {
+
+            name.animate(
+                [
+                    {
+                        opacity: 0,
+                        transform:
+                            "translateY(12px)"
+                    },
+                    {
+                        opacity: 1,
+                        transform:
+                            "translateY(0)"
+                    }
+                ],
+                {
+                    duration: 550,
+                    delay: 100,
+                    easing:
+                        "cubic-bezier(.16,1,.3,1)"
+                }
+            );
+
+        }
+
+        if (description) {
+
+            description.animate(
+                [
+                    {
+                        opacity: 0
+                    },
+                    {
+                        opacity: 1
+                    }
+                ],
+                {
+                    duration: 500,
+                    delay: 180
+                }
+            );
+
+        }
+
+        createBirthdayParticles();
+
+    }
+
+
+    /* =====================================================
+       QUESTION ENTRANCE
+    ===================================================== */
+
+    function questionEntrance() {
+
+        const card =
+            document.querySelector(
+                ".question-card"
+            );
+
+        if (!card) return;
+
+        card.animate(
+            [
+                {
+                    opacity: 0,
+                    transform:
+                        "translateY(20px) scale(.97)"
+                },
+                {
+                    opacity: 1,
+                    transform:
+                        "translateY(0) scale(1)"
+                }
+            ],
+            {
+                duration: 420,
+                easing:
+                    "cubic-bezier(.16,1,.3,1)"
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       YES ENTRANCE
+    ===================================================== */
+
+    function yesEntrance() {
+
+        const orbit =
+            document.querySelector(
+                ".yes-orbit"
+            );
+
+        const content =
+            document.querySelector(
+                ".yes-content"
+            );
+
+        if (orbit) {
+
+            orbit.animate(
+                [
+                    {
+                        opacity: 0,
+                        transform:
+                            "scale(.65) rotate(-12deg)"
+                    },
+                    {
+                        opacity: 1,
+                        transform:
+                            "scale(1) rotate(0)"
+                    }
+                ],
+                {
+                    duration: 600,
+                    easing:
+                        "cubic-bezier(.16,1,.3,1)"
+                }
+            );
+
+        }
+
+        if (content) {
+
+            content.animate(
+                [
+                    {
+                        opacity: 0,
+                        transform:
+                            "translateY(15px)"
+                    },
+                    {
+                        opacity: 1,
+                        transform:
+                            "translateY(0)"
+                    }
+                ],
+                {
+                    duration: 520,
+                    delay: 80,
+                    easing:
+                        "cubic-bezier(.16,1,.3,1)"
+                }
+            );
+
+        }
+
+    }
+
+
+    /* =====================================================
+       BUTTON MICRO INTERACTION
+    ===================================================== */
+
+    function buttonPulse(button) {
+
+        if (!button) return;
+
+        button.animate(
+            [
+                {
+                    transform:
+                        "scale(1)"
+                },
+                {
+                    transform:
+                        "scale(.94)"
+                },
+                {
+                    transform:
+                        "scale(1.035)"
+                },
+                {
+                    transform:
+                        "scale(1)"
+                }
+            ],
+            {
+                duration: 210,
+                easing:
+                    "cubic-bezier(.2,.8,.2,1)"
+            }
+        );
+
+    }
 
 
     /* =====================================================
@@ -238,36 +707,61 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (!floatingHearts) return;
 
-        const heart = document.createElement("span");
+        const heart =
+            document.createElement(
+                "span"
+            );
 
-        heart.className = "floating-heart";
+        heart.className =
+            "floating-heart";
 
         const symbols = [
             "♡",
             "♥",
             "♡",
-            "✦"
+            "✦",
+            "·"
         ];
 
         heart.textContent =
             symbols[
-                Math.floor(Math.random() * symbols.length)
+                Math.floor(
+                    Math.random() *
+                    symbols.length
+                )
             ];
 
+        const start =
+            Math.random() * 100;
+
         heart.style.left =
-            `${Math.random() * 100}%`;
+            `${start}%`;
 
         heart.style.fontSize =
             `${10 + Math.random() * 9}px`;
 
+        heart.style.opacity =
+            `${0.3 + Math.random() * 0.4}`;
+
+        heart.style.setProperty(
+            "--drift",
+            `${-45 + Math.random() * 90}`
+        );
+
+        const duration =
+            8 + Math.random() * 5;
+
         heart.style.animationDuration =
-            `${8 + Math.random() * 5}s`;
+            `${duration}s`;
 
-        floatingHearts.appendChild(heart);
+        floatingHearts.appendChild(
+            heart
+        );
 
-        setTimeout(() => {
-            heart.remove();
-        }, 14000);
+        setTimeout(
+            () => heart.remove(),
+            (duration + 1) * 1000
+        );
 
     }
 
@@ -275,12 +769,32 @@ document.addEventListener("DOMContentLoaded", () => {
     function startFloatingHearts() {
 
         if (heartTimer) {
-            clearInterval(heartTimer);
+
+            clearInterval(
+                heartTimer
+            );
+
         }
 
-        heartTimer = setInterval(() => {
-            createHeart();
-        }, 1800);
+        /*
+           Small number of elements
+           = smooth performance.
+        */
+
+        for (let i = 0; i < 4; i++) {
+
+            setTimeout(
+                createHeart,
+                i * 500
+            );
+
+        }
+
+        heartTimer =
+            setInterval(
+                createHeart,
+                1700
+            );
 
     }
 
@@ -293,27 +807,50 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (!floatingHearts) return;
 
-        for (let i = 0; i < 16; i++) {
+        const count = 22;
 
-            const heart = document.createElement("span");
+        for (
+            let i = 0;
+            i < count;
+            i++
+        ) {
 
-            heart.className = "floating-heart";
-            heart.textContent = "♥";
+            const heart =
+                document.createElement(
+                    "span"
+                );
 
-            heart.style.left = "50%";
-            heart.style.bottom = "45%";
+            heart.className =
+                "floating-heart";
+
+            heart.textContent =
+                i % 4 === 0
+                    ? "♡"
+                    : "♥";
+
+            heart.style.left =
+                "50%";
+
+            heart.style.top =
+                "50%";
 
             const angle =
-                Math.random() * Math.PI * 2;
+                Math.random() *
+                Math.PI *
+                2;
 
             const distance =
-                70 + Math.random() * 160;
+                70 +
+                Math.random() *
+                190;
 
             const x =
-                Math.cos(angle) * distance;
+                Math.cos(angle) *
+                distance;
 
             const y =
-                Math.sin(angle) * distance;
+                Math.sin(angle) *
+                distance;
 
             heart.style.setProperty(
                 "--burst-x",
@@ -326,13 +863,19 @@ document.addEventListener("DOMContentLoaded", () => {
             );
 
             heart.style.animation =
-                "heartBurst 1.6s ease-out forwards";
+                "heartBurst .9s cubic-bezier(.16,1,.3,1) forwards";
 
-            floatingHearts.appendChild(heart);
+            heart.style.fontSize =
+                `${10 + Math.random() * 13}px`;
 
-            setTimeout(() => {
-                heart.remove();
-            }, 1800);
+            floatingHearts.appendChild(
+                heart
+            );
+
+            setTimeout(
+                () => heart.remove(),
+                1000
+            );
 
         }
 
@@ -347,17 +890,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (!sparkles) return;
 
-        const sparkle = document.createElement("span");
+        const sparkle =
+            document.createElement(
+                "span"
+            );
 
-        sparkle.className = "sparkle";
+        sparkle.className =
+            "sparkle";
 
         sparkle.textContent =
             Math.random() > 0.5
                 ? "✦"
                 : "✧";
 
-        sparkle.style.left = `${x}px`;
-        sparkle.style.top = `${y}px`;
+        sparkle.style.left =
+            `${x}px`;
+
+        sparkle.style.top =
+            `${y}px`;
 
         sparkle.style.setProperty(
             "--x",
@@ -369,11 +919,17 @@ document.addEventListener("DOMContentLoaded", () => {
             `${(Math.random() - 0.5) * 80}px`
         );
 
-        sparkles.appendChild(sparkle);
+        sparkle.style.fontSize =
+            `${8 + Math.random() * 8}px`;
 
-        setTimeout(() => {
-            sparkle.remove();
-        }, 900);
+        sparkles.appendChild(
+            sparkle
+        );
+
+        setTimeout(
+            () => sparkle.remove(),
+            800
+        );
 
     }
 
@@ -386,19 +942,38 @@ document.addEventListener("DOMContentLoaded", () => {
         const centerY =
             window.innerHeight / 2;
 
-        for (let i = 0; i < 14; i++) {
+        for (
+            let i = 0;
+            i < 18;
+            i++
+        ) {
 
-            setTimeout(() => {
+            setTimeout(
+                () => {
 
-                createSparkle(
-                    centerX +
-                    (Math.random() - 0.5) * 260,
+                    const angle =
+                        Math.random() *
+                        Math.PI *
+                        2;
 
-                    centerY +
-                    (Math.random() - 0.5) * 180
-                );
+                    const radius =
+                        40 +
+                        Math.random() *
+                        190;
 
-            }, i * 35);
+                    createSparkle(
+                        centerX +
+                        Math.cos(angle) *
+                        radius,
+
+                        centerY +
+                        Math.sin(angle) *
+                        radius
+                    );
+
+                },
+                i * 18
+            );
 
         }
 
@@ -406,28 +981,137 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       CLICK SPARKLE
+       BIRTHDAY PARTICLES
     ===================================================== */
 
-    document.addEventListener("click", event => {
+    function createBirthdayParticles() {
 
-        if (event.target.closest("button")) {
-            return;
+        const container =
+            document.querySelector(
+                ".birthday-particles"
+            );
+
+        if (!container) return;
+
+        /*
+           Don't create hundreds of particles.
+           A small number looks premium
+           and keeps the page fast.
+        */
+
+        for (
+            let i = 0;
+            i < 24;
+            i++
+        ) {
+
+            const particle =
+                document.createElement(
+                    "span"
+                );
+
+            particle.style.position =
+                "absolute";
+
+            particle.style.width =
+                `${1 + Math.random() * 2}px`;
+
+            particle.style.height =
+                particle.style.width;
+
+            particle.style.borderRadius =
+                "50%";
+
+            particle.style.background =
+                "rgba(255,210,224,.75)";
+
+            particle.style.left =
+                `${Math.random() * 100}%`;
+
+            particle.style.top =
+                `${Math.random() * 100}%`;
+
+            particle.style.boxShadow =
+                "0 0 9px rgba(255,190,215,.7)";
+
+            particle.animate(
+                [
+                    {
+                        opacity: 0.1,
+                        transform:
+                            "scale(.5)"
+                    },
+                    {
+                        opacity: 0.8,
+                        transform:
+                            "scale(1.4)"
+                    },
+                    {
+                        opacity: 0.1,
+                        transform:
+                            "scale(.5)"
+                    }
+                ],
+                {
+                    duration:
+                        1800 +
+                        Math.random() *
+                        2600,
+
+                    delay:
+                        Math.random() *
+                        1500,
+
+                    iterations:
+                        Infinity,
+
+                    easing:
+                        "ease-in-out"
+                }
+            );
+
+            container.appendChild(
+                particle
+            );
+
         }
 
-        createSparkle(
-            event.clientX,
-            event.clientY
-        );
-
-    });
+    }
 
 
     /* =====================================================
-       HEART BURST CSS
+       CLICK SPARKLES
     ===================================================== */
 
-    const style = document.createElement("style");
+    document.addEventListener(
+        "click",
+        event => {
+
+            if (
+                event.target.closest(
+                    "button"
+                )
+            ) {
+                return;
+            }
+
+            createSparkle(
+                event.clientX,
+                event.clientY
+            );
+
+        }
+    );
+
+
+    /* =====================================================
+       DYNAMIC HEART BURST CSS
+    ===================================================== */
+
+    const style =
+        document.createElement(
+            "style"
+        );
 
     style.textContent = `
 
@@ -436,18 +1120,22 @@ document.addEventListener("DOMContentLoaded", () => {
             0% {
                 opacity: 0;
                 transform:
-                    translate(0, 0)
-                    scale(0.4);
+                    translate3d(0,0,0)
+                    scale(.35);
             }
 
-            15% {
+            12% {
                 opacity: 1;
             }
 
             100% {
                 opacity: 0;
                 transform:
-                    translate(var(--burst-x), var(--burst-y))
+                    translate3d(
+                        var(--burst-x),
+                        var(--burst-y),
+                        0
+                    )
                     scale(1.15);
             }
 
@@ -455,13 +1143,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     `;
 
-    document.head.appendChild(style);
+    document.head.appendChild(
+        style
+    );
 
 
     /* =====================================================
        INITIAL STATE
     ===================================================== */
 
-    showScreen(introScreen);
+    showScreen(
+        introScreen
+    );
 
 });
+```
