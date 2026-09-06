@@ -1,37 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap');
 
-/* =========================================================
-   ROOT
-========================================================= */
-
 :root {
-    --bg: #050307;
-    --bg-2: #0b060d;
-    --bg-3: #130810;
-
-    --rose: #f29ab7;
-    --rose-light: #ffdce6;
-    --rose-bright: #ffb5ca;
-    --rose-deep: #a94e72;
-
+    --bg: #09060d;
+    --bg-soft: #100a16;
+    --rose: #e9a0b7;
+    --rose-soft: #f2b8c9;
+    --pink: #ff6f9c;
     --white: #fff8fb;
-    --text: #eadde2;
-    --muted: #aa9aa2;
-    --muted-2: #70626a;
-
+    --muted: rgba(255, 238, 245, 0.68);
+    --dim: rgba(255, 238, 245, 0.42);
     --glass: rgba(255, 255, 255, 0.045);
-    --glass-hover: rgba(255, 255, 255, 0.075);
-    --border: rgba(255, 211, 225, 0.12);
-
-    --shadow:
-        0 35px 100px rgba(0, 0, 0, 0.58);
-
-    --ease: cubic-bezier(.22, .61, .36, 1);
+    --border: rgba(255, 190, 210, 0.16);
+    --shadow: rgba(0, 0, 0, 0.45);
 }
-
-/* =========================================================
-   RESET
-========================================================= */
 
 * {
     margin: 0;
@@ -40,246 +21,129 @@
 }
 
 html {
-    background: var(--bg);
     scroll-behavior: smooth;
 }
 
 body {
     min-height: 100vh;
-    overflow-x: hidden;
-
-    color: var(--white);
-
-    font-family: "Inter", sans-serif;
-    font-weight: 400;
-
     background:
-        radial-gradient(
-            ellipse at 50% 0%,
-            rgba(171, 59, 101, 0.18),
-            transparent 38%
-        ),
-        radial-gradient(
-            ellipse at 0% 70%,
-            rgba(109, 38, 78, 0.12),
-            transparent 35%
-        ),
-        radial-gradient(
-            ellipse at 100% 55%,
-            rgba(171, 62, 103, 0.1),
-            transparent 35%
-        ),
-        linear-gradient(
-            145deg,
-            var(--bg),
-            var(--bg-2) 50%,
-            var(--bg-3)
-        );
-
+        radial-gradient(circle at 50% 10%, rgba(135, 42, 82, 0.18), transparent 34%),
+        radial-gradient(circle at 15% 75%, rgba(91, 36, 107, 0.12), transparent 30%),
+        var(--bg);
+    color: var(--white);
+    font-family: "Inter", sans-serif;
+    overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
 }
 
-/* =========================================================
+button {
+    font: inherit;
+}
+
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+/* =====================================================
    AMBIENT BACKGROUND
-========================================================= */
+===================================================== */
 
 .ambient-background {
     position: fixed;
     inset: 0;
-
+    z-index: -10;
     overflow: hidden;
-
     pointer-events: none;
-
-    z-index: 0;
+    background:
+        radial-gradient(circle at center, rgba(255, 85, 137, 0.035), transparent 42%);
 }
 
 .ambient-orb {
     position: absolute;
-
-    width: 42vw;
-    height: 42vw;
-
-    min-width: 280px;
-    min-height: 280px;
-
     border-radius: 50%;
-
-    filter: blur(100px);
-
-    opacity: 0.18;
-
-    animation:
-        orbFloat 16s ease-in-out infinite alternate;
+    filter: blur(90px);
+    opacity: 0.32;
+    animation: orbFloat 14s ease-in-out infinite alternate;
 }
 
 .orb-one {
-    top: -18%;
-    left: -14%;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(232, 82, 132, 0.55),
-            transparent 68%
-        );
+    width: 360px;
+    height: 360px;
+    top: -150px;
+    left: -120px;
+    background: rgba(172, 47, 101, 0.28);
 }
 
 .orb-two {
-    top: 24%;
-    right: -18%;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(148, 63, 132, 0.4),
-            transparent 68%
-        );
-
-    animation-delay: -6s;
+    width: 430px;
+    height: 430px;
+    right: -180px;
+    top: 25%;
+    background: rgba(93, 49, 142, 0.24);
+    animation-delay: -5s;
 }
 
 .orb-three {
-    bottom: -24%;
-    left: 27%;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(207, 65, 112, 0.32),
-            transparent 68%
-        );
-
-    animation-delay: -10s;
+    width: 320px;
+    height: 320px;
+    bottom: -150px;
+    left: 25%;
+    background: rgba(180, 48, 105, 0.18);
+    animation-delay: -9s;
 }
 
 @keyframes orbFloat {
     from {
-        transform:
-            translate3d(-3%, -2%, 0)
-            scale(0.94);
+        transform: translate3d(0, 0, 0) scale(1);
     }
 
     to {
-        transform:
-            translate3d(5%, 5%, 0)
-            scale(1.09);
+        transform: translate3d(25px, -20px, 0) scale(1.08);
     }
 }
-
-/* =========================================================
-   GRAIN
-========================================================= */
 
 .grain {
     position: absolute;
     inset: 0;
-
-    opacity: 0.032;
-
+    opacity: 0.045;
     background-image:
         url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
-
-    mix-blend-mode: soft-light;
-
-    pointer-events: none;
 }
 
-/* =========================================================
-   STARS
-========================================================= */
+.stars {
+    position: absolute;
+    inset: 0;
+}
 
 .stars span {
     position: absolute;
-
     width: 2px;
     height: 2px;
-
     border-radius: 50%;
-
-    background: rgba(255, 220, 231, 0.72);
-
-    box-shadow:
-        0 0 10px rgba(255, 184, 210, 0.55);
-
-    animation:
-        starPulse 4s ease-in-out infinite;
+    background: rgba(255, 220, 232, 0.65);
+    box-shadow: 0 0 8px rgba(255, 170, 200, 0.6);
+    animation: twinkle 3.5s ease-in-out infinite;
 }
 
-.stars span:nth-child(1) {
-    top: 12%;
-    left: 15%;
-}
+.stars span:nth-child(1) { top: 12%; left: 18%; }
+.stars span:nth-child(2) { top: 22%; left: 76%; animation-delay: .7s; }
+.stars span:nth-child(3) { top: 35%; left: 8%; animation-delay: 1.2s; }
+.stars span:nth-child(4) { top: 42%; left: 91%; animation-delay: 1.9s; }
+.stars span:nth-child(5) { top: 56%; left: 23%; animation-delay: .4s; }
+.stars span:nth-child(6) { top: 63%; left: 69%; animation-delay: 1.5s; }
+.stars span:nth-child(7) { top: 74%; left: 12%; animation-delay: 2s; }
+.stars span:nth-child(8) { top: 81%; left: 83%; animation-delay: .9s; }
+.stars span:nth-child(9) { top: 18%; left: 46%; animation-delay: 2.3s; }
+.stars span:nth-child(10) { top: 51%; left: 52%; animation-delay: 1.1s; }
+.stars span:nth-child(11) { top: 89%; left: 39%; animation-delay: .3s; }
+.stars span:nth-child(12) { top: 7%; left: 91%; animation-delay: 1.8s; }
 
-.stars span:nth-child(2) {
-    top: 24%;
-    left: 82%;
-    animation-delay: -1s;
-}
-
-.stars span:nth-child(3) {
-    top: 67%;
-    left: 9%;
-    animation-delay: -2s;
-}
-
-.stars span:nth-child(4) {
-    top: 76%;
-    left: 87%;
-    animation-delay: -3s;
-}
-
-.stars span:nth-child(5) {
-    top: 42%;
-    left: 72%;
-}
-
-.stars span:nth-child(6) {
-    top: 54%;
-    left: 26%;
-    animation-delay: -1.5s;
-}
-
-.stars span:nth-child(7) {
-    top: 17%;
-    left: 52%;
-    animation-delay: -2.5s;
-}
-
-.stars span:nth-child(8) {
-    top: 87%;
-    left: 47%;
-}
-
-.stars span:nth-child(9) {
-    top: 34%;
-    left: 36%;
-    animation-delay: -3.2s;
-}
-
-.stars span:nth-child(10) {
-    top: 62%;
-    left: 58%;
-}
-
-.stars span:nth-child(11) {
-    top: 9%;
-    left: 92%;
-    animation-delay: -1.8s;
-}
-
-.stars span:nth-child(12) {
-    top: 92%;
-    left: 16%;
-    animation-delay: -2.7s;
-}
-
-@keyframes starPulse {
-    0%,
-    100% {
-        opacity: 0.15;
-        transform: scale(0.7);
+@keyframes twinkle {
+    0%, 100% {
+        opacity: .2;
+        transform: scale(.7);
     }
 
     50% {
@@ -288,165 +152,252 @@ body {
     }
 }
 
-/* =========================================================
+
+/* =====================================================
+   FLOATING EFFECTS
+===================================================== */
+
+#floating-hearts,
+#sparkles {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 20;
+}
+
+.floating-heart {
+    position: absolute;
+    color: rgba(255, 128, 166, 0.55);
+    font-size: 16px;
+    animation: heartRise 7s linear forwards;
+    filter: drop-shadow(0 0 10px rgba(255, 80, 140, .25));
+}
+
+@keyframes heartRise {
+    0% {
+        transform: translateY(30px) scale(.7) rotate(0deg);
+        opacity: 0;
+    }
+
+    12% {
+        opacity: .7;
+    }
+
+    75% {
+        opacity: .4;
+    }
+
+    100% {
+        transform: translateY(-110vh) scale(1.15) rotate(18deg);
+        opacity: 0;
+    }
+}
+
+.sparkle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: rgba(255, 220, 235, .9);
+    box-shadow: 0 0 12px rgba(255, 150, 190, .9);
+    animation: sparkleFade 2.4s ease-in-out forwards;
+}
+
+@keyframes sparkleFade {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    40% {
+        transform: scale(1.4);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+
+
+/* =====================================================
    SCREEN SYSTEM
-========================================================= */
+===================================================== */
 
 .screen {
     position: relative;
-
-    width: 100%;
     min-height: 100svh;
-
+    width: 100%;
     display: none;
-
     align-items: center;
     justify-content: center;
-
-    padding: 40px 24px;
-
-    z-index: 2;
+    padding: 30px 20px;
 }
 
 .screen.active {
     display: flex;
-
-    animation:
-        screenEnter 0.48s var(--ease) both;
+    animation: screenIn .65s cubic-bezier(.22, .61, .36, 1);
 }
 
-@keyframes screenEnter {
+@keyframes screenIn {
     from {
         opacity: 0;
-        transform:
-            translateY(14px)
-            scale(0.985);
+        transform: scale(.985);
     }
 
     to {
         opacity: 1;
-        transform:
-            translateY(0)
-            scale(1);
+        transform: scale(1);
     }
 }
 
 .screen-content {
-    position: relative;
-
-    width: min(900px, 100%);
-
+    width: min(100%, 760px);
     text-align: center;
 }
 
-/* =========================================================
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+.premium-button {
+    position: relative;
+    min-height: 54px;
+    padding: 0 22px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 190, 210, .25);
+    cursor: pointer;
+    color: var(--white);
+    background: rgba(255, 255, 255, .045);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    letter-spacing: .02em;
+    transition:
+        transform .16s ease,
+        border-color .16s ease,
+        background .16s ease,
+        box-shadow .16s ease;
+    box-shadow:
+        0 12px 35px rgba(0, 0, 0, .24),
+        inset 0 1px 0 rgba(255,255,255,.05);
+}
+
+.premium-button:hover {
+    transform: translateY(-3px);
+    border-color: rgba(255, 170, 198, .5);
+    background: rgba(255, 120, 160, .08);
+    box-shadow:
+        0 18px 45px rgba(0, 0, 0, .3),
+        0 0 30px rgba(255, 90, 145, .08);
+}
+
+.premium-button:active {
+    transform: translateY(0) scale(.97);
+}
+
+.primary-button {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(220, 91, 130, .9),
+            rgba(151, 55, 100, .9)
+        );
+    border-color: rgba(255, 190, 215, .42);
+    box-shadow:
+        0 12px 34px rgba(139, 36, 77, .32),
+        inset 0 1px 0 rgba(255,255,255,.16);
+}
+
+.primary-button:hover {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(235, 106, 145, .96),
+            rgba(169, 64, 110, .96)
+        );
+}
+
+.button-arrow {
+    font-size: 18px;
+    transition: transform .16s ease;
+}
+
+.premium-button:hover .button-arrow {
+    transform: translateX(4px);
+}
+
+.outline-button {
+    background: rgba(255,255,255,.025);
+}
+
+
+/* =====================================================
    INTRO
-========================================================= */
+===================================================== */
 
 .intro-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    max-width: 680px;
 }
 
-.eyebrow {
+.eyebrow,
+.birthday-topline {
     display: flex;
     align-items: center;
-    gap: 14px;
-
-    margin-bottom: 30px;
-
-    color: var(--muted);
-
-    font-size: 9px;
-    font-weight: 500;
-
-    letter-spacing: 0.3em;
-
+    justify-content: center;
+    gap: 13px;
+    color: var(--dim);
+    font-size: 10px;
     text-transform: uppercase;
+    letter-spacing: .24em;
+    margin-bottom: 30px;
 }
 
-.eyebrow span {
-    width: 30px;
+.eyebrow span,
+.birthday-topline .line {
+    width: 38px;
     height: 1px;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(241, 154, 180, 0.7)
-        );
-}
-
-.eyebrow span:last-child {
-    background:
-        linear-gradient(
-            90deg,
-            rgba(241, 154, 180, 0.7),
-            transparent
-        );
+    background: rgba(255, 190, 210, .25);
 }
 
 .intro-symbol {
-    width: 72px;
-    height: 72px;
-
+    width: 66px;
+    height: 66px;
+    margin: 0 auto 24px;
+    border: 1px solid rgba(255, 170, 200, .2);
+    border-radius: 50%;
     display: grid;
     place-items: center;
-
-    margin-bottom: 25px;
-
-    border:
-        1px solid rgba(241, 154, 180, 0.22);
-
-    border-radius: 50%;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(241, 154, 180, 0.13),
-            rgba(255, 255, 255, 0.015)
-        );
-
-    box-shadow:
-        0 0 60px rgba(241, 111, 150, 0.12),
-        inset 0 0 25px rgba(255, 255, 255, 0.025);
-
-    animation:
-        symbolFloat 4s ease-in-out infinite;
+    background: rgba(255, 255, 255, .025);
+    box-shadow: 0 0 45px rgba(220, 65, 120, .1);
 }
 
 .intro-symbol span {
-    color: var(--rose-light);
-
-    font-family: "Playfair Display", serif;
-
-    font-size: 29px;
+    font-size: 31px;
+    color: var(--rose-soft);
+    animation: softPulse 2.8s ease-in-out infinite;
 }
 
-@keyframes symbolFloat {
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-
+@keyframes softPulse {
     50% {
-        transform: translateY(-7px);
+        transform: scale(1.1);
+        text-shadow: 0 0 22px rgba(255, 125, 165, .55);
     }
 }
 
 .intro-title {
-    color: var(--white);
-
     font-family: "Playfair Display", serif;
-
-    font-size: clamp(46px, 7.5vw, 78px);
-
+    font-size: clamp(46px, 8vw, 76px);
     font-weight: 500;
-
-    letter-spacing: -0.045em;
-
-    line-height: 1;
+    line-height: 1.05;
+    letter-spacing: -.045em;
+    margin-bottom: 20px;
 }
 
 .intro-title span {
@@ -454,717 +405,362 @@ body {
 }
 
 .intro-subtitle {
-    margin-top: 21px;
-
-    color: var(--rose-light);
-
     font-family: "Playfair Display", serif;
-
-    font-size: clamp(18px, 2.4vw, 25px);
+    font-size: clamp(19px, 3vw, 25px);
+    color: rgba(255, 241, 247, .9);
+    margin-bottom: 12px;
 }
 
 .intro-description {
-    max-width: 560px;
-
-    margin-top: 14px;
-
     color: var(--muted);
+    line-height: 1.8;
+    font-size: 14px;
+    font-weight: 300;
+    margin-bottom: 30px;
+}
 
-    font-size: 12px;
-
-    line-height: 1.9;
+.intro-content .primary-button {
+    min-width: 215px;
 }
 
 .tiny-note {
-    margin-top: 24px;
-
-    color: var(--muted-2);
-
+    margin-top: 18px;
     font-family: "Caveat", cursive;
-
     font-size: 17px;
+    color: rgba(255, 190, 210, .45);
 }
 
-/* =========================================================
-   PREMIUM BUTTON
-========================================================= */
 
-.premium-button {
+/* =====================================================
+   BIRTHDAY
+===================================================== */
+
+.birthday-content {
     position: relative;
-
-    min-height: 53px;
-
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
-    gap: 16px;
-
-    padding: 0 25px;
-
-    border:
-        1px solid rgba(255, 210, 224, 0.2);
-
-    border-radius: 999px;
-
-    outline: none;
-
-    cursor: pointer;
-
-    user-select: none;
-
-    font-family: "Inter", sans-serif;
-
-    font-size: 10px;
-    font-weight: 600;
-
-    letter-spacing: 0.14em;
-
-    text-transform: uppercase;
-
-    transition:
-        transform 0.16s ease,
-        box-shadow 0.18s ease,
-        border-color 0.18s ease,
-        background 0.18s ease;
-
-    -webkit-tap-highlight-color: transparent;
+    z-index: 2;
 }
 
-.premium-button::before {
-    content: "";
-
+.birthday-glow {
     position: absolute;
-    inset: 1px;
-
-    border-radius: inherit;
-
-    background:
-        linear-gradient(
-            110deg,
-            transparent,
-            rgba(255, 255, 255, 0.16),
-            transparent
-        );
-
-    opacity: 0;
-
-    transform: translateX(-100%);
-
-    transition:
-        transform 0.55s ease,
-        opacity 0.2s ease;
-
+    width: 480px;
+    height: 480px;
+    border-radius: 50%;
+    background: rgba(217, 69, 119, .08);
+    filter: blur(90px);
     pointer-events: none;
 }
 
-.premium-button:hover::before {
-    opacity: 1;
-
-    transform: translateX(100%);
-}
-
-.premium-button:active {
-    transform: scale(0.96);
-}
-
-.primary-button {
-    margin-top: 32px;
-
-    color: #190b11;
-
-    background:
-        linear-gradient(
-            135deg,
-            #ffe7ed,
-            #f09ab6
-        );
-
-    box-shadow:
-        0 12px 38px rgba(241, 111, 150, 0.2),
-        inset 0 1px 0 rgba(255, 255, 255, 0.85);
-}
-
-.primary-button:hover {
-    transform: translateY(-3px);
-
-    box-shadow:
-        0 18px 48px rgba(241, 111, 150, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.9);
-}
-
-.button-text {
-    white-space: nowrap;
-}
-
-.button-arrow {
-    font-size: 16px;
-
-    transition:
-        transform 0.18s ease;
-}
-
-.primary-button:hover .button-arrow {
-    transform: translateX(4px);
-}
-
-/* =========================================================
-   BIRTHDAY
-========================================================= */
-
-.birthday-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.birthday-topline {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-
-    margin-bottom: 27px;
-
-    color: var(--muted);
-
-    font-size: 8px;
-
-    letter-spacing: 0.32em;
-
-    text-transform: uppercase;
-}
-
-.birthday-topline .line {
-    width: 42px;
-    height: 1px;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(241, 154, 180, 0.4)
-        );
-}
-
 .birthday-crown {
-    margin-bottom: 9px;
-
+    font-size: 25px;
     color: var(--rose);
-
-    font-size: 16px;
-
-    animation:
-        starPulse 2.8s ease-in-out infinite;
+    margin-bottom: 20px;
+    text-shadow: 0 0 25px rgba(255, 125, 165, .55);
 }
 
 .birthday-small {
-    color: var(--muted);
-
-    font-size: 10px;
-    font-weight: 500;
-
-    letter-spacing: 0.55em;
+    font-size: 12px;
+    letter-spacing: .55em;
+    color: var(--dim);
+    margin-left: .55em;
 }
 
 .birthday-title {
-    margin-top: 8px;
-
     font-family: "Playfair Display", serif;
-
-    font-size: clamp(48px, 9.5vw, 96px);
-
+    font-size: clamp(54px, 10vw, 96px);
     font-weight: 600;
-
-    letter-spacing: -0.055em;
-
-    line-height: 0.9;
-
-    background:
-        linear-gradient(
-            135deg,
-            #fffafd 12%,
-            #f6b3c8 68%,
-            #c9698d
-        );
-
+    letter-spacing: -.055em;
+    line-height: .95;
+    margin: 8px 0 16px;
+    background: linear-gradient(
+        120deg,
+        #fff,
+        #f4b1c7,
+        #fff
+    );
     -webkit-background-clip: text;
     background-clip: text;
-
     color: transparent;
-
-    filter:
-        drop-shadow(
-            0 15px 45px rgba(241, 111, 150, 0.13)
-        );
 }
 
 .birthday-name {
-    margin-top: 25px;
-
-    color: var(--rose-light);
-
-    font-family: "Playfair Display", serif;
-
-    font-size: clamp(24px, 4vw, 36px);
-
-    font-weight: 400;
+    font-family: "Caveat", cursive;
+    font-size: clamp(30px, 5vw, 43px);
+    color: var(--rose-soft);
 }
 
 .birthday-name span {
-    font-size: 19px;
+    font-size: .7em;
 }
 
 .birthday-description {
-    margin-top: 11px;
-
+    margin-top: 12px;
     color: var(--muted);
-
-    font-size: 12px;
-
     line-height: 1.8;
+    font-size: 14px;
 }
 
 .birthday-date {
+    margin: 26px auto 30px;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 13px;
-
-    margin-top: 23px;
-
-    color: var(--white);
-
-    font-family: "Caveat", cursive;
-
-    font-size: 23px;
+    color: rgba(255, 230, 239, .7);
+    font-size: 12px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
 }
 
 .date-line {
-    width: 33px;
+    width: 45px;
     height: 1px;
-
-    background:
-        rgba(241, 154, 180, 0.38);
+    background: rgba(255, 190, 210, .22);
 }
 
 .cake {
-    font-family: sans-serif;
-    font-size: 16px;
+    font-size: 18px;
 }
 
-.outline-button {
-    margin-top: 28px;
 
-    color: var(--rose-light);
-
-    background:
-        rgba(255, 255, 255, 0.035);
-
-    border-color:
-        rgba(241, 154, 180, 0.28);
-
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-}
-
-.outline-button:hover {
-    transform: translateY(-3px);
-
-    background:
-        rgba(241, 154, 180, 0.08);
-
-    border-color:
-        rgba(241, 154, 180, 0.52);
-
-    box-shadow:
-        0 14px 40px rgba(241, 111, 150, 0.12);
-}
-
-/* =========================================================
+/* =====================================================
    QUESTION
-========================================================= */
-
-#question-screen {
-    overflow: hidden;
-}
+===================================================== */
 
 .question-card {
-    position: relative;
-
-    width: min(590px, 100%);
-
-    padding: 53px 40px 40px;
-
+    width: min(100%, 570px);
+    padding: 48px 32px;
     text-align: center;
-
-    border:
-        1px solid rgba(255, 215, 228, 0.12);
-
-    border-radius: 28px;
-
+    border-radius: 30px;
+    border: 1px solid var(--border);
     background:
         linear-gradient(
             145deg,
-            rgba(255, 255, 255, 0.075),
-            rgba(255, 255, 255, 0.025)
+            rgba(255,255,255,.055),
+            rgba(255,255,255,.018)
         );
-
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
     box-shadow:
-        var(--shadow),
-        inset 0 1px 0 rgba(255, 255, 255, 0.07);
-
-    backdrop-filter: blur(26px);
-    -webkit-backdrop-filter: blur(26px);
+        0 30px 90px rgba(0,0,0,.35),
+        inset 0 1px 0 rgba(255,255,255,.06);
 }
 
 .question-number {
-    position: absolute;
-
-    top: 21px;
-    right: 24px;
-
-    color: var(--muted-2);
-
-    font-size: 8px;
-
-    letter-spacing: 0.2em;
+    color: rgba(255, 185, 207, .38);
+    font-size: 10px;
+    letter-spacing: .28em;
+    margin-bottom: 22px;
 }
 
 .question-icon {
-    margin-bottom: 17px;
-
+    font-size: 29px;
     color: var(--rose);
-
-    font-family: "Playfair Display", serif;
-
-    font-size: 32px;
+    margin-bottom: 20px;
 }
 
 .question-label {
     color: var(--muted);
-
-    font-size: 11px;
-
-    line-height: 1.8;
+    font-size: 13px;
+    line-height: 1.7;
+    margin-bottom: 22px;
 }
 
 .question-title {
-    margin-top: 18px;
-
-    color: var(--white);
-
     font-family: "Playfair Display", serif;
-
-    font-size: clamp(27px, 5vw, 41px);
-
-    font-weight: 400;
-
-    letter-spacing: -0.025em;
-
-    line-height: 1.18;
+    font-size: clamp(30px, 5vw, 44px);
+    line-height: 1.2;
+    font-weight: 500;
+    letter-spacing: -.035em;
 }
 
 .question-heart {
-    margin-top: 17px;
-
-    color: var(--rose);
-
-    font-size: 13px;
-
-    animation:
-        heartBeat 1.8s ease-in-out infinite;
-}
-
-@keyframes heartBeat {
-    0%,
-    100% {
-        transform: scale(1);
-    }
-
-    14% {
-        transform: scale(1.22);
-    }
-
-    28% {
-        transform: scale(1);
-    }
-
-    42% {
-        transform: scale(1.14);
-    }
+    margin: 23px 0;
+    color: rgba(255, 111, 156, .75);
+    font-size: 19px;
 }
 
 .question-buttons {
-    position: relative;
-
-    min-height: 56px;
-
     display: flex;
-    align-items: center;
     justify-content: center;
-
-    gap: 12px;
-
-    margin-top: 30px;
+    align-items: center;
+    gap: 13px;
 }
 
 .yes-button {
-    color: #190b11;
-
-    background:
-        linear-gradient(
-            135deg,
-            #ffe4eb,
-            #ed91ae
-        );
-
-    box-shadow:
-        0 10px 32px rgba(241, 111, 150, 0.19);
-}
-
-.yes-button:hover {
-    transform: translateY(-3px);
-
-    box-shadow:
-        0 16px 43px rgba(241, 111, 150, 0.3);
+    min-width: 130px;
+    background: linear-gradient(
+        135deg,
+        rgba(213, 78, 122, .85),
+        rgba(157, 49, 98, .85)
+    );
 }
 
 .no-button {
-    color: var(--muted);
-
-    background:
-        rgba(255, 255, 255, 0.04);
-
-    border-color:
-        rgba(255, 255, 255, 0.1);
-}
-
-.no-button:hover {
-    background:
-        rgba(255, 255, 255, 0.07);
+    min-width: 110px;
 }
 
 .no-message {
-    height: 20px;
-
-    margin-top: 12px;
-
-    color: var(--rose);
-
+    min-height: 24px;
+    margin-top: 18px;
+    color: rgba(255, 190, 210, .58);
     font-family: "Caveat", cursive;
-
-    font-size: 17px;
-
-    opacity: 0;
-
-    transform: translateY(4px);
-
-    transition:
-        opacity 0.18s ease,
-        transform 0.18s ease;
-}
-
-.no-message.show {
-    opacity: 1;
-
-    transform: translateY(0);
+    font-size: 18px;
 }
 
 .question-footer {
-    margin-top: 21px;
-
-    color: var(--muted-2);
-
-    font-family: "Caveat", cursive;
-
-    font-size: 16px;
+    margin-top: 25px;
+    color: rgba(255, 230, 240, .28);
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: .24em;
 }
 
-/* =========================================================
+
+/* =====================================================
    YES SCREEN
-========================================================= */
+===================================================== */
 
 .yes-content {
-    position: relative;
-
-    z-index: 3;
-
-    width: min(720px, 100%);
-
+    width: min(100%, 700px);
     text-align: center;
+    position: relative;
+    z-index: 2;
 }
 
 .yes-orbit {
     position: relative;
-
-    width: 145px;
-    height: 145px;
-
-    display: grid;
-    place-items: center;
-
-    margin: 0 auto 27px;
+    width: 155px;
+    height: 155px;
+    margin: 0 auto 34px;
 }
 
 .orbit-ring {
     position: absolute;
-
     inset: 0;
-
-    border:
-        1px solid rgba(241, 154, 180, 0.16);
-
     border-radius: 50%;
+    border: 1px solid rgba(255, 145, 178, .16);
 }
 
 .ring-one {
-    animation:
-        orbitRotate 10s linear infinite;
+    animation: orbitSpin 14s linear infinite;
 }
 
 .ring-two {
-    inset: 17px;
-
-    border-color:
-        rgba(255, 213, 223, 0.11);
-
-    animation:
-        orbitRotate 7s linear infinite reverse;
+    inset: 15px;
+    border-style: dashed;
+    animation: orbitSpinReverse 10s linear infinite;
 }
 
-.orbit-heart {
-    width: 66px;
-    height: 66px;
-
-    display: grid;
-    place-items: center;
-
-    border-radius: 50%;
-
-    color: #190b11;
-
-    background:
-        linear-gradient(
-            145deg,
-            #ffe4eb,
-            #ed91ae
-        );
-
-    font-size: 22px;
-
-    box-shadow:
-        0 0 60px rgba(241, 111, 150, 0.24);
-}
-
-@keyframes orbitRotate {
+@keyframes orbitSpin {
     to {
         transform: rotate(360deg);
     }
 }
 
+@keyframes orbitSpinReverse {
+    to {
+        transform: rotate(-360deg);
+    }
+}
+
+.orbit-heart {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    font-size: 42px;
+    color: var(--rose);
+    text-shadow:
+        0 0 22px rgba(255, 92, 145, .55),
+        0 0 60px rgba(255, 92, 145, .25);
+    animation: heartBeat 1.8s ease-in-out infinite;
+}
+
+@keyframes heartBeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    15% {
+        transform: scale(1.12);
+    }
+
+    30% {
+        transform: scale(1);
+    }
+}
+
 .yes-eyebrow {
-    color: var(--muted);
-
-    font-size: 9px;
-
-    letter-spacing: 0.32em;
-
-    text-transform: uppercase;
+    font-family: "Caveat", cursive;
+    font-size: 22px;
+    color: var(--rose);
+    margin-bottom: 8px;
 }
 
 .yes-title {
-    margin-top: 15px;
-
-    color: var(--white);
-
     font-family: "Playfair Display", serif;
-
-    font-size: clamp(38px, 6.5vw, 64px);
-
-    font-weight: 400;
-
-    letter-spacing: -0.045em;
-
-    line-height: 1.04;
+    font-size: clamp(39px, 7vw, 64px);
+    line-height: 1.05;
+    font-weight: 500;
+    letter-spacing: -.045em;
 }
 
 .yes-title span {
-    display: block;
-
-    color: var(--rose-light);
+    color: var(--rose-soft);
 }
 
 .yes-message {
     margin-top: 20px;
-
     color: var(--muted);
-
-    font-size: 12px;
-
-    line-height: 1.9;
+    line-height: 1.8;
+    font-size: 14px;
 }
 
 .yes-divider {
     display: flex;
     align-items: center;
     justify-content: center;
-
     gap: 12px;
-
-    margin-top: 26px;
+    margin: 27px auto;
+    max-width: 230px;
 }
 
 .yes-divider span {
-    width: 45px;
+    flex: 1;
     height: 1px;
-
-    background:
-        rgba(241, 154, 180, 0.25);
+    background: rgba(255, 190, 210, .16);
 }
 
 .yes-divider b {
     color: var(--rose);
-
-    font-family: "Playfair Display", serif;
-
-    font-size: 15px;
-
+    font-size: 17px;
     font-weight: 400;
 }
 
 .letter-button {
-    margin-top: 27px;
-
     max-width: 100%;
 }
 
-/* =========================================================
-   LETTER SECTION
-========================================================= */
+
+/* =====================================================
+   LETTER EXPERIENCE
+===================================================== */
 
 .letter-section {
-    position: relative;
-
-    z-index: 2;
-
     display: none;
-
+    position: relative;
     width: 100%;
-
     min-height: 100vh;
-
-    padding-top: 9vh;
-
     overflow: hidden;
+    padding-bottom: 100px;
 }
 
 .letter-section.visible {
     display: block;
-
-    animation:
-        letterEnter 1s var(--ease) both;
+    animation: letterAppear .9s ease forwards;
 }
 
-@keyframes letterEnter {
+@keyframes letterAppear {
     from {
         opacity: 0;
     }
@@ -1174,1021 +770,456 @@ body {
     }
 }
 
-/* =========================================================
-   CINEMATIC LETTER INTRO
-========================================================= */
-
 .letter-intro {
-    min-height: 88vh;
-
+    min-height: 100svh;
+    width: min(100%, 720px);
+    margin: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
-    padding: 70px 24px;
-
     text-align: center;
+    padding: 80px 24px 60px;
 }
 
 .letter-kicker {
-    color: var(--muted);
-
-    font-size: 8px;
-
-    letter-spacing: 0.45em;
-
+    color: rgba(255, 185, 207, .52);
+    font-size: 10px;
+    letter-spacing: .34em;
     text-transform: uppercase;
+    margin-bottom: 24px;
 }
 
 .letter-intro-symbol {
-    margin-top: 23px;
-
+    font-size: 32px;
     color: var(--rose);
-
-    font-family: "Playfair Display", serif;
-
-    font-size: 28px;
-
-    text-shadow:
-        0 0 25px rgba(241, 111, 150, 0.25);
-
-    animation:
-        symbolFloat 3.5s ease-in-out infinite;
+    margin-bottom: 20px;
+    animation: softPulse 3s ease-in-out infinite;
 }
 
 .letter-intro h2 {
-    margin-top: 15px;
-
-    color: var(--white);
-
     font-family: "Playfair Display", serif;
-
-    font-size: clamp(40px, 6.5vw, 66px);
-
-    font-weight: 400;
-
-    letter-spacing: -0.045em;
-
-    line-height: 1;
+    font-weight: 500;
+    font-size: clamp(45px, 8vw, 70px);
+    line-height: .98;
+    letter-spacing: -.05em;
 }
 
-.letter-intro p:not(.letter-kicker) {
-    max-width: 500px;
-
-    margin-top: 20px;
-
+.letter-intro > p:not(.letter-kicker) {
+    margin-top: 22px;
     color: var(--muted);
-
-    font-size: 12px;
-
-    line-height: 1.9;
+    font-size: 13px;
+    line-height: 1.8;
 }
 
 .scroll-indicator {
+    margin-top: 40px;
     display: flex;
     align-items: center;
     gap: 12px;
-
-    margin-top: 33px;
-
-    color: var(--muted-2);
-
-    font-size: 8px;
-
-    letter-spacing: 0.2em;
-
+    color: rgba(255, 210, 225, .32);
     text-transform: uppercase;
-
-    animation:
-        scrollHint 2.4s ease-in-out infinite;
+    font-size: 8px;
+    letter-spacing: .22em;
 }
 
 .scroll-line {
     width: 35px;
     height: 1px;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(241, 154, 180, 0.5)
-        );
+    background: rgba(255, 190, 210, .18);
 }
 
-@keyframes scrollHint {
-    0%,
-    100% {
-        opacity: 0.45;
-        transform: translateY(0);
-    }
 
-    50% {
-        opacity: 1;
-        transform: translateY(5px);
-    }
-}
-
-/* =========================================================
+/* =====================================================
    LETTER WRAPPER
-========================================================= */
+===================================================== */
 
 .letter-wrapper {
-    position: relative;
-
-    width: min(920px, calc(100% - 34px));
-
+    width: min(100%, 860px);
     margin: 0 auto;
-
-    padding: 0 0 120px;
+    padding: 25px 20px 0;
 }
-
-/* =========================================================
-   CINEMATIC GLASS LETTER
-========================================================= */
 
 .letter-content {
     position: relative;
-
     overflow: hidden;
-
-    padding:
-        clamp(48px, 7vw, 82px)
-        clamp(27px, 8vw, 92px);
-
-    border:
-        1px solid rgba(255, 206, 222, 0.14);
-
-    border-radius: 28px;
-
+    border-radius: 34px;
+    border: 1px solid rgba(255, 180, 205, .15);
     background:
-        linear-gradient(
-            145deg,
-            rgba(255, 255, 255, 0.075),
-            rgba(255, 255, 255, 0.028)
-        );
-
-    color: var(--text);
-
-    box-shadow:
-        0 50px 130px rgba(0, 0, 0, 0.58),
-        0 0 80px rgba(151, 47, 88, 0.07),
-        inset 0 1px 0 rgba(255, 255, 255, 0.08);
-
+        radial-gradient(
+            circle at 10% 0%,
+            rgba(255, 104, 150, .09),
+            transparent 27%
+        ),
+        radial-gradient(
+            circle at 90% 100%,
+            rgba(125, 72, 150, .08),
+            transparent 30%
+        ),
+        rgba(18, 11, 22, .72);
     backdrop-filter: blur(28px);
     -webkit-backdrop-filter: blur(28px);
+    box-shadow:
+        0 35px 100px rgba(0, 0, 0, .38),
+        inset 0 1px 0 rgba(255, 255, 255, .045);
 }
-
-/* Large soft glow inside letter */
 
 .letter-content::before {
     content: "";
-
     position: absolute;
-
-    width: 430px;
-    height: 430px;
-
-    top: -220px;
-    right: -180px;
-
-    border-radius: 50%;
-
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
     background:
-        radial-gradient(
-            circle,
-            rgba(242, 110, 151, 0.12),
+        linear-gradient(
+            115deg,
+            transparent 0%,
+            rgba(255, 170, 200, .025) 45%,
             transparent 70%
         );
-
-    filter: blur(20px);
-
-    pointer-events: none;
 }
-
-/* Second glow */
-
-.letter-content::after {
-    content: "";
-
-    position: absolute;
-
-    width: 360px;
-    height: 360px;
-
-    bottom: -180px;
-    left: -170px;
-
-    border-radius: 50%;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(133, 53, 116, 0.1),
-            transparent 70%
-        );
-
-    filter: blur(25px);
-
-    pointer-events: none;
-}
-
-/* =========================================================
-   LETTER HEADER
-========================================================= */
 
 .letter-header {
-    position: relative;
-
-    z-index: 2;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
-
-    padding-bottom: 22px;
-
-    border-bottom:
-        1px solid rgba(255, 211, 225, 0.1);
+    padding: 27px 32px;
+    border-bottom: 1px solid rgba(255, 190, 210, .1);
 }
 
 .letter-date {
-    color: var(--muted-2);
-
-    font-size: 8px;
-
-    letter-spacing: 0.22em;
-
+    color: rgba(255, 220, 230, .4);
+    font-size: 9px;
+    letter-spacing: .22em;
     text-transform: uppercase;
 }
 
 .letter-heart {
     color: var(--rose);
-
-    font-family: "Playfair Display", serif;
-
-    font-size: 20px;
-
-    text-shadow:
-        0 0 18px rgba(241, 111, 150, 0.35);
-
-    animation:
-        heartBeat 2.2s ease-in-out infinite;
+    font-size: 22px;
 }
-
-/* =========================================================
-   LETTER BODY
-========================================================= */
 
 .letter-body {
     position: relative;
-
-    z-index: 3;
+    padding: 58px clamp(25px, 7vw, 82px) 65px;
 }
 
-/* =========================================================
-   SCROLL REVEAL
-========================================================= */
+.letter-body p {
+    position: relative;
+    z-index: 1;
+    max-width: 670px;
+    margin-left: auto;
+    margin-right: auto;
+}
 
-.letter-opening,
+.letter-opening {
+    font-family: "Playfair Display", serif;
+    font-size: clamp(27px, 4vw, 37px);
+    line-height: 1.3;
+    text-align: center;
+    color: var(--rose-soft);
+    margin-bottom: 55px;
+}
+
 .letter-paragraph,
 .letter-special,
 .letter-emphasis,
 .letter-final,
-.birthday-ending,
-.signature {
-    opacity: 0;
-
-    transform:
-        translateY(42px)
-        scale(0.985);
-
-    filter:
-        blur(5px);
-
-    transition:
-        opacity 0.9s var(--ease),
-        transform 0.9s var(--ease),
-        filter 0.9s var(--ease);
-}
-
-.letter-opening.revealed,
-.letter-paragraph.revealed,
-.letter-special.revealed,
-.letter-emphasis.revealed,
-.letter-final.revealed,
-.birthday-ending.revealed,
-.signature.revealed {
-    opacity: 1;
-
-    transform:
-        translateY(0)
-        scale(1);
-
-    filter:
-        blur(0);
-}
-
-/* =========================================================
-   LETTER TEXT
-========================================================= */
-
-.letter-opening {
-    margin-top: 37px;
-
-    color: var(--rose-light);
-
-    font-family: "Playfair Display", serif;
-
-    font-size: clamp(23px, 3.5vw, 30px);
-
-    font-weight: 500;
-
-    letter-spacing: -0.015em;
-
-    line-height: 1.35;
-}
-
-.letter-paragraph {
-    margin-top: 29px;
-
-    color: #c9bac1;
-
+.letter-end-message {
     font-family: "Inter", sans-serif;
-
-    font-size: 13.5px;
-
-    font-weight: 400;
-
-    line-height: 2.05;
-
-    letter-spacing: 0.005em;
+    font-size: clamp(15px, 2vw, 17px);
+    line-height: 2;
+    font-weight: 300;
+    letter-spacing: .005em;
+    color: rgba(255, 242, 247, .77);
+    margin-bottom: 28px;
 }
-
-/* =========================================================
-   SPECIAL MEMORY / IMPORTANT MOMENT
-========================================================= */
 
 .letter-special {
-    position: relative;
-
-    margin: 52px 0;
-
-    padding: 31px 25px;
-
-    color: var(--rose-light);
-
     font-family: "Playfair Display", serif;
-
-    font-size: clamp(19px, 2.8vw, 25px);
-
-    font-weight: 400;
-
-    line-height: 1.6;
-
+    font-size: clamp(19px, 3vw, 25px);
+    line-height: 1.65;
+    color: rgba(255, 220, 231, .9);
     text-align: center;
-
-    border-top:
-        1px solid rgba(241, 154, 180, 0.16);
-
-    border-bottom:
-        1px solid rgba(241, 154, 180, 0.16);
+    margin-top: 46px;
+    margin-bottom: 46px;
 }
-
-.letter-special::before {
-    content: "✦";
-
-    position: absolute;
-
-    top: -11px;
-    left: 50%;
-
-    padding: 0 12px;
-
-    color: var(--rose);
-
-    background: #0d080e;
-
-    transform: translateX(-50%);
-
-    font-size: 12px;
-}
-
-/* =========================================================
-   EMPHASIS
-========================================================= */
 
 .letter-emphasis {
-    position: relative;
-
-    margin-top: 43px;
-
-    padding:
-        4px 18px;
-
-    color: #f1dce4;
-
     font-family: "Playfair Display", serif;
-
-    font-size: clamp(19px, 2.8vw, 25px);
-
-    font-weight: 400;
-
-    font-style: italic;
-
-    line-height: 1.65;
-
+    font-size: clamp(20px, 3vw, 27px);
+    line-height: 1.55;
     text-align: center;
+    color: var(--rose-soft);
+    margin-top: 44px;
+    margin-bottom: 44px;
 }
-
-.letter-emphasis::before,
-.letter-emphasis::after {
-    color: var(--rose);
-
-    font-family: "Playfair Display", serif;
-
-    font-size: 22px;
-}
-
-.letter-emphasis::before {
-    content: "“";
-
-    margin-right: 4px;
-}
-
-.letter-emphasis::after {
-    content: "”";
-
-    margin-left: 4px;
-}
-
-/* =========================================================
-   FINAL MESSAGE
-========================================================= */
 
 .letter-final {
-    margin-top: 61px;
-
-    color: var(--white);
-
     font-family: "Playfair Display", serif;
+    font-size: clamp(23px, 3.5vw, 31px);
+    line-height: 1.5;
+    text-align: center;
+    color: #fff1f6;
+    margin-top: 55px;
+    margin-bottom: 45px;
+}
 
-    font-size: clamp(27px, 4vw, 37px);
-
+.letter-body strong {
+    color: rgba(255, 206, 222, .96);
     font-weight: 500;
-
-    line-height: 1.25;
-
-    text-align: center;
-
-    text-shadow:
-        0 0 35px rgba(241, 111, 150, 0.12);
 }
 
-/* =========================================================
-   BIRTHDAY ENDING
-========================================================= */
 
-.birthday-ending {
-    margin-top: 26px;
+/* =====================================================
+   SCROLL REVEAL
+===================================================== */
 
-    color: #b9a6ae;
-
-    font-family: "Caveat", cursive;
-
-    font-size: 22px;
-
-    line-height: 1.75;
-
-    text-align: center;
+.letter-reveal {
+    opacity: 0;
+    transform: translateY(38px);
+    filter: blur(7px);
+    transition:
+        opacity .85s cubic-bezier(.22, .61, .36, 1),
+        transform .85s cubic-bezier(.22, .61, .36, 1),
+        filter .85s cubic-bezier(.22, .61, .36, 1);
 }
 
-/* =========================================================
+.letter-reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+}
+
+
+/* =====================================================
    SIGNATURE
-========================================================= */
+===================================================== */
 
 .signature {
+    margin: 65px auto 20px;
+    text-align: center;
     display: flex;
     flex-direction: column;
+    gap: 4px;
+}
 
-    align-items: flex-end;
-
-    margin-top: 61px;
-
-    padding-right: 6%;
-
-    color: #9e818c;
-
+.signature span {
     font-family: "Caveat", cursive;
-
-    font-size: 19px;
+    font-size: 25px;
+    color: rgba(255, 215, 228, .58);
 }
 
 .signature strong {
-    margin-top: 2px;
-
-    color: var(--rose-light);
-
-    font-size: 29px;
-
+    font-family: "Caveat", cursive;
+    font-size: 39px;
     font-weight: 500;
-
-    text-shadow:
-        0 0 22px rgba(241, 111, 150, 0.18);
+    color: var(--rose-soft);
+    text-shadow: 0 0 22px rgba(255, 100, 150, .15);
 }
 
-/* =========================================================
+.letter-end-message {
+    text-align: center;
+    color: rgba(255, 211, 225, .55);
+    font-family: "Playfair Display", serif;
+    font-size: 18px;
+    line-height: 1.7;
+    margin-top: 45px;
+}
+
+.letter-end-message + .letter-end-message {
+    margin-top: -8px;
+}
+
+
+/* =====================================================
    LETTER END
-========================================================= */
+===================================================== */
 
 .letter-end {
-    position: relative;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
-    gap: 17px;
-
-    margin-top: 68px;
-
-    color: var(--muted-2);
-
-    font-size: 8px;
-
-    letter-spacing: 0.14em;
-
-    text-align: center;
-
-    text-transform: uppercase;
+    gap: 20px;
+    padding: 35px 25px 40px;
+    border-top: 1px solid rgba(255, 190, 210, .08);
 }
 
 .letter-end span {
-    color: var(--rose);
-
-    font-family: "Playfair Display", serif;
-
-    font-size: 17px;
-
-    text-shadow:
-        0 0 15px rgba(241, 111, 150, 0.3);
+    color: rgba(255, 135, 170, .65);
+    font-size: 20px;
 }
 
 .letter-end p {
-    max-width: 260px;
-
+    text-align: center;
+    color: rgba(255, 220, 230, .3);
+    font-size: 8px;
     line-height: 1.8;
+    text-transform: uppercase;
+    letter-spacing: .22em;
 }
 
-/* =========================================================
-   LETTER BOTTOM
-========================================================= */
+
+/* =====================================================
+   BOTTOM
+===================================================== */
 
 .letter-bottom-space {
-    min-height: 60vh;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
     text-align: center;
+    padding: 70px 20px 100px;
 }
 
 .bottom-heart {
-    color: var(--rose);
-
-    font-size: 23px;
-
-    text-shadow:
-        0 0 22px rgba(241, 111, 150, 0.35);
-
-    animation:
-        heartBeat 2s ease-in-out infinite;
+    font-size: 25px;
+    color: rgba(255, 110, 155, .65);
+    margin-bottom: 12px;
+    animation: heartBeat 2s ease-in-out infinite;
 }
 
 .letter-bottom-space p {
-    margin-top: 15px;
-
-    color: var(--muted-2);
-
+    color: rgba(255, 220, 232, .32);
     font-family: "Caveat", cursive;
-
-    font-size: 18px;
+    font-size: 19px;
 }
 
-/* =========================================================
-   FLOATING HEARTS
-========================================================= */
 
-#floating-hearts {
-    position: fixed;
-
-    inset: 0;
-
-    overflow: hidden;
-
-    pointer-events: none;
-
-    z-index: 20;
-}
-
-.floating-heart {
-    position: absolute;
-
-    bottom: -30px;
-
-    color: rgba(241, 154, 180, 0.58);
-
-    filter:
-        drop-shadow(
-            0 0 8px rgba(241, 111, 150, 0.24)
-        );
-
-    pointer-events: none;
-
-    animation:
-        floatHeart linear forwards;
-}
-
-@keyframes floatHeart {
-    0% {
-        opacity: 0;
-
-        transform:
-            translate3d(0, 0, 0)
-            rotate(0deg)
-            scale(0.75);
-    }
-
-    12% {
-        opacity: 0.72;
-    }
-
-    100% {
-        opacity: 0;
-
-        transform:
-            translate3d(
-                calc(var(--drift, 0) * 1px),
-                -115vh,
-                0
-            )
-            rotate(24deg)
-            scale(1.12);
-    }
-}
-
-/* =========================================================
-   SPARKLES
-========================================================= */
-
-#sparkles {
-    position: fixed;
-
-    inset: 0;
-
-    pointer-events: none;
-
-    z-index: 100;
-}
-
-.sparkle {
-    position: absolute;
-
-    color: var(--rose-light);
-
-    font-size: 12px;
-
-    text-shadow:
-        0 0 14px rgba(255, 188, 210, 0.95);
-
-    animation:
-        sparkleMove 0.75s ease-out forwards;
-}
-
-@keyframes sparkleMove {
-    from {
-        opacity: 1;
-
-        transform:
-            translate(0, 0)
-            scale(1);
-    }
-
-    to {
-        opacity: 0;
-
-        transform:
-            translate(var(--x), var(--y))
-            scale(0.2);
-    }
-}
-
-/* =========================================================
-   BIRTHDAY PARTICLES
-========================================================= */
-
-.birthday-particles {
-    position: absolute;
-
-    inset: 0;
-
-    pointer-events: none;
-
-    background:
-        radial-gradient(
-            circle at 50% 44%,
-            rgba(241, 154, 180, 0.09),
-            transparent 23%
-        );
-}
-
-/* =========================================================
-   MOBILE
-========================================================= */
+/* =====================================================
+   RESPONSIVE
+===================================================== */
 
 @media (max-width: 700px) {
 
     .screen {
-        padding:
-            28px 18px;
-    }
-
-    .intro-title {
-        font-size:
-            clamp(44px, 14vw, 66px);
-    }
-
-    .intro-symbol {
-        width: 65px;
-        height: 65px;
-    }
-
-    .primary-button,
-    .outline-button,
-    .yes-button,
-    .no-button {
-        min-height: 50px;
-
-        padding: 0 19px;
-
-        font-size: 9px;
+        padding: 22px 16px;
     }
 
     .question-card {
-        padding:
-            46px 22px 33px;
-
-        border-radius: 23px;
+        padding: 40px 22px;
+        border-radius: 25px;
     }
 
     .question-buttons {
         gap: 9px;
     }
 
-    .birthday-title {
-        font-size:
-            clamp(52px, 15vw, 80px);
-    }
-
-    .birthday-name {
-        font-size: 26px;
-    }
-
-    .yes-title {
-        font-size: 41px;
-    }
-
-    .letter-section {
-        padding-top: 4vh;
-    }
-
-    .letter-intro {
-        min-height: 78vh;
-
-        padding:
-            60px 20px;
-    }
-
-    .letter-intro h2 {
-        font-size:
-            clamp(40px, 13vw, 55px);
+    .premium-button {
+        min-height: 51px;
+        padding: 0 18px;
+        font-size: 13px;
     }
 
     .letter-wrapper {
-        width:
-            calc(100% - 18px);
+        padding-left: 12px;
+        padding-right: 12px;
     }
 
     .letter-content {
-        padding:
-            42px 24px 50px;
-
-        border-radius: 24px;
+        border-radius: 25px;
     }
 
-    .letter-content::before {
-        width: 280px;
-        height: 280px;
-
-        top: -150px;
-        right: -130px;
+    .letter-header {
+        padding: 22px;
     }
 
-    .letter-content::after {
-        width: 250px;
-        height: 250px;
-
-        bottom: -130px;
-        left: -120px;
+    .letter-body {
+        padding: 45px 22px 50px;
     }
 
     .letter-paragraph {
-        font-size: 13px;
-
-        line-height: 2;
+        font-size: 14px;
+        line-height: 1.9;
+        margin-bottom: 25px;
     }
 
     .letter-special {
-        margin:
-            42px 0;
-
-        padding:
-            27px 13px;
-
-        font-size: 20px;
+        margin-top: 38px;
+        margin-bottom: 38px;
     }
 
     .letter-emphasis {
         margin-top: 36px;
-
-        padding: 4px 7px;
-
-        font-size: 20px;
+        margin-bottom: 36px;
     }
 
     .letter-final {
-        margin-top: 50px;
-
-        font-size: 28px;
-    }
-
-    .birthday-ending {
-        font-size: 21px;
-    }
-
-    .signature {
-        padding-right: 2%;
-    }
-
-    .signature strong {
-        font-size: 28px;
+        margin-top: 42px;
     }
 
     .letter-end {
-        margin-top: 56px;
+        gap: 12px;
     }
 }
 
-/* =========================================================
-   SMALL PHONES
-========================================================= */
-
 @media (max-width: 430px) {
 
-    .eyebrow {
-        font-size: 7px;
-        gap: 8px;
+    .intro-title {
+        font-size: 45px;
     }
 
-    .eyebrow span {
-        width: 19px;
+    .birthday-title {
+        font-size: 55px;
     }
 
-    .intro-subtitle {
-        font-size: 18px;
+    .birthday-name {
+        font-size: 31px;
     }
 
-    .intro-description {
-        font-size: 11px;
-    }
-
-    .premium-button {
-        max-width:
-            calc(100vw - 38px);
+    .question-title {
+        font-size: 29px;
     }
 
     .question-buttons {
         flex-direction: column;
-
-        min-height: 108px;
+        width: 100%;
     }
 
-    .yes-button,
-    .no-button {
-        width: 135px;
-    }
-
-    .birthday-topline {
-        font-size: 7px;
-        gap: 7px;
-    }
-
-    .birthday-topline .line {
-        width: 22px;
-    }
-
-    .birthday-date {
-        font-size: 21px;
-    }
-
-    .yes-orbit {
-        width: 120px;
-        height: 120px;
-    }
-
-    .orbit-heart {
-        width: 57px;
-        height: 57px;
+    .question-buttons .premium-button {
+        width: min(100%, 220px);
     }
 
     .yes-title {
-        font-size: 37px;
+        font-size: 39px;
     }
 
-    .yes-message {
-        font-size: 11px;
+    .letter-intro {
+        padding-left: 20px;
+        padding-right: 20px;
     }
 
-    .letter-kicker {
-        font-size: 7px;
-
-        letter-spacing: 0.35em;
-    }
-
-    .letter-intro p:not(.letter-kicker) {
-        font-size: 11px;
-    }
-
-    .letter-content {
-        padding:
-            38px 21px 45px;
-    }
-
-    .letter-header {
-        padding-bottom: 18px;
+    .letter-intro h2 {
+        font-size: 46px;
     }
 
     .letter-opening {
-        font-size: 22px;
+        font-size: 26px;
     }
 
-    .letter-paragraph {
-        font-size: 12.6px;
-
-        line-height: 2;
-    }
-
-    .letter-special {
-        font-size: 19px;
-
-        line-height: 1.55;
-    }
-
-    .letter-emphasis {
-        font-size: 19px;
-    }
-
-    .letter-final {
-        font-size: 27px;
-    }
-
-    .birthday-ending {
-        font-size: 20px;
-    }
-
-    .signature {
-        font-size: 18px;
+    .letter-body {
+        padding-left: 20px;
+        padding-right: 20px;
     }
 
     .signature strong {
-        font-size: 27px;
+        font-size: 36px;
     }
 }
 
-/* =========================================================
+
+/* =====================================================
    REDUCED MOTION
-========================================================= */
+===================================================== */
 
 @media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
 
     *,
     *::before,
     *::after {
-        animation-duration: 0.01ms !important;
+        animation-duration: .01ms !important;
         animation-iteration-count: 1 !important;
-        scroll-behavior: auto !important;
-        transition-duration: 0.01ms !important;
+        transition-duration: .01ms !important;
     }
 }
