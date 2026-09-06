@@ -1,879 +1,790 @@
+/* =========================================================
+   DAKSHU BIRTHDAY WEBSITE
+   COMPLETE INTERACTIVE SCRIPT
+========================================================= */
+
 document.addEventListener("DOMContentLoaded", () => {
 
-    /* =========================================
-       SCREEN ELEMENTS
-    ========================================== */
+  /* =======================================================
+     SCREEN ELEMENTS
+  ======================================================= */
 
-    const introScreen = document.getElementById("intro-screen");
-    const birthdayScreen = document.getElementById("birthday-screen");
-    const questionScreen = document.getElementById("question-screen");
-    const yesScreen = document.getElementById("yes-screen");
-    const mainWebsite = document.getElementById("main-website");
+  const introScreen = document.getElementById("intro-screen");
+  const birthdayScreen = document.getElementById("birthday-screen");
+  const questionScreen = document.getElementById("question-screen");
+  const yesScreen = document.getElementById("yes-screen");
+  const mainSite = document.getElementById("main-site");
 
-    const openSurprise = document.getElementById("open-surprise");
-    const yesButton = document.getElementById("yes-button");
-    const noButton = document.getElementById("no-button");
-
-    // IMPORTANT:
-    // Current index.html uses "continue-to-site"
-    const continueAfterYes =
-        document.getElementById("continue-to-site");
-
-    const partyContainer =
-        document.getElementById("party-container");
-
-    const yesPartyContainer =
-        document.getElementById("yes-party-container");
+  const openSurprise = document.getElementById("open-surprise");
+  const birthdayContinue = document.getElementById("birthday-continue");
+  const yesButton = document.getElementById("yes-button");
+  const noButton = document.getElementById("no-button");
+  const continueToSite = document.getElementById("continue-to-site");
 
 
-    /* =========================================
-       SCREEN SWITCHING
-    ========================================== */
+  /* =======================================================
+     SCREEN SWITCHING
+  ======================================================= */
 
-    function showScreen(screen) {
+  function showScreen(screen) {
+    const screens = [
+      introScreen,
+      birthdayScreen,
+      questionScreen,
+      yesScreen
+    ];
 
-        document.querySelectorAll(".screen").forEach((item) => {
-            item.classList.remove("active");
-        });
+    screens.forEach((item) => {
+      if (item) {
+        item.classList.remove("active");
+      }
+    });
 
-        if (screen) {
-            screen.classList.add("active");
-        }
+    if (screen) {
+      screen.classList.add("active");
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
     }
+  }
 
 
-    /* =========================================
-       INTRO → BIRTHDAY
-    ========================================== */
+  /* =======================================================
+     INTRO → BIRTHDAY
+  ======================================================= */
 
-    if (openSurprise) {
+  if (openSurprise) {
+    openSurprise.addEventListener("click", () => {
 
-        openSurprise.addEventListener("click", () => {
+      showScreen(birthdayScreen);
 
-            showScreen(birthdayScreen);
+      setTimeout(() => {
+        createBirthdayParty();
+      }, 150);
 
-            createPartyEffects(partyContainer);
+    });
+  }
 
-            setTimeout(() => {
 
-                showScreen(questionScreen);
+  /* =======================================================
+     BIRTHDAY → FOREVER QUESTION
+  ======================================================= */
 
-                positionNoButton();
+  if (birthdayContinue) {
+    birthdayContinue.addEventListener("click", () => {
+      showScreen(questionScreen);
+    });
+  }
 
-            }, 6500);
 
-        });
+  /* =======================================================
+     NO BUTTON ESCAPE
+  ======================================================= */
 
-    }
+  if (noButton) {
 
+    function moveNoButton() {
 
-    /* =========================================
-       PARTY EFFECTS
-    ========================================== */
+      const padding = 25;
 
-    function createPartyEffects(container) {
-
-        if (!container) return;
-
-        container.innerHTML = "";
-
-        createConfetti(container);
-        createBalloons(container);
-        createSparkles(container);
-        createFireworks(container);
-    }
-
-
-    /* =========================================
-       CONFETTI
-    ========================================== */
-
-    function createConfetti(container) {
-
-        const amount =
-            window.innerWidth < 600 ? 80 : 140;
-
-        for (let i = 0; i < amount; i++) {
-
-            const piece =
-                document.createElement("div");
-
-            piece.className = "party-piece";
-
-            piece.style.left =
-                Math.random() * 100 + "%";
-
-            piece.style.top =
-                (-20 - Math.random() * 30) + "%";
-
-            piece.style.animationDelay =
-                Math.random() * 2.5 + "s";
-
-            piece.style.animationDuration =
-                (2.5 + Math.random() * 2.5) + "s";
-
-            piece.style.transform =
-                `rotate(${Math.random() * 360}deg)`;
-
-            container.appendChild(piece);
-        }
-    }
-
-
-    /* =========================================
-       BALLOONS
-    ========================================== */
-
-    function createBalloons(container) {
-
-        const amount =
-            window.innerWidth < 600 ? 10 : 18;
-
-        for (let i = 0; i < amount; i++) {
-
-            const balloon =
-                document.createElement("div");
-
-            balloon.className =
-                "party-balloon";
-
-            balloon.style.left =
-                Math.random() * 100 + "%";
-
-            balloon.style.animationDelay =
-                Math.random() * 4 + "s";
-
-            balloon.style.animationDuration =
-                (5 + Math.random() * 4) + "s";
-
-            balloon.style.transform =
-                `scale(${0.7 + Math.random() * 0.7})`;
-
-            container.appendChild(balloon);
-        }
-    }
-
-
-    /* =========================================
-       SPARKLES
-    ========================================== */
-
-    function createSparkles(container) {
-
-        const amount =
-            window.innerWidth < 600 ? 35 : 60;
-
-        for (let i = 0; i < amount; i++) {
-
-            const spark =
-                document.createElement("div");
-
-            spark.className =
-                "party-spark";
-
-            spark.style.left =
-                Math.random() * 100 + "%";
-
-            spark.style.top =
-                Math.random() * 100 + "%";
-
-            spark.style.animationDelay =
-                Math.random() * 2.5 + "s";
-
-            container.appendChild(spark);
-        }
-    }
-
-
-    /* =========================================
-       FIREWORKS
-    ========================================== */
-
-    function createFireworks(container) {
-
-        const fireworksCount =
-            window.innerWidth < 600 ? 3 : 5;
-
-        for (let i = 0; i < fireworksCount; i++) {
-
-            setTimeout(() => {
-
-                const centerX =
-                    15 + Math.random() * 70;
-
-                const centerY =
-                    20 + Math.random() * 45;
-
-                for (let j = 0; j < 18; j++) {
-
-                    const spark =
-                        document.createElement("div");
-
-                    spark.className =
-                        "party-spark";
-
-                    spark.style.left =
-                        centerX + "%";
-
-                    spark.style.top =
-                        centerY + "%";
-
-                    const angle =
-                        (Math.PI * 2 * j) / 18;
-
-                    const distance =
-                        40 + Math.random() * 90;
-
-                    spark.style.setProperty(
-                        "--spark-x",
-                        Math.cos(angle) * distance + "px"
-                    );
-
-                    spark.style.setProperty(
-                        "--spark-y",
-                        Math.sin(angle) * distance + "px"
-                    );
-
-                    container.appendChild(spark);
-
-                    setTimeout(() => {
-                        spark.remove();
-                    }, 1600);
-                }
-
-            }, i * 1000);
-
-        }
-    }
-
-
-    /* =========================================
-       NO BUTTON ESCAPE
-    ========================================== */
-
-    function positionNoButton() {
-
-        if (!noButton) return;
-
-        const padding = 20;
-
-        const maxX =
-            Math.max(
-                padding,
-                window.innerWidth -
-                noButton.offsetWidth -
-                padding
-            );
-
-        const maxY =
-            Math.max(
-                padding,
-                window.innerHeight -
-                noButton.offsetHeight -
-                padding
-            );
-
-        const x =
-            padding +
-            Math.random() * Math.max(0, maxX - padding);
-
-        const y =
-            padding +
-            Math.random() * Math.max(0, maxY - padding);
-
-        noButton.style.left =
-            x + "px";
-
-        noButton.style.top =
-            y + "px";
-    }
-
-
-    function escapeNoButton() {
-
-        if (!noButton) return;
-
-        positionNoButton();
-
-        noButton.style.transform =
-            `rotate(${(Math.random() * 20) - 10}deg)
-             scale(${0.9 + Math.random() * 0.2})`;
-    }
-
-
-    if (noButton) {
-
-        noButton.addEventListener(
-            "mouseenter",
-            escapeNoButton
+      const maxX =
+        Math.max(
+          padding,
+          window.innerWidth - noButton.offsetWidth - padding
         );
 
-        noButton.addEventListener(
-            "mouseover",
-            escapeNoButton
+      const maxY =
+        Math.max(
+          padding,
+          window.innerHeight - noButton.offsetHeight - padding
         );
 
-        noButton.addEventListener(
-            "touchstart",
-            (event) => {
+      const x =
+        Math.floor(
+          Math.random() * (maxX - padding + 1)
+        ) + padding;
 
-                event.preventDefault();
+      const y =
+        Math.floor(
+          Math.random() * (maxY - padding + 1)
+        ) + padding;
 
-                escapeNoButton();
+      noButton.style.position = "fixed";
+      noButton.style.left = `${x}px`;
+      noButton.style.top = `${y}px`;
+      noButton.style.zIndex = "9999";
 
-            },
-            { passive: false }
-        );
-
-        noButton.addEventListener(
-            "click",
-            (event) => {
-
-                event.preventDefault();
-
-                escapeNoButton();
-
-            }
-        );
+      noButton.style.transition = "all 0.15s ease";
 
     }
 
 
-    /* =========================================
-       MOUSE DETECTION FOR NO BUTTON
-    ========================================== */
+    noButton.addEventListener("mouseenter", moveNoButton);
 
-    document.addEventListener(
-        "mousemove",
-        (event) => {
+    noButton.addEventListener("touchstart", (event) => {
+      event.preventDefault();
+      moveNoButton();
+    }, { passive: false });
 
-            if (
-                !questionScreen ||
-                !questionScreen.classList.contains("active") ||
-                !noButton
-            ) {
-                return;
-            }
+    noButton.addEventListener("pointerenter", moveNoButton);
 
-            const rect =
-                noButton.getBoundingClientRect();
+    noButton.addEventListener("click", (event) => {
+      event.preventDefault();
+      moveNoButton();
+    });
 
-            const centerX =
-                rect.left + rect.width / 2;
+  }
 
-            const centerY =
-                rect.top + rect.height / 2;
 
-            const distance =
-                Math.hypot(
-                    event.clientX - centerX,
-                    event.clientY - centerY
-                );
+  /* =======================================================
+     YES BUTTON
+  ======================================================= */
 
-            if (distance < 140) {
-                escapeNoButton();
-            }
+  if (yesButton) {
 
-        }
-    );
+    yesButton.addEventListener("click", () => {
 
+      createLoveExplosion();
 
-    /* =========================================
-       WINDOW RESIZE
-    ========================================== */
-
-    window.addEventListener(
-        "resize",
-        () => {
-
-            if (
-                questionScreen &&
-                questionScreen.classList.contains("active")
-            ) {
-                positionNoButton();
-            }
-
-        }
-    );
-
-
-    /* =========================================
-       YES BUTTON
-    ========================================== */
-
-    if (yesButton) {
-
-        yesButton.addEventListener(
-            "click",
-            () => {
-
-                showScreen(yesScreen);
-
-                createPartyEffects(
-                    yesPartyContainer
-                );
-
-            }
-        );
-
-    }
-
-
-    /* =========================================
-       YES → MAIN WEBSITE
-       FIXED: continue-to-site
-    ========================================== */
-
-    if (continueAfterYes) {
-
-        continueAfterYes.addEventListener(
-            "click",
-            () => {
-
-                // Hide all intro/question screens
-                showScreen(null);
-
-                // Show complete main website
-                if (mainWebsite) {
-
-                    mainWebsite.classList.remove(
-                        "hidden"
-                    );
-
-                    // Make sure website is visible
-                    mainWebsite.style.display =
-                        "block";
-
-                    window.scrollTo({
-                        top: 0,
-                        behavior: "smooth"
-                    });
-
-                }
-
-                // Start website animations
-                startMainWebsiteEffects();
-
-            }
-        );
-
-    }
-
-
-    /* =========================================
-       LETTER
-    ========================================== */
-
-    const openLetter =
-        document.getElementById("open-letter");
-
-    const letterContent =
-        document.getElementById("letter-content");
-
-    if (openLetter && letterContent) {
-
-        openLetter.addEventListener(
-            "click",
-            () => {
-
-                letterContent.classList.remove(
-                    "hidden"
-                );
-
-                openLetter.textContent =
-                    "My Letter ❤️";
-
-                setTimeout(() => {
-
-                    letterContent.scrollIntoView({
-                        behavior: "smooth",
-                        block: "center"
-                    });
-
-                }, 150);
-
-            }
-        );
-
-    }
-
-
-    /* =========================================
-       GIFT BOXES
-    ========================================== */
-
-    const giftBoxes =
-        document.querySelectorAll(".gift-box");
-
-    const giftMessage =
-        document.getElementById("gift-message");
-
-    giftBoxes.forEach((box) => {
-
-        box.addEventListener(
-            "click",
-            () => {
-
-                const message =
-                    box.dataset.message ||
-                    "A little surprise just for you. ❤️";
-
-                if (giftMessage) {
-
-                    giftMessage.textContent =
-                        message;
-
-                    giftMessage.classList.remove(
-                        "hidden"
-                    );
-
-                    giftBoxes.forEach((item) => {
-
-                        item.style.pointerEvents =
-                            "none";
-
-                    });
-
-                    setTimeout(() => {
-
-                        giftBoxes.forEach((item) => {
-
-                            item.style.pointerEvents =
-                                "auto";
-
-                        });
-
-                    }, 500);
-
-                }
-
-                createSmallCelebration(box);
-
-            }
-        );
+      setTimeout(() => {
+        showScreen(yesScreen);
+      }, 650);
 
     });
 
+  }
 
-    /* =========================================
-       SMALL GIFT CELEBRATION
-    ========================================== */
 
-    function createSmallCelebration(target) {
+  /* =======================================================
+     YES SCREEN → MAIN WEBSITE
+  ======================================================= */
 
-        const rect =
-            target.getBoundingClientRect();
+  if (continueToSite) {
 
-        const container =
-            document.createElement("div");
+    continueToSite.addEventListener("click", () => {
 
-        container.style.position =
-            "fixed";
+      if (mainSite) {
 
-        container.style.inset =
-            "0";
+        mainSite.classList.remove("hidden");
 
-        container.style.pointerEvents =
-            "none";
+        mainSite.style.display = "block";
 
-        container.style.zIndex =
-            "9999";
+        document.body.style.overflowX = "hidden";
 
-        document.body.appendChild(container);
+        setTimeout(() => {
+          mainSite.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+        }, 100);
 
-        for (let i = 0; i < 25; i++) {
+      }
 
-            const heart =
-                document.createElement("div");
+      createLoveExplosion();
 
-            heart.textContent =
-                Math.random() > 0.5
-                    ? "❤️"
-                    : "✨";
+      setTimeout(() => {
+        revealElements();
+      }, 300);
 
-            heart.style.position =
-                "fixed";
+    });
 
-            heart.style.left =
-                rect.left +
-                rect.width / 2 +
-                "px";
+  }
 
-            heart.style.top =
-                rect.top +
-                rect.height / 2 +
-                "px";
 
-            heart.style.fontSize =
-                (12 + Math.random() * 18) +
-                "px";
+  /* =======================================================
+     BIRTHDAY PARTY EFFECTS
+  ======================================================= */
 
-            heart.style.transition =
-                "all 1s ease";
+  function createBirthdayParty() {
 
-            container.appendChild(heart);
+    createConfetti(100);
+    createBalloons(22);
+    createSparkles(35);
+    createFireworks(12);
 
-            requestAnimationFrame(() => {
+  }
 
-                heart.style.transform =
-                    `translate(
-                        ${(Math.random() - 0.5) * 250}px,
-                        ${-80 - Math.random() * 220}px
-                    )
-                    rotate(${Math.random() * 360}deg)`;
 
-                heart.style.opacity =
-                    "0";
+  /* =======================================================
+     CONFETTI
+  ======================================================= */
 
-            });
+  function createConfetti(amount = 80) {
 
+    for (let i = 0; i < amount; i++) {
+
+      const piece = document.createElement("div");
+
+      piece.className = "confetti";
+
+      piece.textContent = Math.random() > 0.5 ? "♥" : "✦";
+
+      piece.style.left =
+        Math.random() * 100 + "vw";
+
+      piece.style.fontSize =
+        Math.random() * 10 + 7 + "px";
+
+      piece.style.animationDuration =
+        Math.random() * 3 + 3 + "s";
+
+      piece.style.animationDelay =
+        Math.random() * 2 + "s";
+
+      document.body.appendChild(piece);
+
+      setTimeout(() => {
+        piece.remove();
+      }, 8000);
+
+    }
+
+  }
+
+
+  /* =======================================================
+     BALLOONS
+  ======================================================= */
+
+  function createBalloons(amount = 20) {
+
+    const emojis = [
+      "🎈",
+      "💗",
+      "💕",
+      "💖",
+      "❤️",
+      "🎀"
+    ];
+
+    for (let i = 0; i < amount; i++) {
+
+      const balloon = document.createElement("div");
+
+      balloon.className = "balloon";
+
+      balloon.textContent =
+        emojis[Math.floor(Math.random() * emojis.length)];
+
+      balloon.style.left =
+        Math.random() * 100 + "vw";
+
+      balloon.style.fontSize =
+        Math.random() * 25 + 28 + "px";
+
+      balloon.style.animationDuration =
+        Math.random() * 5 + 6 + "s";
+
+      balloon.style.animationDelay =
+        Math.random() * 3 + "s";
+
+      document.body.appendChild(balloon);
+
+      setTimeout(() => {
+        balloon.remove();
+      }, 12000);
+
+    }
+
+  }
+
+
+  /* =======================================================
+     SPARKLES
+  ======================================================= */
+
+  function createSparkles(amount = 30) {
+
+    const symbols = [
+      "✨",
+      "💫",
+      "⭐",
+      "✦",
+      "♡"
+    ];
+
+    for (let i = 0; i < amount; i++) {
+
+      const sparkle = document.createElement("div");
+
+      sparkle.className = "sparkle";
+
+      sparkle.textContent =
+        symbols[Math.floor(Math.random() * symbols.length)];
+
+      sparkle.style.left =
+        Math.random() * 100 + "vw";
+
+      sparkle.style.top =
+        Math.random() * 100 + "vh";
+
+      sparkle.style.animationDelay =
+        Math.random() * 1.5 + "s";
+
+      document.body.appendChild(sparkle);
+
+      setTimeout(() => {
+        sparkle.remove();
+      }, 2500);
+
+    }
+
+  }
+
+
+  /* =======================================================
+     FIREWORKS
+  ======================================================= */
+
+  function createFireworks(amount = 10) {
+
+    for (let i = 0; i < amount; i++) {
+
+      setTimeout(() => {
+
+        const firework = document.createElement("div");
+
+        firework.className = "firework";
+
+        firework.textContent =
+          Math.random() > 0.5
+            ? "🎆"
+            : "✨";
+
+        firework.style.left =
+          Math.random() * 90 + 5 + "vw";
+
+        firework.style.top =
+          Math.random() * 55 + 5 + "vh";
+
+        document.body.appendChild(firework);
+
+        setTimeout(() => {
+          firework.remove();
+        }, 1500);
+
+      }, i * 180);
+
+    }
+
+  }
+
+
+  /* =======================================================
+     LOVE EXPLOSION
+  ======================================================= */
+
+  function createLoveExplosion() {
+
+    const hearts = [
+      "❤️",
+      "💗",
+      "💖",
+      "💕",
+      "💓",
+      "💞",
+      "💘"
+    ];
+
+    for (let i = 0; i < 35; i++) {
+
+      const heart = document.createElement("div");
+
+      heart.textContent =
+        hearts[Math.floor(Math.random() * hearts.length)];
+
+      heart.style.position = "fixed";
+      heart.style.left = "50%";
+      heart.style.top = "50%";
+      heart.style.zIndex = "10000";
+      heart.style.pointerEvents = "none";
+      heart.style.fontSize =
+        Math.random() * 20 + 15 + "px";
+
+      const angle =
+        Math.random() * Math.PI * 2;
+
+      const distance =
+        Math.random() * 280 + 80;
+
+      const x =
+        Math.cos(angle) * distance;
+
+      const y =
+        Math.sin(angle) * distance;
+
+      heart.animate(
+        [
+          {
+            transform: "translate(-50%, -50%) scale(0)",
+            opacity: 1
+          },
+          {
+            transform:
+              `translate(calc(-50% + ${x}px), calc(-50% + ${y}px)) scale(1.3)`,
+            opacity: 0
+          }
+        ],
+        {
+          duration: 1000 + Math.random() * 600,
+          easing: "cubic-bezier(.2,.8,.3,1)"
         }
+      );
+
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 1800);
+
+    }
+
+  }
+
+
+  /* =======================================================
+     LETTER
+  ======================================================= */
+
+  const openLetter = document.getElementById("open-letter");
+  const letterContent = document.getElementById("letter-content");
+
+  if (openLetter && letterContent) {
+
+    openLetter.addEventListener("click", () => {
+
+      const isHidden =
+        letterContent.classList.contains("hidden");
+
+      if (isHidden) {
+
+        letterContent.classList.remove("hidden");
+
+        openLetter.classList.add("letter-opened");
+
+        openLetter.querySelector("span").textContent =
+          "For you, Bubu... ❤️";
 
         setTimeout(() => {
 
-            container.remove();
+          letterContent.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
 
-        }, 1200);
+        }, 150);
 
+        createSparkles(20);
+
+      }
+
+    });
+
+  }
+
+
+  /* =======================================================
+     GIFT POPUP
+  ======================================================= */
+
+  const giftPopup =
+    document.getElementById("gift-popup");
+
+  const giftMessage =
+    document.getElementById("gift-message");
+
+  const closeGift =
+    document.getElementById("close-gift");
+
+  const giftBoxes =
+    document.querySelectorAll(".gift-box");
+
+
+  const giftMessages = [
+    "You are my favourite person in this entire world. ❤️",
+
+    "If I could choose again, I would still choose you. Every single time. 💗",
+
+    "Your childish side is one of the things I secretly love the most about you. 🥹❤️",
+
+    "My favourite place is simply wherever you are. 🌙❤️",
+
+    "One day we will look back at all these memories and smile together. ♾️❤️",
+
+    "No matter how many fights we have, I still want to find my way back to you. 🫶",
+
+    "You made ordinary days feel like memories worth keeping forever. ✨",
+
+    "Happy Birthday, my Dakshu. You are loved more than you know. 🎂❤️"
+  ];
+
+
+  giftBoxes.forEach((box, index) => {
+
+    box.addEventListener("click", () => {
+
+      if (!giftPopup || !giftMessage) {
+        return;
+      }
+
+      giftMessage.textContent =
+        giftMessages[index % giftMessages.length];
+
+      giftPopup.classList.remove("hidden");
+
+      giftPopup.style.display = "flex";
+
+      createSparkles(15);
+
+    });
+
+  });
+
+
+  function closeGiftPopup() {
+
+    if (!giftPopup) {
+      return;
     }
 
+    giftPopup.classList.add("hidden");
 
-    /* =========================================
-       CLICK HEART EFFECT
-    ========================================== */
+    giftPopup.style.display = "none";
 
-    document.addEventListener(
-        "click",
-        (event) => {
+  }
 
-            if (
-                event.target.closest("button") ||
-                event.target.closest("a")
-            ) {
-                return;
-            }
 
-            createClickHeart(
-                event.clientX,
-                event.clientY
-            );
-
-        }
+  if (closeGift) {
+    closeGift.addEventListener(
+      "click",
+      closeGiftPopup
     );
+  }
 
 
-    function createClickHeart(x, y) {
+  if (giftPopup) {
 
-        const heart =
-            document.createElement("div");
+    giftPopup.addEventListener("click", (event) => {
 
-        heart.textContent =
-            Math.random() > 0.5
-                ? "♡"
-                : "♥";
+      if (event.target === giftPopup) {
+        closeGiftPopup();
+      }
 
-        heart.style.position =
-            "fixed";
+    });
 
-        heart.style.left =
-            x + "px";
+  }
 
-        heart.style.top =
-            y + "px";
 
-        heart.style.zIndex =
-            "9999";
+  /* =======================================================
+     ESC KEY FOR POPUP
+  ======================================================= */
 
-        heart.style.pointerEvents =
-            "none";
+  document.addEventListener("keydown", (event) => {
 
-        heart.style.fontSize =
-            (15 + Math.random() * 15) +
-            "px";
-
-        heart.style.color =
-            "#ff86ae";
-
-        heart.style.transition =
-            "all 1s ease";
-
-        document.body.appendChild(heart);
-
-        requestAnimationFrame(() => {
-
-            heart.style.transform =
-                `translate(
-                    ${(Math.random() - 0.5) * 80}px,
-                    -90px
-                )
-                scale(1.4)`;
-
-            heart.style.opacity =
-                "0";
-
-        });
-
-        setTimeout(() => {
-
-            heart.remove();
-
-        }, 1000);
-
+    if (event.key === "Escape") {
+      closeGiftPopup();
     }
 
-
-    /* =========================================
-       MAIN WEBSITE SCROLL REVEAL
-    ========================================== */
-
-    function startMainWebsiteEffects() {
-
-        const revealItems =
-            document.querySelectorAll(
-                ".memory-content, .section-inner, .timeline-item, .reason-card, .gift-box"
-            );
-
-        revealItems.forEach((item) => {
-
-            item.style.opacity =
-                "0";
-
-            item.style.transform =
-                "translateY(35px)";
-
-            item.style.transition =
-                "opacity 0.9s ease, transform 0.9s ease";
-
-        });
+  });
 
 
-        if ("IntersectionObserver" in window) {
+  /* =======================================================
+     SCROLL REVEAL
+  ======================================================= */
 
-            const observer =
-                new IntersectionObserver(
-                    (entries) => {
+  function revealElements() {
 
-                        entries.forEach((entry) => {
+    const elements =
+      document.querySelectorAll(".reveal");
 
-                            if (
-                                entry.isIntersecting
-                            ) {
-
-                                entry.target.style.opacity =
-                                    "1";
-
-                                entry.target.style.transform =
-                                    "translateY(0)";
-
-                                observer.unobserve(
-                                    entry.target
-                                );
-
-                            }
-
-                        });
-
-                    },
-                    {
-                        threshold: 0.12
-                    }
-                );
-
-
-            revealItems.forEach((item) => {
-
-                observer.observe(item);
-
-            });
-
-        } else {
-
-            revealItems.forEach((item) => {
-
-                item.style.opacity =
-                    "1";
-
-                item.style.transform =
-                    "translateY(0)";
-
-            });
-
-        }
-
+    if (!elements.length) {
+      return;
     }
 
+    const observer =
+      new IntersectionObserver(
+        (entries) => {
 
-    /* =========================================
-       KEYBOARD ACCESS
-    ========================================== */
+          entries.forEach((entry) => {
 
-    document.addEventListener(
-        "keydown",
-        (event) => {
+            if (entry.isIntersecting) {
 
-            if (
-                event.key === "Enter" &&
-                questionScreen &&
-                questionScreen.classList.contains("active")
-            ) {
+              entry.target.classList.add("visible");
 
-                if (yesButton) {
-                    yesButton.click();
-                }
+              observer.unobserve(entry.target);
 
             }
 
+          });
+
+        },
+        {
+          threshold: 0.12
         }
-    );
+      );
+
+    elements.forEach((element) => {
+      observer.observe(element);
+    });
+
+  }
 
 
-    /* =========================================
-       PREVENT IMAGE DRAG
-    ========================================== */
-
-    document.querySelectorAll("img").forEach(
-        (img) => {
-
-            img.addEventListener(
-                "dragstart",
-                (event) => {
-
-                    event.preventDefault();
-
-                }
-            );
-
-        }
-    );
+  revealElements();
 
 
-    /* =========================================
-       INITIAL STATE
-    ========================================== */
+  /* =======================================================
+     RANDOM FLOATING HEARTS
+  ======================================================= */
 
-    if (mainWebsite) {
+  function createFloatingHeart() {
 
-        // Main website should stay hidden
-        // until Continue is clicked.
-        if (
-            !mainWebsite.classList.contains("hidden")
-        ) {
-
-            mainWebsite.classList.add(
-                "hidden"
-            );
-
-        }
-
+    if (!mainSite) {
+      return;
     }
 
+    if (mainSite.classList.contains("hidden")) {
+      return;
+    }
 
-    /* =========================================
-       CONSOLE MESSAGE
-    ========================================== */
+    const heart = document.createElement("div");
 
-    console.log(
-        "❤️ Dakshu's Birthday Website — Made with love by Mohith ❤️"
+    heart.textContent =
+      Math.random() > 0.5
+        ? "♡"
+        : "♥";
+
+    heart.style.position = "fixed";
+    heart.style.left =
+      Math.random() * 100 + "vw";
+
+    heart.style.bottom = "-30px";
+
+    heart.style.fontSize =
+      Math.random() * 18 + 12 + "px";
+
+    heart.style.color = "#ff8fab";
+
+    heart.style.opacity = "0.45";
+
+    heart.style.pointerEvents = "none";
+
+    heart.style.zIndex = "1";
+
+    const duration =
+      Math.random() * 5 + 7;
+
+    heart.animate(
+      [
+        {
+          transform: "translateY(0) scale(.7)",
+          opacity: 0
+        },
+        {
+          transform: "translateY(-30vh) scale(1)",
+          opacity: 0.45
+        },
+        {
+          transform: "translateY(-110vh) scale(.5)",
+          opacity: 0
+        }
+      ],
+      {
+        duration: duration * 1000,
+        easing: "linear"
+      }
     );
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+      heart.remove();
+    }, duration * 1000);
+
+  }
+
+
+  setInterval(createFloatingHeart, 2200);
+
+
+  /* =======================================================
+     CLICK ANYWHERE → SMALL SPARKLE
+  ======================================================= */
+
+  document.addEventListener("click", (event) => {
+
+    if (
+      event.target.closest("button") ||
+      event.target.closest("a")
+    ) {
+      return;
+    }
+
+    const sparkle = document.createElement("div");
+
+    sparkle.textContent = "✨";
+
+    sparkle.style.position = "fixed";
+    sparkle.style.left = event.clientX + "px";
+    sparkle.style.top = event.clientY + "px";
+    sparkle.style.pointerEvents = "none";
+    sparkle.style.zIndex = "9999";
+    sparkle.style.fontSize = "16px";
+
+    sparkle.animate(
+      [
+        {
+          transform: "translate(-50%, -50%) scale(.3)",
+          opacity: 1
+        },
+        {
+          transform:
+            "translate(-50%, -80px) scale(1.4)",
+          opacity: 0
+        }
+      ],
+      {
+        duration: 700,
+        easing: "ease-out"
+      }
+    );
+
+    document.body.appendChild(sparkle);
+
+    setTimeout(() => {
+      sparkle.remove();
+    }, 800);
+
+  });
+
+
+  /* =======================================================
+     INITIAL PAGE STATE
+  ======================================================= */
+
+  if (mainSite) {
+    mainSite.classList.add("hidden");
+  }
+
+  if (giftPopup) {
+    giftPopup.classList.add("hidden");
+    giftPopup.style.display = "none";
+  }
+
+
+  /* =======================================================
+     CONSOLE MESSAGE
+  ======================================================= */
+
+  console.log(
+    "%cFor Dakshu ❤️",
+    "font-size:24px;font-weight:bold;"
+  );
+
+  console.log(
+    "%cMade with love by Mohith ✨",
+    "font-size:14px;"
+  );
 
 });
