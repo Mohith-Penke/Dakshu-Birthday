@@ -1,19 +1,13 @@
-/* =========================================
-   BIRTHDAY WEBSITE - MAIN SCRIPT
-   Dakshayini / Dakshu ❤️
-========================================= */
-
 document.addEventListener("DOMContentLoaded", () => {
 
     /* =========================================
-       ELEMENTS
-    ========================================= */
+       SCREEN ELEMENTS
+    ========================================== */
 
     const introScreen = document.getElementById("intro-screen");
     const birthdayScreen = document.getElementById("birthday-screen");
     const questionScreen = document.getElementById("question-screen");
     const yesScreen = document.getElementById("yes-screen");
-
     const mainWebsite = document.getElementById("main-website");
 
     const openSurprise = document.getElementById("open-surprise");
@@ -21,94 +15,68 @@ document.addEventListener("DOMContentLoaded", () => {
     const noButton = document.getElementById("no-button");
     const continueAfterYes = document.getElementById("continue-after-yes");
 
-    const partyContainer =
-        document.getElementById("party-container");
-
-    const yesPartyContainer =
-        document.getElementById("yes-party-container");
+    const partyContainer = document.getElementById("party-container");
+    const yesPartyContainer = document.getElementById("yes-party-container");
 
 
     /* =========================================
        SCREEN SWITCHING
-    ========================================= */
+    ========================================== */
 
     function showScreen(screen) {
 
-        document.querySelectorAll(".screen").forEach(item => {
+        document.querySelectorAll(".screen").forEach((item) => {
             item.classList.remove("active");
         });
 
-        setTimeout(() => {
+        if (screen) {
             screen.classList.add("active");
-        }, 80);
+        }
     }
 
 
     /* =========================================
-       OPEN SURPRISE
-    ========================================= */
+       INTRO → BIRTHDAY
+    ========================================== */
 
-    openSurprise.addEventListener("click", () => {
+    if (openSurprise) {
 
-        showScreen(birthdayScreen);
+        openSurprise.addEventListener("click", () => {
 
-        startBirthdayParty();
+            showScreen(birthdayScreen);
 
-        /*
-            Birthday reveal stays for a few seconds.
-            Then automatically moves to the question.
-        */
+            createPartyEffects(partyContainer);
 
-        setTimeout(() => {
+            setTimeout(() => {
+                showScreen(questionScreen);
+                positionNoButton();
+            }, 6500);
 
-            showScreen(questionScreen);
-
-            positionNoButton();
-
-        }, 6500);
-
-    });
-
-
-    /* =========================================
-       BIRTHDAY PARTY EFFECTS
-    ========================================= */
-
-    function startBirthdayParty() {
-
-        createConfetti(partyContainer, 180);
-
-        createBalloons(partyContainer, 22);
-
-        createSparkles(partyContainer, 90);
-
-        createFireworkBursts(partyContainer);
+        });
 
     }
 
 
     /* =========================================
-       YES PARTY EFFECTS
-    ========================================= */
+       PARTY EFFECTS
+    ========================================== */
 
-    function startYesParty() {
+    function createPartyEffects(container) {
 
-        createConfetti(yesPartyContainer, 220);
+        if (!container) return;
 
-        createBalloons(yesPartyContainer, 25);
+        container.innerHTML = "";
 
-        createSparkles(yesPartyContainer, 120);
-
-        createFireworkBursts(yesPartyContainer);
-
+        createConfetti(container);
+        createBalloons(container);
+        createSparkles(container);
+        createFireworks(container);
     }
 
 
-    /* =========================================
-       CONFETTI
-    ========================================= */
+    function createConfetti(container) {
 
-    function createConfetti(container, amount) {
+        const amount = window.innerWidth < 600 ? 80 : 140;
 
         for (let i = 0; i < amount; i++) {
 
@@ -116,38 +84,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
             piece.className = "party-piece";
 
-            piece.style.left =
-                Math.random() * 100 + "vw";
-
-            piece.style.animationDuration =
-                (2.5 + Math.random() * 4) + "s";
+            piece.style.left = Math.random() * 100 + "%";
+            piece.style.top = (-20 - Math.random() * 30) + "%";
 
             piece.style.animationDelay =
-                Math.random() * 1.5 + "s";
+                Math.random() * 2.5 + "s";
 
-            piece.style.background =
-                randomPartyColor();
+            piece.style.animationDuration =
+                (2.5 + Math.random() * 2.5) + "s";
 
-            piece.style.width =
-                (5 + Math.random() * 8) + "px";
-
-            piece.style.height =
-                (8 + Math.random() * 14) + "px";
+            piece.style.transform =
+                `rotate(${Math.random() * 360}deg)`;
 
             container.appendChild(piece);
-
-            setTimeout(() => {
-                piece.remove();
-            }, 8500);
         }
     }
 
 
-    /* =========================================
-       BALLOONS
-    ========================================= */
+    function createBalloons(container) {
 
-    function createBalloons(container, amount) {
+        const amount = window.innerWidth < 600 ? 10 : 18;
 
         for (let i = 0; i < amount; i++) {
 
@@ -156,70 +112,52 @@ document.addEventListener("DOMContentLoaded", () => {
             balloon.className = "party-balloon";
 
             balloon.style.left =
-                Math.random() * 100 + "vw";
-
-            balloon.style.background =
-                randomPartyColor();
-
-            balloon.style.animationDuration =
-                (5 + Math.random() * 5) + "s";
+                Math.random() * 100 + "%";
 
             balloon.style.animationDelay =
-                Math.random() * 2 + "s";
+                Math.random() * 4 + "s";
+
+            balloon.style.animationDuration =
+                (5 + Math.random() * 4) + "s";
+
+            balloon.style.transform =
+                `scale(${0.7 + Math.random() * 0.7})`;
 
             container.appendChild(balloon);
-
-            setTimeout(() => {
-                balloon.remove();
-            }, 12000);
         }
     }
 
 
-    /* =========================================
-       SPARKLES
-    ========================================= */
+    function createSparkles(container) {
 
-    function createSparkles(container, amount) {
+        const amount = window.innerWidth < 600 ? 35 : 60;
 
         for (let i = 0; i < amount; i++) {
 
-            setTimeout(() => {
+            const spark = document.createElement("div");
 
-                const spark =
-                    document.createElement("div");
+            spark.className = "party-spark";
 
-                spark.className = "party-spark";
+            spark.style.left =
+                Math.random() * 100 + "%";
 
-                spark.style.left =
-                    Math.random() * 100 + "vw";
+            spark.style.top =
+                Math.random() * 100 + "%";
 
-                spark.style.top =
-                    Math.random() * 100 + "vh";
+            spark.style.animationDelay =
+                Math.random() * 2.5 + "s";
 
-                spark.style.animationDelay =
-                    Math.random() * 0.4 + "s";
-
-                container.appendChild(spark);
-
-                setTimeout(() => {
-                    spark.remove();
-                }, 2000);
-
-            }, i * 35);
+            container.appendChild(spark);
         }
     }
 
 
-    /* =========================================
-       FIREWORK BURSTS
-    ========================================= */
+    function createFireworks(container) {
 
-    function createFireworkBursts(container) {
+        const fireworksCount =
+            window.innerWidth < 600 ? 3 : 5;
 
-        const burstCount = 8;
-
-        for (let i = 0; i < burstCount; i++) {
+        for (let i = 0; i < fireworksCount; i++) {
 
             setTimeout(() => {
 
@@ -227,7 +165,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     15 + Math.random() * 70;
 
                 const centerY =
-                    15 + Math.random() * 55;
+                    20 + Math.random() * 45;
 
                 for (let j = 0; j < 18; j++) {
 
@@ -237,274 +175,355 @@ document.addEventListener("DOMContentLoaded", () => {
                     spark.className = "party-spark";
 
                     spark.style.left =
-                        centerX + "vw";
+                        centerX + "%";
 
                     spark.style.top =
-                        centerY + "vh";
+                        centerY + "%";
 
                     const angle =
                         (Math.PI * 2 * j) / 18;
 
                     const distance =
-                        35 + Math.random() * 80;
+                        40 + Math.random() * 90;
 
-                    spark.animate(
-                        [
-                            {
-                                transform:
-                                    "translate(0, 0) scale(1)",
-                                opacity: 1
-                            },
-                            {
-                                transform:
-                                    `translate(
-                                        ${Math.cos(angle) * distance}px,
-                                        ${Math.sin(angle) * distance}px
-                                    ) scale(0)`,
-                                opacity: 0
-                            }
-                        ],
-                        {
-                            duration:
-                                1000 + Math.random() * 700,
-                            easing: "ease-out",
-                            fill: "forwards"
-                        }
+                    spark.style.setProperty(
+                        "--spark-x",
+                        Math.cos(angle) * distance + "px"
+                    );
+
+                    spark.style.setProperty(
+                        "--spark-y",
+                        Math.sin(angle) * distance + "px"
                     );
 
                     container.appendChild(spark);
 
                     setTimeout(() => {
                         spark.remove();
-                    }, 2000);
+                    }, 1600);
                 }
 
-            }, i * 650);
+            }, i * 1000);
+
         }
     }
 
 
     /* =========================================
-       RANDOM PARTY COLORS
-    ========================================= */
-
-    function randomPartyColor() {
-
-        const colors = [
-            "#ff4fa3",
-            "#ff8ac5",
-            "#ffd166",
-            "#7dd3fc",
-            "#c084fc",
-            "#ffffff",
-            "#ff6b6b",
-            "#a7f3d0"
-        ];
-
-        return colors[
-            Math.floor(Math.random() * colors.length)
-        ];
-    }
-
-
-    /* =========================================
-       NO BUTTON
-       ESCAPING BEHAVIOUR
-    ========================================= */
+       NO BUTTON ESCAPE
+    ========================================== */
 
     function positionNoButton() {
 
+        if (!noButton) return;
+
         const padding = 20;
 
-        const buttonWidth =
-            noButton.offsetWidth || 120;
-
-        const buttonHeight =
-            noButton.offsetHeight || 55;
-
         const maxX =
-            window.innerWidth -
-            buttonWidth -
-            padding;
+            Math.max(
+                padding,
+                window.innerWidth -
+                noButton.offsetWidth -
+                padding
+            );
 
         const maxY =
-            window.innerHeight -
-            buttonHeight -
-            padding;
+            Math.max(
+                padding,
+                window.innerHeight -
+                noButton.offsetHeight -
+                padding
+            );
 
-        const randomX =
+        const x =
             padding +
-            Math.random() *
-            Math.max(maxX - padding, 1);
+            Math.random() * (maxX - padding);
 
-        const randomY =
+        const y =
             padding +
-            Math.random() *
-            Math.max(maxY - padding, 1);
+            Math.random() * (maxY - padding);
 
-        noButton.style.left =
-            randomX + "px";
-
-        noButton.style.top =
-            randomY + "px";
-
-        noButton.style.transform =
-            `rotate(${Math.random() * 16 - 8}deg)`;
+        noButton.style.left = x + "px";
+        noButton.style.top = y + "px";
     }
 
 
-    /* =========================================
-       DETECT CURSOR NEAR NO BUTTON
-    ========================================= */
+    function escapeNoButton() {
 
-    document.addEventListener("mousemove", (event) => {
-
-        if (!questionScreen.classList.contains("active")) {
-            return;
-        }
-
-        const rect =
-            noButton.getBoundingClientRect();
-
-        const buttonCenterX =
-            rect.left + rect.width / 2;
-
-        const buttonCenterY =
-            rect.top + rect.height / 2;
-
-        const distance =
-            Math.sqrt(
-                Math.pow(event.clientX - buttonCenterX, 2) +
-                Math.pow(event.clientY - buttonCenterY, 2)
-            );
-
-        /*
-            The closer the cursor gets,
-            the faster the button escapes.
-        */
-
-        if (distance < 130) {
-
-            positionNoButton();
-
-        }
-
-    });
-
-
-    /* =========================================
-       EXTRA NO BUTTON PROTECTION
-    ========================================= */
-
-    noButton.addEventListener("mouseenter", () => {
+        if (!noButton) return;
 
         positionNoButton();
 
-    });
+        noButton.style.transform =
+            `rotate(${(Math.random() * 20) - 10}deg) scale(${0.9 + Math.random() * 0.2})`;
+    }
 
 
-    noButton.addEventListener("mouseover", () => {
+    if (noButton) {
 
-        positionNoButton();
+        noButton.addEventListener("mouseenter", escapeNoButton);
 
-    });
+        noButton.addEventListener("mouseover", escapeNoButton);
 
-
-    noButton.addEventListener("click", (event) => {
-
-        event.preventDefault();
-
-        positionNoButton();
-
-    });
-
-
-    /* =========================================
-       MOBILE TOUCH
-    ========================================= */
-
-    noButton.addEventListener(
-        "touchstart",
-        (event) => {
+        noButton.addEventListener("touchstart", (event) => {
 
             event.preventDefault();
 
-            positionNoButton();
+            escapeNoButton();
 
-        },
-        {
-            passive: false
+        }, { passive: false });
+
+        noButton.addEventListener("click", (event) => {
+
+            event.preventDefault();
+
+            escapeNoButton();
+
+        });
+
+    }
+
+
+    document.addEventListener("mousemove", (event) => {
+
+        if (
+            !questionScreen ||
+            !questionScreen.classList.contains("active") ||
+            !noButton
+        ) {
+            return;
         }
-    );
+
+        const rect = noButton.getBoundingClientRect();
+
+        const centerX =
+            rect.left + rect.width / 2;
+
+        const centerY =
+            rect.top + rect.height / 2;
+
+        const distance =
+            Math.hypot(
+                event.clientX - centerX,
+                event.clientY - centerY
+            );
+
+        if (distance < 140) {
+            escapeNoButton();
+        }
+
+    });
+
+
+    window.addEventListener("resize", () => {
+
+        if (
+            questionScreen &&
+            questionScreen.classList.contains("active")
+        ) {
+            positionNoButton();
+        }
+
+    });
 
 
     /* =========================================
        YES BUTTON
-    ========================================= */
+    ========================================== */
 
-    yesButton.addEventListener("click", () => {
+    if (yesButton) {
 
-        showScreen(yesScreen);
+        yesButton.addEventListener("click", () => {
 
-        startYesParty();
+            showScreen(yesScreen);
+
+            createPartyEffects(yesPartyContainer);
+
+        });
+
+    }
+
+
+    /* =========================================
+       YES → MAIN WEBSITE
+    ========================================== */
+
+    if (continueAfterYes) {
+
+        continueAfterYes.addEventListener("click", () => {
+
+            showScreen(null);
+
+            if (mainWebsite) {
+
+                mainWebsite.classList.remove("hidden");
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+
+            }
+
+            startMainWebsiteEffects();
+
+        });
+
+    }
+
+
+    /* =========================================
+       LETTER
+    ========================================== */
+
+    const openLetter =
+        document.getElementById("open-letter");
+
+    const letterContent =
+        document.getElementById("letter-content");
+
+    if (openLetter && letterContent) {
+
+        openLetter.addEventListener("click", () => {
+
+            letterContent.classList.remove("hidden");
+
+            openLetter.textContent =
+                "My Letter ❤️";
+
+            setTimeout(() => {
+
+                letterContent.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center"
+                });
+
+            }, 150);
+
+        });
+
+    }
+
+
+    /* =========================================
+       GIFT BOXES
+    ========================================== */
+
+    const giftBoxes =
+        document.querySelectorAll(".gift-box");
+
+    const giftMessage =
+        document.getElementById("gift-message");
+
+    giftBoxes.forEach((box) => {
+
+        box.addEventListener("click", () => {
+
+            const message =
+                box.dataset.message ||
+                "A little surprise just for you. ❤️";
+
+            if (giftMessage) {
+
+                giftMessage.textContent = message;
+
+                giftMessage.classList.remove("hidden");
+
+                giftBoxes.forEach((item) => {
+                    item.style.pointerEvents = "none";
+                });
+
+                setTimeout(() => {
+
+                    giftBoxes.forEach((item) => {
+                        item.style.pointerEvents = "auto";
+                    });
+
+                }, 500);
+
+            }
+
+            createSmallCelebration(box);
+
+        });
 
     });
 
 
-    /* =========================================
-       CONTINUE AFTER YES
-    ========================================= */
+    function createSmallCelebration(target) {
 
-    continueAfterYes.addEventListener("click", () => {
+        const rect =
+            target.getBoundingClientRect();
 
-        /*
-            For now the main website is revealed.
-            Memories, timeline, letter, gifts,
-            secret section etc. will be added next.
-        */
+        const container =
+            document.createElement("div");
 
-        yesScreen.classList.remove("active");
+        container.style.position = "fixed";
+        container.style.inset = "0";
+        container.style.pointerEvents = "none";
+        container.style.zIndex = "9999";
 
-        setTimeout(() => {
+        document.body.appendChild(container);
 
-            mainWebsite.classList.remove("hidden");
+        for (let i = 0; i < 25; i++) {
 
-            document.body.style.overflow = "auto";
+            const heart =
+                document.createElement("div");
 
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
+            heart.textContent =
+                Math.random() > 0.5 ? "❤️" : "✨";
+
+            heart.style.position = "fixed";
+
+            heart.style.left =
+                rect.left +
+                rect.width / 2 +
+                "px";
+
+            heart.style.top =
+                rect.top +
+                rect.height / 2 +
+                "px";
+
+            heart.style.fontSize =
+                (12 + Math.random() * 18) + "px";
+
+            heart.style.transition =
+                "all 1s ease";
+
+            container.appendChild(heart);
+
+            requestAnimationFrame(() => {
+
+                heart.style.transform =
+                    `translate(
+                        ${(Math.random() - 0.5) * 250}px,
+                        ${-80 - Math.random() * 220}px
+                    )
+                    rotate(${Math.random() * 360}deg)`;
+
+                heart.style.opacity = "0";
+
             });
-
-        }, 900);
-
-    });
-
-
-    /* =========================================
-       INITIAL NO BUTTON POSITION
-    ========================================= */
-
-    window.addEventListener("resize", () => {
-
-        if (questionScreen.classList.contains("active")) {
-
-            positionNoButton();
 
         }
 
-    });
+        setTimeout(() => {
+            container.remove();
+        }, 1200);
+
+    }
 
 
     /* =========================================
-       RANDOM HEARTS WHEN CLICKING
-    ========================================= */
+       CLICK HEART EFFECT
+    ========================================== */
 
     document.addEventListener("click", (event) => {
 
         if (
-            event.target === noButton ||
-            event.target === yesButton
+            event.target.closest("button") ||
+            event.target.closest("a")
         ) {
             return;
         }
@@ -522,64 +541,134 @@ document.addEventListener("DOMContentLoaded", () => {
         const heart =
             document.createElement("div");
 
-        heart.innerHTML = "♥";
+        heart.textContent =
+            Math.random() > 0.5 ? "♡" : "♥";
 
         heart.style.position = "fixed";
-
         heart.style.left = x + "px";
-
         heart.style.top = y + "px";
 
-        heart.style.zIndex = "2000";
-
+        heart.style.zIndex = "9999";
         heart.style.pointerEvents = "none";
 
         heart.style.fontSize =
-            (12 + Math.random() * 12) + "px";
+            (15 + Math.random() * 15) + "px";
 
-        heart.style.color =
-            "#ff79bd";
+        heart.style.color = "#ff86ae";
 
-        heart.animate(
-            [
-                {
-                    transform:
-                        "translate(-50%, -50%) scale(0.5)",
-                    opacity: 1
-                },
-                {
-                    transform:
-                        "translate(-50%, -120px) scale(1.3)",
-                    opacity: 0
-                }
-            ],
-            {
-                duration: 900,
-                easing: "ease-out",
-                fill: "forwards"
-            }
-        );
+        heart.style.transition =
+            "all 1s ease";
 
         document.body.appendChild(heart);
+
+        requestAnimationFrame(() => {
+
+            heart.style.transform =
+                `translate(
+                    ${(Math.random() - 0.5) * 80}px,
+                    -90px
+                )
+                scale(1.4)`;
+
+            heart.style.opacity = "0";
+
+        });
 
         setTimeout(() => {
             heart.remove();
         }, 1000);
+
     }
 
 
     /* =========================================
-       KEYBOARD ACCESSIBILITY
-    ========================================= */
+       SCROLL REVEAL
+    ========================================== */
+
+    function startMainWebsiteEffects() {
+
+        const revealItems =
+            document.querySelectorAll(
+                ".memory-content, .section-inner, .timeline-item, .reason-card, .gift-box"
+            );
+
+        revealItems.forEach((item) => {
+
+            item.style.opacity = "0";
+            item.style.transform =
+                "translateY(35px)";
+
+            item.style.transition =
+                "opacity 0.9s ease, transform 0.9s ease";
+
+        });
+
+
+        if ("IntersectionObserver" in window) {
+
+            const observer =
+                new IntersectionObserver(
+                    (entries) => {
+
+                        entries.forEach((entry) => {
+
+                            if (entry.isIntersecting) {
+
+                                entry.target.style.opacity = "1";
+
+                                entry.target.style.transform =
+                                    "translateY(0)";
+
+                                observer.unobserve(
+                                    entry.target
+                                );
+
+                            }
+
+                        });
+
+                    },
+                    {
+                        threshold: 0.12
+                    }
+                );
+
+
+            revealItems.forEach((item) => {
+                observer.observe(item);
+            });
+
+        } else {
+
+            revealItems.forEach((item) => {
+
+                item.style.opacity = "1";
+
+                item.style.transform =
+                    "translateY(0)";
+
+            });
+
+        }
+
+    }
+
+
+    /* =========================================
+       KEYBOARD ACCESS
+    ========================================== */
 
     document.addEventListener("keydown", (event) => {
 
         if (
-            event.key === "Escape" &&
+            event.key === "Enter" &&
+            questionScreen &&
             questionScreen.classList.contains("active")
         ) {
 
-            positionNoButton();
+            if (yesButton) {
+                yesButton.click();
+            }
 
         }
 
@@ -587,11 +676,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =========================================
+       PREVENT ACCIDENTAL IMAGE DRAG
+    ========================================== */
+
+    document.querySelectorAll("img").forEach((img) => {
+
+        img.addEventListener("dragstart", (event) => {
+            event.preventDefault();
+        });
+
+    });
+
+
+    /* =========================================
        CONSOLE MESSAGE
-    ========================================= */
+    ========================================== */
 
     console.log(
-        "❤️ Made specially for Dakshu."
+        "❤️ Dakshu's Birthday Website — Made with love by Mohith ❤️"
     );
 
 });
