@@ -2,20 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="theme-color"
+        content="#09060d"
+    >
 
     <title>For My Bubu ❤️</title>
 
-    <meta
-        name="description"
-        content="A little birthday surprise made especially for Dakshayini."
-    >
-
+    <!-- Premium Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link
-        href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap"
         rel="stylesheet"
     >
 
@@ -24,429 +29,529 @@
 
 <body>
 
-    <!-- =========================================================
-         BACKGROUND
-    ========================================================== -->
+    <!-- =====================================================
+         AMBIENT BACKGROUND
+    ====================================================== -->
 
-    <div class="background-effects" aria-hidden="true">
-        <div class="glow glow-one"></div>
-        <div class="glow glow-two"></div>
-        <div class="stars"></div>
+    <div class="ambient-background">
+
+        <div class="ambient-orb orb-one"></div>
+        <div class="ambient-orb orb-two"></div>
+        <div class="ambient-orb orb-three"></div>
+
+        <div class="grain"></div>
+
+        <div class="stars">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
     </div>
 
 
-    <!-- =========================================================
+    <!-- =====================================================
+         EFFECT LAYERS
+    ====================================================== -->
+
+    <div id="floating-hearts"></div>
+    <div id="sparkles"></div>
+
+
+    <!-- =====================================================
          INTRO SCREEN
-    ========================================================== -->
+    ====================================================== -->
 
-    <main>
+    <main id="intro-screen" class="screen active">
 
-        <section id="intro-screen" class="screen intro-screen active">
+        <div class="screen-content intro-content">
 
-            <div class="intro-content">
-
-                <p class="intro-small">A little something for you...</p>
-
-                <h1>
-                    Hey Bubu... <span>❤️</span>
-                </h1>
-
-                <p class="intro-message">
-                    I made something just for you.
-                </p>
-
-                <p class="intro-submessage">
-                    Take a little moment...
-                    <br>
-                    this one is only for you. ✨
-                </p>
-
-                <button id="open-surprise" class="primary-button">
-                    <span>Open Your Surprise</span>
-                    <span class="button-arrow">→</span>
-                </button>
-
+            <div class="eyebrow">
+                <span></span>
+                A little something for you
+                <span></span>
             </div>
 
-        </section>
+            <div class="intro-symbol">
+                <span>♡</span>
+            </div>
+
+            <h1 class="intro-title">
+                Hey Bubu<span>…</span>
+            </h1>
+
+            <p class="intro-subtitle">
+                I made something just for you.
+            </p>
+
+            <p class="intro-description">
+                Take a little moment.
+                <br>
+                This one is only for you. ✨
+            </p>
+
+            <button
+                id="open-surprise"
+                class="premium-button primary-button"
+                type="button"
+            >
+                <span class="button-text">
+                    Open Your Surprise
+                </span>
+
+                <span class="button-arrow">
+                    →
+                </span>
+            </button>
+
+            <div class="tiny-note">
+                made with a little too much love
+            </div>
+
+        </div>
+
+    </main>
 
 
-        <!-- =====================================================
-             BIRTHDAY REVEAL
-        ====================================================== -->
+    <!-- =====================================================
+         BIRTHDAY SCREEN
+    ====================================================== -->
 
-        <section id="birthday-screen" class="screen birthday-screen">
+    <section
+        id="birthday-screen"
+        class="screen"
+    >
 
-            <div class="birthday-content">
+        <div class="birthday-glow"></div>
 
-                <p class="birthday-top">
-                    Today is a little more special...
-                </p>
+        <div class="screen-content birthday-content">
 
-                <h2>
-                    HAPPY BIRTHDAY
-                    <span>✨</span>
-                </h2>
+            <div class="birthday-topline">
+                <span class="line"></span>
+                <span>today is yours</span>
+                <span class="line"></span>
+            </div>
 
-                <div class="birthday-name">
-                    Dakshayini
-                    <span>❤️</span>
-                </div>
+            <div class="birthday-crown">
+                ✦
+            </div>
 
-                <p class="birthday-description">
-                    My Bubu...
-                    <br>
-                    My favourite person.
-                </p>
+            <p class="birthday-small">
+                HAPPY
+            </p>
 
-                <div class="birthday-date">
+            <h2 class="birthday-title">
+                BIRTHDAY
+            </h2>
+
+            <div class="birthday-name">
+                Dakshayini
+                <span>❤️</span>
+            </div>
+
+            <p class="birthday-description">
+                My Bubu.
+                <br>
+                My favourite person.
+            </p>
+
+            <div class="birthday-date">
+                <span class="date-line"></span>
+
+                <span>
                     September 8
-                    <span>🎂</span>
-                </div>
+                </span>
 
-                <div class="birthday-effects" aria-hidden="true">
-                    <span>♡</span>
-                    <span>✦</span>
-                    <span>♡</span>
-                    <span>✧</span>
-                    <span>♡</span>
-                </div>
+                <span class="cake">
+                    🎂
+                </span>
 
-                <button id="birthday-continue" class="primary-button">
-                    <span>Continue</span>
-                    <span class="button-arrow">→</span>
+                <span class="date-line"></span>
+            </div>
+
+            <button
+                id="birthday-continue"
+                class="premium-button outline-button"
+                type="button"
+            >
+                <span>Continue</span>
+                <span class="button-arrow">→</span>
+            </button>
+
+        </div>
+
+        <div class="birthday-particles"></div>
+
+    </section>
+
+
+    <!-- =====================================================
+         FOREVER QUESTION
+    ====================================================== -->
+
+    <section
+        id="question-screen"
+        class="screen"
+    >
+
+        <div class="question-card">
+
+            <div class="question-number">
+                01
+            </div>
+
+            <div class="question-icon">
+                ♡
+            </div>
+
+            <p class="question-label">
+                One little question
+                <br>
+                before you continue…
+            </p>
+
+            <h2 class="question-title">
+                Will you stay with me,
+                <br>
+                forever?
+            </h2>
+
+            <div class="question-heart">
+                ♥
+            </div>
+
+            <div class="question-buttons">
+
+                <button
+                    id="yes-button"
+                    class="premium-button yes-button"
+                    type="button"
+                >
+                    <span>YES</span>
+                    <span>❤️</span>
+                </button>
+
+                <button
+                    id="no-button"
+                    class="premium-button no-button"
+                    type="button"
+                >
+                    <span>NO</span>
+                    <span>😏</span>
                 </button>
 
             </div>
 
-        </section>
+            <p
+                id="no-message"
+                class="no-message"
+            >
+                Nice try… 😌
+            </p>
+
+            <div class="question-footer">
+                choose wisely, bubu
+            </div>
+
+        </div>
+
+    </section>
 
 
-        <!-- =====================================================
-             FOREVER QUESTION
-        ====================================================== -->
+    <!-- =====================================================
+         YES RESPONSE
+    ====================================================== -->
 
-        <section id="question-screen" class="screen question-screen">
+    <section
+        id="yes-screen"
+        class="screen"
+    >
 
-            <div class="question-content">
+        <div class="yes-orbit">
 
-                <p class="question-small">
-                    One little question before you continue...
-                </p>
+            <div class="orbit-ring ring-one"></div>
+            <div class="orbit-ring ring-two"></div>
 
-                <h2>
-                    Will you stay with me,
-                    <br>
-                    <span>forever?</span> ❤️
-                </h2>
+            <div class="orbit-heart">
+                ♥
+            </div>
 
-                <p class="question-note">
-                    Think carefully, Bubu... 😌
-                </p>
+        </div>
 
-                <div class="question-buttons">
+        <div class="yes-content">
 
-                    <button id="yes-button" class="yes-button">
-                        YES ❤️
-                    </button>
+            <p class="yes-eyebrow">
+                I already knew
+            </p>
 
-                    <button id="no-button" class="no-button">
-                        NO 😏
-                    </button>
+            <h2 class="yes-title">
+                I knew you'd
+                <span>say yes…</span>
+            </h2>
+
+            <p class="yes-message">
+                Then let's make every tomorrow
+                <br>
+                a little more beautiful together.
+            </p>
+
+            <div class="yes-divider">
+                <span></span>
+                <b>♡</b>
+                <span></span>
+            </div>
+
+            <button
+                id="continue-to-letter"
+                class="premium-button primary-button letter-button"
+                type="button"
+            >
+                <span>There’s something I want to tell you</span>
+                <span class="button-arrow">→</span>
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         LETTER EXPERIENCE
+    ====================================================== -->
+
+    <section
+        id="letter-section"
+        class="letter-section"
+    >
+
+        <div class="letter-intro">
+
+            <p class="letter-kicker">
+                FOR MY BUBU
+            </p>
+
+            <div class="letter-intro-symbol">
+                ♡
+            </div>
+
+            <h2>
+                A letter
+                <br>
+                for you.
+            </h2>
+
+            <p>
+                Keep scrolling.
+                <br>
+                I want you to read this slowly.
+            </p>
+
+            <div class="scroll-indicator">
+
+                <span class="scroll-line"></span>
+
+                <span>
+                    scroll to begin
+                </span>
+
+                <span class="scroll-line"></span>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             LETTER PAPER
+        ================================================== -->
+
+        <div class="letter-wrapper">
+
+            <article
+                id="letter-content"
+                class="letter-content"
+            >
+
+                <div class="letter-header">
+
+                    <span class="letter-date">
+                        September 8
+                    </span>
+
+                    <span class="letter-heart">
+                        ♡
+                    </span>
 
                 </div>
 
-                <p id="no-message" class="no-message">
-                    Nice try... 😌
-                </p>
 
-            </div>
-
-        </section>
-
-
-        <!-- =====================================================
-             YES RESPONSE
-        ====================================================== -->
-
-        <section id="yes-screen" class="screen yes-screen">
-
-            <div class="yes-content">
-
-                <div class="yes-heart">❤️</div>
-
-                <h2>
-                    I knew you'd say yes...
-                </h2>
-
-                <p>
-                    🥹❤️
-                </p>
-
-                <p class="yes-message">
-                    Then let's make every tomorrow
-                    <br>
-                    a little more beautiful together.
-                </p>
-
-                <button id="continue-to-letter" class="primary-button">
-                    <span>Continue</span>
-                    <span class="button-arrow">↓</span>
-                </button>
-
-            </div>
-
-        </section>
-
-
-        <!-- =====================================================
-             LETTER SECTION
-             DIRECTLY AFTER INTRO / YES
-        ====================================================== -->
-
-        <section id="letter-section" class="letter-section">
-
-            <div class="letter-intro">
-
-                <p class="letter-label">
-                    Something I have been wanting to tell you...
-                </p>
-
-                <h2>
-                    A Letter For My Bubu
-                    <span>💌</span>
-                </h2>
-
-                <p class="letter-subtitle">
-                    Not just a birthday wish...
-                    <br>
-                    but a little piece of my heart.
-                </p>
-
-                <div class="scroll-indicator">
-                    <span>Scroll slowly</span>
-                    <span class="scroll-line"></span>
-                </div>
-
-            </div>
-
-
-            <!-- =================================================
-                 ACTUAL LETTER
-            ================================================== -->
-
-            <article id="letter-content" class="letter-content">
-
-                <div class="letter-paper">
+                <div class="letter-body">
 
                     <p class="letter-opening">
-                        Dear Bubu, ❤️
+                        Dear Bubu,
                     </p>
 
 
                     <p class="letter-paragraph">
-                        I don't really know if a letter, a website, or even a thousand words could ever explain how much you mean to me. But today, on your birthday, I just want to try. You slowly became such a beautiful part of my life. My happiest moments, my stupid conversations, my biggest smiles, my emotional days — somehow, you became a part of all of them.
+                        I don't really know how to put everything
+                        I feel for you into a few paragraphs.
+                        Some feelings are simply too big for words.
                     </p>
 
 
                     <p class="letter-paragraph">
-                        I still remember <strong>September 24, 2023</strong> — the day you proposed to me. ❤️ I don't think either of us knew how many memories, emotions, fights, smiles and beautiful moments would come after that day. And now, every 24th has become something special to me because it became ours. Every month, we wish each other on the 24th, and on <strong>September 24, 2026</strong>, it will already be three years since that beautiful beginning.
-                    </p>
-
-
-                    <p class="letter-paragraph">
-                        Our relationship was never perfect. We've had our fights, a lot of them. Sometimes they're small, sometimes they're really big. There have been moments when we were angry, hurt, frustrated, and even scared that maybe this time we'd actually lose each other. But somehow, after everything, we always find our way back to each other. And honestly, I think that's one of the things that makes our story special. We're not perfect. <strong>We're real. ❤️</strong>
-                    </p>
-
-
-                    <p class="letter-paragraph">
-                        I love your childish side, Bubu. I love the way you become completely yourself around me, the silly things you do, the little ways you behave like a kid sometimes, and all those tiny things you probably don't even realise I notice. I never want you to feel like you have to hide that side of yourself with me. I love the version of you that feels safe enough to be childish, silly, annoying, cute and completely yourself.
-                    </p>
-
-
-                    <p class="letter-paragraph">
-                        I still remember our <strong>first temple date</strong>. It may have looked like a simple day, but somehow it became the beginning of so many memories that I would never want to forget. Then came <strong>September 8, 2024</strong> — your birthday. We went back to that same temple, took pictures again, and even recreated one of our old moments. Looking at those moments felt like looking at our own little “then and now.” Later that day, being at your home for your birthday, celebrating with you, spending time together and making those memories became another beautiful part of our story.
-                    </p>
-
-
-                    <p class="letter-paragraph">
-                        And that birthday night too... the little moments, the smiles, the time we spent together — all of it still makes me smile whenever I think about it. Some memories don't need anything extraordinary to become special. Sometimes, simply being together is enough to make a moment stay in your heart.
-                    </p>
-
-
-                    <p class="letter-paragraph">
-                        Then there was our <strong>Kalki movie date. 🎬❤️</strong> Honestly, the movie wasn't even the most important part for me. What made that day special was simply having you beside me. Spending time together, talking, laughing, sharing those little moments... it made me realise that sometimes I don't really care where we go or what we're doing. <strong>If you're beside me, even an ordinary day can become one of my favourite memories.</strong>
-                    </p>
-
-
-                    <p class="letter-paragraph">
-                        And then there's <strong>January 24, 2024 — 7:30 PM. ❤️</strong> I don't even know how to properly put that moment into words, because some moments are too personal to be explained completely. That was our secret chapter, a moment that belongs only to you and me.
-                    </p>
-
-
-                    <p class="letter-paragraph">
-                        There were no photos, no videos, no witnesses. Nothing for anyone else to see. There is no picture I can show someone and say, “This was that moment.” But I don't need a photograph to remember it. <strong>I remember the feeling.</strong> I remember how important that moment felt to me. I remember knowing that we had created a memory that would forever belong only to us.
-                    </p>
-
-
-                    <p class="letter-paragraph">
-                        Maybe someday we'll have thousands of photographs together. Thousands of birthdays, dates, trips and beautiful moments. But this one will always be different. Because nobody else knows the complete story behind <strong>January 24, 2024 — 7:30 PM.</strong> Only you know. Only I know. And that's enough. ❤️
+                        But today is your day, and I didn't want
+                        another birthday to pass without telling
+                        you just how special you are to me.
                     </p>
 
 
                     <p class="letter-special">
-                        Our secret.
-                        <br>
-                        Our promise.
-                        <br>
-                        Our memory.
-                        <br>
-                        <strong>Forever. ❤️</strong>
+                        You became one of those people
+                        who quietly became a huge part
+                        of my world.
                     </p>
 
 
                     <p class="letter-paragraph">
-                        Some memories are meant to be shared with the world, and some are meant to stay quietly between two hearts forever. This will always be one of mine.
+                        Somewhere between all the conversations,
+                        random moments, little jokes, and the
+                        memories we've created, you became
+                        someone I never want to lose.
                     </p>
 
 
                     <p class="letter-paragraph">
-                        And then I think about <strong>your birthday in 2025</strong>. I remember giving you those handmade gifts. I had put my own time, effort and feelings into making them for you, but honestly, the best part wasn't even giving them to you. <strong>It was watching you open them.</strong>
-                    </p>
-
-
-                    <p class="letter-paragraph">
-                        The excitement on your face, the happiness in your eyes, the way you reacted to each little gift — seeing you that happy made me happier than I could explain. At that moment, I realised something very simple: <strong>I don't just love receiving happiness from you. I love being the reason behind your happiness. ❤️</strong>
-                    </p>
-
-
-                    <p class="letter-paragraph">
-                        Seeing you get excited because of something I made especially for you gave me a kind of happiness that I'll always remember. And that's something I want to keep doing. Not necessarily with expensive gifts or huge surprises, but with little things that make you smile. Little things that remind you that there is someone who genuinely loves seeing you happy.
-                    </p>
-
-
-                    <p class="letter-paragraph">
-                        <strong>Your happiness means so much to me, Bubu. ❤️</strong>
-                    </p>
-
-
-                    <p class="letter-paragraph">
-                        We have so many little memories that nobody else knows about. Little conversations. Little moments. Little secrets. Sometimes we're just chatting and suddenly one of those memories comes back. And somehow, without even saying much, we both know exactly what the other person is thinking. We smile. We blush. We remember. Because those memories belong to us. Nobody else needs to understand them.
-                    </p>
-
-
-                    <p class="letter-paragraph">
-                        And Bubu, there's something I don't think I'll ever get tired of — <strong>looking at you.</strong> Even after spending hours together, sometimes when you're beside me, I just want to keep looking at you. That's it. I don't need anything exciting to happen. I don't need a perfect place. Sometimes your presence itself is enough.
-                    </p>
-
-
-                    <p class="letter-paragraph">
-                        I love you so much, Bubu. More than I know how to explain properly. I love our good days. I love our stupid conversations. I love your childish moments. I love our secret memories. I love the way we somehow find our way back to each other after our fights.
+                        And honestly, that's one of my favourite
+                        things about us.
                     </p>
 
 
                     <p class="letter-emphasis">
-                        I don't want to lose you, Bubu. ❤️
+                        It's not always about the big moments.
+                        It's about how even the smallest moments
+                        feel different when they're with you.
                     </p>
 
 
                     <p class="letter-paragraph">
-                        I want more birthdays with you. More 24ths. More random conversations. More silly fights and even sillier reconciliations. More secret memories. More moments where absolutely nothing special happens, but somehow become special just because you're beside me.
+                        Your presence has a way of making ordinary
+                        days feel a little less ordinary.
                     </p>
 
 
                     <p class="letter-paragraph">
-                        I want to keep watching you grow. Keep annoying you. Keep making memories with you. Keep laughing with you. Keep choosing you.
+                        I hope you always remember that you deserve
+                        happiness, peace, beautiful moments,
+                        and people who genuinely care about you.
+                    </p>
+
+
+                    <p class="letter-special">
+                        And whenever life gets difficult,
+                        I hope you remember that you never
+                        have to face everything alone.
                     </p>
 
 
                     <p class="letter-paragraph">
-                        I don't know exactly what our future will look like. But if I get to choose, <strong>I want you to be a part of it. ❤️</strong>
+                        I can't promise that every tomorrow
+                        will be perfect.
+                    </p>
+
+
+                    <p class="letter-emphasis">
+                        But I can promise that I'll keep choosing
+                        you, caring for you, and cheering for you.
                     </p>
 
 
                     <p class="letter-paragraph">
-                        So today, on your birthday, I just want you to remember this:
+                        Today, I just want you to smile.
+                        Not because it's your birthday,
+                        but because you genuinely deserve
+                        every reason to smile.
                     </p>
 
 
                     <p class="letter-final">
-                        You are deeply loved.
-                        <br><br>
-                        You are incredibly special to me.
-                        <br><br>
-                        And you will always have a very special place in my heart. ❤️
-                    </p>
-
-
-                    <p class="letter-paragraph">
-                        Please stay with me, Bubu. No matter how many times we fight, no matter how angry we get, no matter how difficult some days become, I hope we always find our way back to each other.
-                    </p>
-
-
-                    <p class="letter-paragraph">
-                        Because at the end of everything, <strong>I still choose you. ❤️</strong>
-                    </p>
-
-
-                    <p class="letter-paragraph">
-                        I love you so much, Bubu.
-                        <br>
-                        I love you forever.
+                        Happy Birthday, Bubu.
                     </p>
 
 
                     <p class="birthday-ending">
-                        Happy Birthday, my Dakshu. 🎂❤️
+                        Here's to you.
+                        <br>
+                        Here's to us.
+                        <br>
+                        And here's to all the beautiful
+                        tomorrows waiting for us. ❤️
                     </p>
 
 
-                    <p class="signature">
-                        — Mohith ❤️
+                    <div class="signature">
+
+                        <span>
+                            Always,
+                        </span>
+
+                        <strong>
+                            Mohith
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="letter-end">
+
+                    <span>♡</span>
+
+                    <p>
+                        the end of this letter,
+                        <br>
+                        not the story.
                     </p>
+
+                    <span>♡</span>
 
                 </div>
 
             </article>
 
+        </div>
 
-            <!-- =================================================
-                 END OF LETTER
-            ================================================== -->
 
-            <div class="letter-end">
+        <!-- Letter bottom space -->
 
-                <div class="end-line"></div>
+        <div class="letter-bottom-space">
 
-                <p>
-                    Made with all my heart,
-                    <span>for you.</span> ❤️
-                </p>
-
+            <div class="bottom-heart">
+                ♥
             </div>
 
-        </section>
+            <p>
+                Made for you, Bubu.
+            </p>
 
-    </main>
+        </div>
 
-
-    <!-- =========================================================
-         FLOATING HEART CONTAINER
-    ========================================================== -->
-
-    <div id="floating-hearts" class="floating-hearts" aria-hidden="true"></div>
+    </section>
 
 
-    <!-- =========================================================
-         CLICK SPARKLE CONTAINER
-    ========================================================== -->
-
-    <div id="sparkles" class="sparkles" aria-hidden="true"></div>
-
-
-    <!-- =========================================================
-         JAVASCRIPT
-    ========================================================== -->
+    <!-- =====================================================
+         SCRIPT
+    ====================================================== -->
 
     <script src="script.js"></script>
 
