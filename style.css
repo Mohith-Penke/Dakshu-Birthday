@@ -1,16 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+/* =========================================================
+   FONTS
+========================================================= */
 
 :root {
-    --bg: #09070d;
-    --bg-soft: #120d18;
-    --pink: #ff8fb1;
-    --pink-soft: #ffc1d3;
-    --white: #fff7fa;
-    --muted: #c8b8c1;
-    --glass: rgba(255, 255, 255, 0.065);
-    --glass-border: rgba(255, 190, 210, 0.16);
-    --shadow: 0 25px 80px rgba(0, 0, 0, 0.45);
+    --bg-dark: #09060c;
+    --bg-soft: #120b15;
+    --pink: #f39ab5;
+    --pink-light: #ffd5df;
+    --white: #fff8fa;
+    --muted: #b9aab1;
+    --glass: rgba(255, 255, 255, 0.055);
+    --border: rgba(255, 255, 255, 0.11);
 }
+
+
+/* =========================================================
+   RESET
+========================================================= */
 
 * {
     margin: 0;
@@ -25,81 +31,76 @@ html {
 body {
     min-height: 100vh;
     background:
-        radial-gradient(circle at 50% 10%, rgba(255, 116, 164, 0.10), transparent 30%),
-        radial-gradient(circle at 10% 60%, rgba(152, 96, 255, 0.07), transparent 28%),
-        var(--bg);
+        radial-gradient(
+            circle at 50% 10%,
+            rgba(130, 40, 75, 0.22),
+            transparent 38%
+        ),
+        linear-gradient(
+            145deg,
+            #08050b 0%,
+            #100812 48%,
+            #08050b 100%
+        );
     color: var(--white);
     font-family: "Inter", sans-serif;
-    font-size: 15px;
-    line-height: 1.7;
     overflow-x: hidden;
 }
 
-/* =========================
-   GLOBAL
-========================= */
 
-button {
-    font-family: "Inter", sans-serif;
-}
+/* =========================================================
+   BACKGROUND
+========================================================= */
 
-h1,
-h2,
-h3,
-h4 {
-    font-family: "Playfair Display", serif;
-    font-weight: 500;
-    line-height: 1.15;
-}
-
-p {
-    color: var(--muted);
-}
-
-.hidden {
-    display: none !important;
-}
-
-/* =========================
-   CINEMATIC BACKGROUND
-========================= */
-
-body::before {
-    content: "";
+.background-effects {
     position: fixed;
     inset: 0;
     pointer-events: none;
-    z-index: -2;
-    background:
-        radial-gradient(circle at 20% 20%, rgba(255, 143, 177, 0.045), transparent 25%),
-        radial-gradient(circle at 80% 70%, rgba(174, 120, 255, 0.04), transparent 25%);
+    overflow: hidden;
+    z-index: 0;
 }
 
-body::after {
-    content: "";
-    position: fixed;
+.glow {
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.12;
+}
+
+.glow-one {
+    top: -160px;
+    left: -120px;
+    background: #e66b98;
+}
+
+.glow-two {
+    right: -150px;
+    bottom: -170px;
+    background: #8754a6;
+}
+
+.stars {
+    position: absolute;
     inset: 0;
-    pointer-events: none;
-    z-index: -1;
-    opacity: 0.25;
+    opacity: 0.45;
     background-image:
-        radial-gradient(circle, rgba(255,255,255,0.5) 1px, transparent 1px);
-    background-size: 90px 90px;
-    animation: starsMove 35s linear infinite;
+        radial-gradient(circle, rgba(255,255,255,0.7) 1px, transparent 1px),
+        radial-gradient(circle, rgba(255,255,255,0.35) 1px, transparent 1px);
+    background-size: 90px 90px, 150px 150px;
+    background-position: 10px 20px, 60px 80px;
 }
 
-@keyframes starsMove {
-    from {
-        transform: translateY(0);
-    }
-    to {
-        transform: translateY(-90px);
-    }
-}
 
-/* =========================
-   SCREEN SYSTEM
-========================= */
+/* =========================================================
+   GENERAL SCREEN
+========================================================= */
+
+main {
+    position: relative;
+    z-index: 2;
+}
 
 .screen {
     min-height: 100vh;
@@ -107,1080 +108,825 @@ body::after {
     display: none;
     align-items: center;
     justify-content: center;
-    padding: 30px 20px;
     position: relative;
-    overflow: hidden;
+    padding: 40px 22px;
 }
 
 .screen.active {
     display: flex;
+    animation: screenIn 1s ease forwards;
 }
 
-/* =========================
+@keyframes screenIn {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================================
    INTRO
-========================= */
+========================================================= */
 
 .intro-content {
     width: min(680px, 100%);
     text-align: center;
-    padding: 20px;
+}
+
+.intro-small {
+    color: var(--pink);
+    font-family: "Caveat", cursive;
+    font-size: 1.45rem;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
 }
 
 .intro-content h1 {
-    font-size: clamp(2.4rem, 6vw, 4.4rem);
-    letter-spacing: -1px;
-    margin-bottom: 20px;
+    font-family: "Playfair Display", serif;
+    font-size: clamp(3rem, 8vw, 5.7rem);
+    font-weight: 500;
+    line-height: 1.08;
+    letter-spacing: -2px;
+    margin-bottom: 25px;
 }
 
-.intro-content p {
-    max-width: 500px;
-    margin: 0 auto 34px;
-    font-size: 0.98rem;
+.intro-content h1 span {
+    font-size: 0.7em;
 }
 
-.intro-heart {
-    font-size: 2.1rem;
-    margin-bottom: 22px;
-    animation: heartbeat 1.8s infinite;
+.intro-message {
+    color: var(--white);
+    font-size: 1.15rem;
+    font-weight: 400;
+    margin-bottom: 13px;
 }
 
-@keyframes heartbeat {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.12);
-    }
+.intro-submessage {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.8;
+    margin-bottom: 38px;
 }
 
-/* =========================
-   PREMIUM BUTTONS
-========================= */
 
-.primary-btn,
-.secondary-btn,
-.love-btn {
-    border: 1px solid rgba(255, 170, 195, 0.25);
-    border-radius: 999px;
-    padding: 13px 25px;
-    font-size: 0.88rem;
-    font-weight: 600;
-    letter-spacing: 0.2px;
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.primary-button {
+    border: 1px solid rgba(255, 190, 207, 0.35);
+    background: rgba(255, 255, 255, 0.07);
+    color: var(--white);
+    padding: 14px 22px;
+    min-width: 190px;
+    border-radius: 100px;
+    font-family: "Inter", sans-serif;
+    font-size: 0.9rem;
     cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
     transition:
         transform 0.3s ease,
-        box-shadow 0.3s ease,
-        background 0.3s ease;
+        background 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+    backdrop-filter: blur(12px);
 }
 
-.primary-btn {
-    color: #fff;
-    background: linear-gradient(
-        135deg,
-        rgba(255, 143, 177, 0.95),
-        rgba(203, 111, 255, 0.88)
-    );
-    box-shadow: 0 12px 35px rgba(255, 120, 170, 0.18);
-}
-
-.primary-btn:hover {
+.primary-button:hover {
     transform: translateY(-3px);
-    box-shadow: 0 18px 45px rgba(255, 120, 170, 0.28);
+    background: rgba(243, 154, 181, 0.13);
+    border-color: rgba(255, 190, 207, 0.7);
+    box-shadow: 0 12px 35px rgba(243, 154, 181, 0.13);
 }
 
-.secondary-btn {
-    color: var(--pink-soft);
-    background: rgba(255,255,255,0.045);
+.button-arrow {
+    font-size: 1.1rem;
+    transition: transform 0.3s ease;
 }
 
-.secondary-btn:hover {
-    background: rgba(255,255,255,0.08);
-    transform: translateY(-2px);
+.primary-button:hover .button-arrow {
+    transform: translateX(4px);
 }
 
-/* =========================
-   BIRTHDAY REVEAL
-========================= */
+
+/* =========================================================
+   BIRTHDAY
+========================================================= */
 
 .birthday-content {
+    width: min(760px, 100%);
     text-align: center;
-    width: min(800px, 100%);
-}
-
-.birthday-content .small-label {
-    color: var(--pink);
-    text-transform: uppercase;
-    letter-spacing: 4px;
-    font-size: 0.7rem;
-    margin-bottom: 18px;
-}
-
-.birthday-content h1 {
-    font-size: clamp(3rem, 9vw, 6.8rem);
-    letter-spacing: -2px;
-}
-
-.birthday-name {
-    color: var(--pink-soft);
-    font-size: clamp(2.3rem, 6vw, 4.5rem);
-    margin-top: 12px;
-}
-
-.birthday-subtitle {
-    margin-top: 16px;
-    font-family: "Caveat", cursive;
-    font-size: 1.65rem;
-    color: var(--pink-soft);
-}
-
-/* =========================
-   QUESTION
-========================= */
-
-.question-content {
-    text-align: center;
-    width: min(620px, 100%);
-}
-
-.question-content h2 {
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    margin-bottom: 14px;
-}
-
-.question-content p {
-    font-size: 0.92rem;
-    margin-bottom: 30px;
-}
-
-.question-buttons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 14px;
-    min-height: 65px;
     position: relative;
 }
 
-.love-btn {
-    min-width: 110px;
+.birthday-top {
+    font-family: "Caveat", cursive;
+    color: var(--pink);
+    font-size: 1.45rem;
+    margin-bottom: 18px;
 }
 
-#yes-button {
-    background: rgba(255, 130, 170, 0.12);
-    color: #fff;
+.birthday-content h2 {
+    font-family: "Playfair Display", serif;
+    font-size: clamp(2.6rem, 7vw, 5rem);
+    font-weight: 500;
+    letter-spacing: 2px;
+    line-height: 1.1;
 }
 
-#yes-button:hover {
-    background: rgba(255, 130, 170, 0.2);
-    transform: translateY(-2px);
+.birthday-content h2 span {
+    font-size: 0.5em;
 }
 
-#no-button {
-    background: rgba(255,255,255,0.035);
-    color: #bcaeb5;
+.birthday-name {
+    font-family: "Playfair Display", serif;
+    font-size: clamp(2rem, 5vw, 3.6rem);
+    color: var(--pink-light);
+    margin-top: 18px;
 }
 
-/* =========================
+.birthday-name span {
+    font-size: 0.7em;
+}
+
+.birthday-description {
+    color: var(--muted);
+    line-height: 1.8;
+    font-size: 1rem;
+    margin-top: 24px;
+}
+
+.birthday-date {
+    display: inline-block;
+    margin-top: 28px;
+    padding: 9px 18px;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    background: var(--glass);
+    color: #eadce1;
+    font-size: 0.88rem;
+}
+
+.birthday-effects {
+    height: 90px;
+    position: relative;
+    margin: 12px auto 20px;
+    max-width: 400px;
+}
+
+.birthday-effects span {
+    position: absolute;
+    color: var(--pink);
+    font-size: 1rem;
+    animation: floatSparkle 3s ease-in-out infinite;
+}
+
+.birthday-effects span:nth-child(1) {
+    left: 10%;
+    top: 20%;
+}
+
+.birthday-effects span:nth-child(2) {
+    left: 32%;
+    top: 65%;
+    animation-delay: 0.6s;
+}
+
+.birthday-effects span:nth-child(3) {
+    right: 27%;
+    top: 25%;
+    animation-delay: 1s;
+}
+
+.birthday-effects span:nth-child(4) {
+    right: 8%;
+    top: 62%;
+    animation-delay: 1.5s;
+}
+
+.birthday-effects span:nth-child(5) {
+    left: 53%;
+    top: 5%;
+    animation-delay: 2s;
+}
+
+@keyframes floatSparkle {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+        opacity: 0.4;
+    }
+
+    50% {
+        transform: translateY(-12px) scale(1.3);
+        opacity: 1;
+    }
+}
+
+
+/* =========================================================
+   QUESTION
+========================================================= */
+
+.question-content {
+    width: min(650px, 100%);
+    text-align: center;
+}
+
+.question-small {
+    font-family: "Caveat", cursive;
+    color: var(--pink);
+    font-size: 1.45rem;
+    margin-bottom: 22px;
+}
+
+.question-content h2 {
+    font-family: "Playfair Display", serif;
+    font-weight: 400;
+    font-size: clamp(2.1rem, 5vw, 3.8rem);
+    line-height: 1.35;
+}
+
+.question-content h2 span {
+    color: var(--pink-light);
+}
+
+.question-note {
+    margin-top: 18px;
+    color: var(--muted);
+    font-size: 0.85rem;
+}
+
+.question-buttons {
+    position: relative;
+    min-height: 100px;
+    margin-top: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+}
+
+.yes-button,
+.no-button {
+    border-radius: 100px;
+    padding: 13px 27px;
+    font-family: "Inter", sans-serif;
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.yes-button {
+    border: 1px solid rgba(255, 170, 193, 0.6);
+    background: rgba(243, 154, 181, 0.14);
+    color: var(--pink-light);
+}
+
+.yes-button:hover {
+    transform: translateY(-3px) scale(1.03);
+    background: rgba(243, 154, 181, 0.22);
+}
+
+.no-button {
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.04);
+    color: var(--muted);
+    position: relative;
+}
+
+.no-message {
+    color: var(--pink);
+    font-size: 0.78rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.no-message.show {
+    opacity: 1;
+}
+
+
+/* =========================================================
    YES SCREEN
-========================= */
+========================================================= */
 
 .yes-content {
     text-align: center;
     width: min(650px, 100%);
 }
 
+.yes-heart {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    animation: heartbeat 1.4s infinite;
+}
+
+@keyframes heartbeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.13);
+    }
+}
+
 .yes-content h2 {
-    font-size: clamp(2.2rem, 5vw, 3.8rem);
-    margin-bottom: 15px;
+    font-family: "Playfair Display", serif;
+    font-weight: 400;
+    font-size: clamp(2.1rem, 5vw, 3.5rem);
 }
 
-.yes-content p {
+.yes-content > p:not(.yes-message) {
+    margin: 13px 0 20px;
+}
+
+.yes-message {
+    color: var(--muted);
+    line-height: 1.9;
     font-size: 0.95rem;
-    max-width: 520px;
-    margin: 0 auto 28px;
+    margin-bottom: 32px;
 }
 
-/* =========================
-   MAIN SITE
-========================= */
 
-.main-site {
-    width: 100%;
-}
+/* =========================================================
+   LETTER SECTION
+========================================================= */
 
-section {
+.letter-section {
     position: relative;
+    z-index: 3;
+    min-height: 100vh;
+    padding: 120px 20px 150px;
+    display: none;
 }
 
-.container {
-    width: min(1050px, calc(100% - 40px));
+.letter-section.visible {
+    display: block;
+    animation: letterSectionIn 1.2s ease forwards;
+}
+
+@keyframes letterSectionIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* =========================================================
+   LETTER INTRO
+========================================================= */
+
+.letter-intro {
+    width: min(720px, 100%);
     margin: 0 auto;
-}
-
-/* =========================
-   HERO
-========================= */
-
-.hero {
-    min-height: 92vh;
+    text-align: center;
+    min-height: 80vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    text-align: center;
-    padding: 100px 0;
 }
 
-.hero-content {
-    max-width: 800px;
-}
-
-.hero-kicker {
+.letter-label {
+    font-family: "Caveat", cursive;
     color: var(--pink);
-    text-transform: uppercase;
-    letter-spacing: 4px;
-    font-size: 0.7rem;
+    font-size: 1.35rem;
     margin-bottom: 18px;
 }
 
-.hero h1 {
-    font-size: clamp(3rem, 8vw, 6.5rem);
-    letter-spacing: -2px;
-}
-
-.hero h2 {
-    color: var(--pink-soft);
-    font-size: clamp(2rem, 5vw, 4rem);
-    margin-top: 12px;
-}
-
-.hero p {
-    max-width: 570px;
-    margin: 24px auto 0;
-    font-size: 0.98rem;
-}
-
-/* =========================
-   SECTION TITLES
-========================= */
-
-.section-title {
-    text-align: center;
-    margin-bottom: 55px;
-}
-
-.section-title .eyebrow {
-    display: block;
-    color: var(--pink);
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    font-size: 0.68rem;
-    margin-bottom: 10px;
-}
-
-.section-title h2 {
-    font-size: clamp(2rem, 4vw, 3.4rem);
-}
-
-.section-title p {
-    max-width: 550px;
-    margin: 15px auto 0;
-    font-size: 0.9rem;
-}
-
-/* =========================
-   MESSAGE
-========================= */
-
-.message-section {
-    padding: 110px 0;
-}
-
-.message-card {
-    width: min(780px, 100%);
-    margin: auto;
-    padding: 42px;
-    border: 1px solid var(--glass-border);
-    background: var(--glass);
-    backdrop-filter: blur(18px);
-    border-radius: 28px;
-    box-shadow: var(--shadow);
-    text-align: center;
-}
-
-.message-card p {
-    font-size: 1rem;
-}
-
-.message-card .signature {
-    margin-top: 25px;
-    font-family: "Caveat", cursive;
-    color: var(--pink-soft);
-    font-size: 1.5rem;
-}
-
-/* =========================
-   CAKE
-========================= */
-
-.cake-section {
-    padding: 110px 0;
-    text-align: center;
-}
-
-.cake-wrapper {
-    margin: 40px auto;
-    width: 240px;
-    position: relative;
-}
-
-.cake {
-    width: 210px;
-    height: 120px;
-    margin: auto;
-    position: relative;
-}
-
-.cake-top {
-    position: absolute;
-    top: 0;
-    width: 210px;
-    height: 55px;
-    border-radius: 50%;
-    background: linear-gradient(
-        180deg,
-        #ffc5d8,
-        #d979a0
-    );
-}
-
-.cake-body {
-    position: absolute;
-    top: 25px;
-    width: 210px;
-    height: 95px;
-    border-radius: 0 0 22px 22px;
-    background: linear-gradient(
-        180deg,
-        #e98bad,
-        #9e4d71
-    );
-}
-
-.candle {
-    position: absolute;
-    top: -50px;
-    width: 8px;
-    height: 40px;
-    border-radius: 5px;
-    background: #fff;
-}
-
-.candle:nth-child(1) {
-    left: 70px;
-}
-
-.candle:nth-child(2) {
-    left: 101px;
-}
-
-.candle:nth-child(3) {
-    left: 132px;
-}
-
-.flame {
-    position: absolute;
-    width: 13px;
-    height: 18px;
-    border-radius: 50% 50% 50% 0;
-    background: #ffd27d;
-    transform: rotate(-45deg);
-    top: -67px;
-    left: -2px;
-    animation: flame 0.8s infinite alternate;
-}
-
-@keyframes flame {
-    from {
-        transform: rotate(-45deg) scale(0.9);
-    }
-    to {
-        transform: rotate(-45deg) scale(1.05);
-    }
-}
-
-/* =========================
-   TIMELINE
-========================= */
-
-.story-section {
-    padding: 120px 0;
-}
-
-.timeline {
-    position: relative;
-    width: min(820px, 100%);
-    margin: auto;
-}
-
-.timeline::before {
-    content: "";
-    position: absolute;
-    left: 18px;
-    top: 0;
-    bottom: 0;
-    width: 1px;
-    background: rgba(255, 160, 190, 0.18);
-}
-
-.timeline-item {
-    position: relative;
-    padding-left: 65px;
-    margin-bottom: 45px;
-}
-
-.timeline-dot {
-    position: absolute;
-    left: 11px;
-    top: 7px;
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    background: var(--pink);
-    box-shadow: 0 0 20px rgba(255, 143, 177, 0.5);
-}
-
-.timeline-item h3 {
-    font-size: 1.35rem;
-    margin-bottom: 8px;
-}
-
-.timeline-item p {
-    font-size: 0.9rem;
-}
-
-/* =========================
-   REASONS
-========================= */
-
-.reasons-section {
-    padding: 110px 0;
-}
-
-.reasons-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 18px;
-}
-
-.reason-card {
-    padding: 28px;
-    border-radius: 22px;
-    border: 1px solid var(--glass-border);
-    background: rgba(255,255,255,0.045);
-    transition: transform 0.3s ease, background 0.3s ease;
-}
-
-.reason-card:hover {
-    transform: translateY(-5px);
-    background: rgba(255,255,255,0.075);
-}
-
-.reason-number {
-    color: var(--pink);
-    font-size: 0.72rem;
-    letter-spacing: 2px;
-    margin-bottom: 10px;
-}
-
-.reason-card h3 {
-    font-size: 1.2rem;
-    margin-bottom: 7px;
-}
-
-.reason-card p {
-    font-size: 0.84rem;
-}
-
-/* =========================
-   LETTER
-========================= */
-
-.letter-section {
-    padding: 130px 0;
-}
-
-.letter-intro {
-    text-align: center;
-    margin-bottom: 50px;
-}
-
-.letter-intro .small-label {
-    color: var(--pink);
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    font-size: 0.68rem;
-    margin-bottom: 12px;
-}
-
 .letter-intro h2 {
-    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-family: "Playfair Display", serif;
+    font-weight: 400;
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+}
+
+.letter-intro h2 span {
+    font-size: 0.65em;
 }
 
 .letter-subtitle {
-    margin-top: 13px;
+    color: var(--muted);
     font-size: 0.9rem;
-}
-
-.envelope-button {
-    display: block;
-    width: min(330px, 90%);
-    margin: auto;
-    border: 0;
-    background: transparent;
-    color: var(--pink-soft);
-    cursor: pointer;
-}
-
-.envelope {
-    width: 230px;
-    height: 155px;
-    margin: auto;
-    position: relative;
-    filter: drop-shadow(0 20px 30px rgba(0,0,0,0.35));
-    transition: transform 0.35s ease;
-}
-
-.envelope-button:hover .envelope {
-    transform: translateY(-7px) rotate(-1deg);
-}
-
-.envelope-back {
-    position: absolute;
-    inset: 0;
-    background: #7f405d;
-    border-radius: 10px;
-}
-
-.envelope-front {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 72%;
-    background: #a85a79;
-    clip-path: polygon(0 0, 50% 55%, 100% 0, 100% 100%, 0 100%);
-    border-radius: 0 0 10px 10px;
-}
-
-.envelope-flap {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 62%;
-    background: #c87597;
-    clip-path: polygon(0 0, 100% 0, 50% 100%);
-    transform-origin: top;
-}
-
-.envelope-heart {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -20%);
-    font-size: 1.7rem;
-}
-
-.envelope-button span {
-    display: block;
+    line-height: 1.8;
     margin-top: 20px;
-    font-family: "Caveat", cursive;
-    font-size: 1.35rem;
 }
+
+.scroll-indicator {
+    margin-top: 55px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    color: rgba(255,255,255,0.42);
+    font-size: 0.7rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.scroll-line {
+    width: 1px;
+    height: 48px;
+    background: linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.5),
+        transparent
+    );
+    animation: scrollPulse 1.8s infinite;
+}
+
+@keyframes scrollPulse {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scaleY(0.7);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+}
+
+
+/* =========================================================
+   LETTER CONTENT
+========================================================= */
 
 .letter-content {
-    margin-top: 55px;
+    width: min(760px, 100%);
+    margin: 0 auto;
 }
 
-.paper {
-    width: min(820px, 100%);
-    margin: auto;
-    padding: clamp(30px, 6vw, 65px);
+.letter-paper {
+    position: relative;
+    padding: 75px clamp(24px, 7vw, 72px);
+    border: 1px solid rgba(255,255,255,0.09);
     background:
         linear-gradient(
-            180deg,
-            rgba(255, 248, 244, 0.98),
-            rgba(250, 234, 239, 0.98)
+            145deg,
+            rgba(255,255,255,0.045),
+            rgba(255,255,255,0.018)
         );
-    color: #422d36;
-    border-radius: 8px;
-    box-shadow: 0 35px 100px rgba(0,0,0,0.5);
-    position: relative;
+    border-radius: 22px;
+    box-shadow:
+        0 35px 100px rgba(0,0,0,0.35),
+        inset 0 1px rgba(255,255,255,0.04);
+    backdrop-filter: blur(12px);
 }
 
-.paper::before {
-    content: "";
-    position: absolute;
-    inset: 12px;
-    border: 1px solid rgba(130, 70, 95, 0.12);
-    pointer-events: none;
+
+/* =========================================================
+   LETTER TYPOGRAPHY
+========================================================= */
+
+.letter-opening {
+    font-family: "Playfair Display", serif;
+    font-size: 1.55rem;
+    color: var(--pink-light);
+    margin-bottom: 42px;
 }
 
-.paper p {
-    color: #624954;
-    font-family: "Inter", sans-serif;
-    font-size: 0.92rem;
-    line-height: 1.9;
-    margin-bottom: 20px;
+.letter-paragraph {
+    color: #d7cdd1;
+    font-size: 0.94rem;
+    line-height: 2.05;
+    font-weight: 300;
+    margin-bottom: 34px;
 }
 
-.paper > p:first-of-type {
-    font-family: "Caveat", cursive;
+.letter-paragraph strong {
+    color: #f3dce3;
+    font-weight: 500;
+}
+
+.letter-special {
+    text-align: center;
+    font-family: "Playfair Display", serif;
+    color: var(--pink-light);
+    font-size: 1.25rem;
+    line-height: 1.8;
+    padding: 40px 15px;
+    margin: 25px 0 42px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.letter-special strong {
+    color: var(--pink);
     font-size: 1.4rem;
-    color: #9d5573;
 }
 
-.paper > p:nth-of-type(2) {
+.letter-emphasis {
+    text-align: center;
     font-family: "Playfair Display", serif;
-    color: #432c37;
-    font-size: 1.35rem;
-}
-
-.letter-highlight,
-.letter-memory,
-.letter-secret,
-.letter-heart-section,
-.final-love {
+    color: var(--pink-light);
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    line-height: 1.5;
+    padding: 35px 10px;
     margin: 35px 0;
-    padding: 25px;
-    border-left: 2px solid #d88ba7;
-    background: rgba(216, 139, 167, 0.07);
 }
 
-.paper h3 {
-    color: #75445a;
-    font-size: 1.35rem;
-    margin-bottom: 15px;
-}
-
-.paper .quote {
+.letter-final {
+    text-align: center;
     font-family: "Playfair Display", serif;
-    font-style: italic;
-    color: #8d5069;
-    font-size: 1.05rem;
+    font-size: clamp(1.35rem, 3.5vw, 1.85rem);
+    line-height: 1.7;
+    color: #f5dfe5;
+    padding: 42px 15px;
+    margin: 35px 0 45px;
 }
 
-.big-emotion {
-    font-family: "Playfair Display", serif !important;
-    font-size: 1.35rem !important;
-    color: #9a4d6c !important;
+.birthday-ending {
+    text-align: center;
+    font-family: "Playfair Display", serif;
+    color: var(--pink-light);
+    font-size: 1.45rem;
+    margin-top: 48px;
+    line-height: 1.6;
 }
 
 .signature {
     text-align: right;
-    font-family: "Caveat", cursive !important;
-    font-size: 1.8rem !important;
-    color: #9a4d6c !important;
+    font-family: "Caveat", cursive;
+    color: var(--pink);
+    font-size: 1.55rem;
+    margin-top: 38px;
 }
 
-/* =========================
-   GIFTS
-========================= */
 
-.gifts-section {
-    padding: 120px 0;
+/* =========================================================
+   SCROLL REVEAL
+========================================================= */
+
+.letter-paragraph,
+.letter-special,
+.letter-emphasis,
+.letter-final,
+.birthday-ending,
+.signature,
+.letter-opening {
+    opacity: 0;
+    transform: translateY(35px);
+    filter: blur(5px);
+    transition:
+        opacity 1s ease,
+        transform 1s ease,
+        filter 1s ease;
+}
+
+.letter-paragraph.revealed,
+.letter-special.revealed,
+.letter-emphasis.revealed,
+.letter-final.revealed,
+.birthday-ending.revealed,
+.signature.revealed,
+.letter-opening.revealed {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+}
+
+
+/* =========================================================
+   LETTER END
+========================================================= */
+
+.letter-end {
+    width: min(760px, 100%);
+    margin: 100px auto 0;
     text-align: center;
+    padding-bottom: 60px;
 }
 
-.gifts-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
+.end-line {
+    width: 70px;
+    height: 1px;
+    margin: 0 auto 25px;
+    background: rgba(255,255,255,0.22);
 }
 
-.gift-box {
-    min-height: 170px;
-    border-radius: 24px;
-    border: 1px solid var(--glass-border);
-    background: rgba(255,255,255,0.045);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: 2.5rem;
-    transition: transform 0.35s ease, background 0.35s ease;
+.letter-end p {
+    color: rgba(255,255,255,0.45);
+    font-family: "Caveat", cursive;
+    font-size: 1.25rem;
 }
 
-.gift-box:hover {
-    transform: translateY(-8px) rotate(-1deg);
-    background: rgba(255,143,177,0.09);
+.letter-end p span {
+    color: var(--pink);
 }
 
-/* =========================
-   NIGHT SKY
-========================= */
 
-.night-section {
-    min-height: 80vh;
-    display: flex;
-    align-items: center;
-    text-align: center;
+/* =========================================================
+   FLOATING HEARTS
+========================================================= */
+
+.floating-hearts {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 20;
     overflow: hidden;
 }
 
-.night-content {
-    width: min(700px, 100%);
-    margin: auto;
+.floating-heart {
+    position: absolute;
+    bottom: -40px;
+    color: rgba(243,154,181,0.7);
+    font-size: 14px;
+    animation: heartFloat linear forwards;
 }
 
-.moon {
-    width: 110px;
-    height: 110px;
-    margin: 0 auto 35px;
-    border-radius: 50%;
-    background: #fff3f7;
-    box-shadow:
-        0 0 35px rgba(255,235,245,0.35),
-        0 0 100px rgba(255,180,210,0.12);
-}
+@keyframes heartFloat {
+    from {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
 
-.night-content h2 {
-    font-size: clamp(2.1rem, 5vw, 3.8rem);
-}
+    15% {
+        opacity: 0.8;
+    }
 
-.night-content p {
-    margin: 20px auto 0;
-    max-width: 550px;
-}
-
-/* =========================
-   FINAL
-========================= */
-
-.final-section {
-    min-height: 90vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
-.final-content {
-    max-width: 700px;
-}
-
-.final-heart {
-    font-size: 3rem;
-    margin-bottom: 25px;
-    animation: heartbeat 1.8s infinite;
-}
-
-.final-content h2 {
-    font-size: clamp(2.5rem, 6vw, 4.8rem);
-}
-
-.final-content p {
-    margin: 15px auto;
-}
-
-.final-signature {
-    margin-top: 35px;
-    font-family: "Caveat", cursive;
-    color: var(--pink-soft);
-    font-size: 1.7rem;
-}
-
-/* =========================
-   FOOTER
-========================= */
-
-footer {
-    padding: 45px 20px;
-    text-align: center;
-    border-top: 1px solid rgba(255,255,255,0.06);
-}
-
-footer p {
-    font-size: 0.78rem;
-}
-
-/* =========================
-   GIFT POPUP
-========================= */
-
-.gift-popup {
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    background: rgba(5, 3, 8, 0.78);
-    backdrop-filter: blur(12px);
-}
-
-.gift-popup.hidden {
-    display: none;
-}
-
-.gift-popup-content {
-    width: min(470px, 100%);
-    padding: 38px;
-    text-align: center;
-    border: 1px solid var(--glass-border);
-    border-radius: 28px;
-    background: rgba(25, 15, 27, 0.95);
-    box-shadow: var(--shadow);
-}
-
-.gift-popup-content h3 {
-    font-size: 1.8rem;
-    margin-bottom: 15px;
-}
-
-.gift-popup-content p {
-    font-size: 0.9rem;
-    margin-bottom: 25px;
-}
-
-/* =========================
-   PARTY EFFECTS
-========================= */
-
-.confetti {
-    position: fixed;
-    width: 8px;
-    height: 12px;
-    top: -20px;
-    z-index: 9999;
-    pointer-events: none;
-    animation: confettiFall 4s linear forwards;
-}
-
-@keyframes confettiFall {
     to {
-        transform: translateY(110vh) rotate(720deg);
+        transform:
+            translateY(-110vh)
+            rotate(35deg);
         opacity: 0;
     }
 }
 
-.balloon {
-    position: fixed;
-    width: 30px;
-    height: 40px;
-    border-radius: 50%;
-    z-index: 9998;
-    pointer-events: none;
-    animation: balloonFloat 5s ease-in forwards;
-}
 
-@keyframes balloonFloat {
-    from {
-        transform: translateY(100vh);
-    }
-    to {
-        transform: translateY(-120vh);
-    }
-}
+/* =========================================================
+   CLICK SPARKLES
+========================================================= */
 
 .sparkle {
     position: fixed;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: white;
     pointer-events: none;
-    z-index: 99999;
-    animation: sparkle 0.8s ease-out forwards;
+    z-index: 50;
+    color: var(--pink-light);
+    font-size: 13px;
+    animation: sparkleOut 0.8s ease forwards;
 }
 
-@keyframes sparkle {
-    to {
-        transform: scale(3);
+@keyframes sparkleOut {
+    0% {
+        opacity: 1;
+        transform: scale(0.5) translate(0, 0);
+    }
+
+    100% {
         opacity: 0;
+        transform: scale(1.4) translate(var(--x), var(--y));
     }
 }
 
-.firework {
-    position: fixed;
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: white;
-    pointer-events: none;
-    z-index: 9999;
-    animation: firework 1s ease-out forwards;
-}
 
-@keyframes firework {
-    to {
-        transform: translate(
-            var(--x),
-            var(--y)
-        ) scale(0);
-        opacity: 0;
-    }
-}
+/* =========================================================
+   RESPONSIVE
+========================================================= */
 
-/* =========================
-   SCROLL REVEAL
-========================= */
-
-.reveal {
-    opacity: 0;
-    transform: translateY(28px);
-    transition:
-        opacity 0.9s ease,
-        transform 0.9s ease;
-}
-
-.reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 760px) {
-
-    body {
-        font-size: 14px;
-    }
-
-    .container {
-        width: min(100% - 28px, 1050px);
-    }
+@media (max-width: 700px) {
 
     .screen {
-        padding: 24px 16px;
+        padding: 30px 18px;
     }
 
-    .hero {
-        min-height: 85vh;
-        padding: 70px 0;
-    }
-
-    .hero h1 {
+    .intro-content h1 {
+        font-size: clamp(2.8rem, 14vw, 4rem);
         letter-spacing: -1px;
     }
 
-    .message-section,
-    .cake-section,
-    .story-section,
-    .reasons-section,
-    .letter-section,
-    .gifts-section {
-        padding: 80px 0;
+    .intro-small,
+    .birthday-top,
+    .question-small,
+    .letter-label {
+        font-size: 1.25rem;
     }
 
-    .message-card {
-        padding: 28px 22px;
-        border-radius: 22px;
-    }
-
-    .reasons-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .gifts-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .gift-box {
-        min-height: 135px;
-    }
-
-    .paper {
-        padding: 30px 22px;
-    }
-
-    .paper p {
-        font-size: 0.88rem;
-        line-height: 1.8;
-    }
-
-    .paper h3 {
-        font-size: 1.2rem;
-    }
-
-    .letter-highlight,
-    .letter-memory,
-    .letter-secret,
-    .letter-heart-section,
-    .final-love {
-        padding: 20px;
-        margin: 28px 0;
-    }
-
-    .timeline-item {
-        padding-left: 48px;
-    }
-
-    .timeline::before {
-        left: 12px;
-    }
-
-    .timeline-dot {
-        left: 5px;
-    }
-
-    .question-buttons {
-        gap: 10px;
-    }
-
-    .love-btn {
-        min-width: 95px;
-        padding: 11px 18px;
-        font-size: 0.82rem;
-    }
-
-    .gift-popup-content {
-        padding: 30px 22px;
-    }
-}
-
-/* =========================
-   SMALL PHONES
-========================= */
-
-@media (max-width: 420px) {
-
-    .intro-content h1 {
-        font-size: 2.25rem;
-    }
-
-    .birthday-content h1 {
-        font-size: 2.8rem;
+    .birthday-content h2 {
+        font-size: clamp(2.35rem, 12vw, 4rem);
     }
 
     .birthday-name {
-        font-size: 2.2rem;
-    }
-
-    .section-title h2 {
-        font-size: 1.95rem;
-    }
-
-    .paper {
-        padding: 25px 18px;
-    }
-
-    .paper::before {
-        inset: 8px;
-    }
-
-    .gifts-grid {
-        gap: 10px;
-    }
-
-    .gift-box {
-        min-height: 120px;
         font-size: 2rem;
     }
 
-    .moon {
-        width: 85px;
-        height: 85px;
+    .question-content h2 {
+        font-size: 2rem;
+    }
+
+    .question-buttons {
+        gap: 12px;
+    }
+
+    .yes-button,
+    .no-button {
+        padding: 12px 21px;
+    }
+
+    .letter-section {
+        padding: 70px 14px 100px;
+    }
+
+    .letter-intro {
+        min-height: 70vh;
+    }
+
+    .letter-paper {
+        padding: 52px 23px;
+        border-radius: 17px;
+    }
+
+    .letter-opening {
+        font-size: 1.35rem;
+        margin-bottom: 34px;
+    }
+
+    .letter-paragraph {
+        font-size: 0.9rem;
+        line-height: 1.95;
+        margin-bottom: 29px;
+    }
+
+    .letter-special {
+        font-size: 1.12rem;
+        padding: 30px 8px;
+    }
+
+    .letter-emphasis {
+        font-size: 1.5rem;
+        padding: 25px 5px;
+    }
+
+    .letter-final {
+        font-size: 1.3rem;
+        padding: 30px 5px;
+    }
+
+    .birthday-ending {
+        font-size: 1.25rem;
+    }
+
+    .signature {
+        font-size: 1.4rem;
+    }
+}
+
+
+@media (max-width: 430px) {
+
+    .primary-button {
+        min-width: 175px;
+        padding: 13px 19px;
+    }
+
+    .intro-content h1 {
+        font-size: 2.8rem;
+    }
+
+    .intro-message {
+        font-size: 1rem;
+    }
+
+    .letter-paper {
+        padding-left: 19px;
+        padding-right: 19px;
+    }
+
+    .letter-paragraph {
+        font-size: 0.88rem;
+        line-height: 1.9;
+    }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
     }
 }
